@@ -49,5 +49,8 @@
     "type": "git",
     "url": "1"
   },
-  "author": "Roxi-Erika-Tatiana"
+  "author": "Roxi-Erika-Tatiana",
+  "dependencies": {
+    "firebase": "^9.22.2"
+  }
 }
