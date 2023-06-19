@@ -17,8 +17,10 @@
       <div class="forms-container">
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
+            <div>
             <h2 class="title">Bienvenida!</h2>
             <h3 class="subtitle">Inicia sesión con tu usuario registrado</h3>
+            </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Ingresa tu usuario" name="username"required/>
@@ -27,10 +29,13 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Ingresa tu contraseña" name="password"required />
             </div>
-            <input type="submit" value="Inicia sesión" class="btn solid" />
-            <a href="/src/SavePassword.html" class="link">¿Olvidaste tu contraseña?</a>
-            <p class="social-text">Inicia sesion con: </p>
-            <div class="social-media">
+            <section>
+              <input type="submit" value="Inicia sesión" class="btn solid" />
+              <a href="/src/SavePassword.html" class="link">¿Olvidaste tu contraseña?</a>   
+            </section>
+            <section>
+            <p class="social-text">Inicia sesion con : 
+            <section class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-google"></i>
               </a>
@@ -40,25 +45,51 @@
               <a href="#" class="social-icon">
                 <i class="fab fa-microsoft"></i>
               </a>
-             </div>
-          </form>
+             </section>
+            </p>
+            </section>
+            </form>
           <form action="#" class="sign-up-form">
-            <h2 class="title">Registrate</h2>
-            <h3 class="subtitle">Crea una cuenta para continuar</h3>
-            <div class="input-field">
+            <h2 class="title">Crea tu cuenta</h2>
+            <h3 class="subtitle">Con esta cuenta podras conectar con otras</h3>
+              <h3 class="subtitle">mujeres latinas que se encuentran alrededor del mundo</h3>
+              <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Ingresa tu email" name="Mail"required />
+              </div>
+
+              <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Ingresa tu usuario" name="Username"required/>
             </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Ingresa tu email" name="Mail"required />
-            </div>
+            
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Ingresa tu contraseña" name="Password"required />
             </div>
-            <input type="submit" class="btn" value="Registrate" />
-            <p class="social-text">Registrate con tus redes sociales</p>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Confirma tu contraseña" name="PasswordV"required />
+            </div>
+            
+             
+             <label for="subscribeNews">
+              <input   type="checkbox"  id="subscribeNews" value="newsletter" name="subscribe"required/>
+               Deseo recibir noticias y novedades de Warmi a mi correo
+              </label>
+             
+             <label for="conditions">
+               <input   type="checkbox"  id="conditions" value="conditions" name="conditions"required  />
+                Estoy de acuerdo con las poltícas y condiciones
+                 <a href="/src/conditions.html" class="link1">Leer aqui</a> 
+                  </label>
+            
+
+
+
+
+            <input type="submit" class="btn" value="Crear mi cuenta" />
+            <p class="social-text">Registrate con tus redes sociales: </p>
             <div class="social-media">
                 <a href="#" class="social-icon">
                     <i class="fab fa-google"></i>
@@ -81,10 +112,10 @@
             <h4>Warmi es la primera Red Social para Mujeres 
               Latinas que viven fuera de sus paises de origen</h4>
             <p>
-                ¿Nueva en Warmi?
+                ¿Nueva en Warmi? 
             </p>
             <button class="btn transparent" id="sign-up-btn">
-              Registrate
+              Crea tu cuenta
             </button>
           </div>
           <img src="img/illustration-homepage.png" class="image" alt="" />
