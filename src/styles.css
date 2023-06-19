@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -61,7 +60,7 @@ form.sign-in-form {
 }
 
 .title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #444;
   margin-bottom: 10px;
 }
@@ -70,9 +69,6 @@ form.sign-in-form {
   font-size: 1rem;
   color: #444;
   margin-bottom: 10px;
-  /* identical to box height */
-  
-  
   color: #8C8C8C;
 
 }
@@ -178,7 +174,7 @@ form.sign-in-form {
 .link{
   
 
-position: absolute;
+
 
 font-family: 'Inria Sans';
 font-style: normal;
@@ -186,9 +182,10 @@ font-weight: 700;
 font-size: 15px;
 line-height: 18px;
 /* identical to box height */
+/*
 left: 550px;
 top: 320px;
-
+*/
 color: #FF728D;
 
 
