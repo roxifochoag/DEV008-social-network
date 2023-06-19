@@ -2,21 +2,29 @@ html,
 body {
   margin: 0;
   height: 100%;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /*design colors*/
-.colorbackpink {
+.softpink {
   background-color: #FF728D;
 }
 .colorwhite {
   background-color: #FAFAFA;
+}
+.hotpink{
+  background-color: #EF2684;
+}
+.lightblue{
+  background-color: #1BC1E2;
 }
 
 .grid-container {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 9% 80% 11%;
+  grid-template-rows: 50px 2000px 220px;
   grid-template-columns: 100%;
   grid-template-areas:
     'header'
@@ -62,6 +70,7 @@ body {
 .input-search-bar {
   margin-left: 4%;
   padding-left: 10px;
+  border-radius: 7px;
   height: 25px;
   width: 50%;
   border: 0;
@@ -83,22 +92,86 @@ aside{
 .main {
   grid-area: main;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .user-post-container{
-  background-color: #cae9f8d7;
   border: 1px solid #B6B6B6;
+  border-radius: 10px;
+  padding: 5px;
   margin-top: 10px;
   display: flex;
-  justify-content: center;
-  width: 90%;
-  height: 150px;
-}
-.user-post{
-  box-sizing: border-box; 
-  resize: none;
-  padding-top: 15px;
-  border: none;
+  flex-flow: wrap;
   height: 110px;
   width: 90%;
+}
+.user-post{
+  box-sizing: border-box;
+  border-radius: 10px;
+  resize: none;
+  padding-top: 10px;
+  padding-left: 5px;
+  border: none;
+  height: 70%;
+  width: 100%;
+  font-size: 12px;
+}
+.photo-button{
+  border-radius: 7px;
+  border-style: none;
+  margin-left: auto;
+  max-height: 30px;
+}
+.post-button{
+  color: #FAFAFA;
+  border-radius: 8px;
+  border-style: none;
+  margin-left: 8px;
+  max-height: 30px;
+  padding: 0 9px;
+}
+
+/*user post template*/
+.post-template {
+  border: 1px solid #B6B6B6;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px;
+  width: 90%;
+  height: fit-content;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(6 1fr);
+  grid-template-rows: repeat(6 1fr);
+  gap: 3px;
+  grid-auto-flow: dense;
+}
+.post-photo{
+  object-fit: cover;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+}
+.post-name{
+  font-size: 13px;
+  width: 3fr;
+  grid-column-start: 2;
+  margin: 0;
+}
+.post-status{
+  width:1fr;
+  font-size: 10px;
+  margin:0;
+}
+.post-options{
+  display: flex;
+  width: max-content;
+}
+.post-text {
+  font-size: 13px;
+  color: #252525;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  margin: 0;
 }
