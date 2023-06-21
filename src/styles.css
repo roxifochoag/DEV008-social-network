@@ -219,7 +219,7 @@ color: #FF728D;
 .container:before {
   content: "";
   position: absolute;
-  height: 2100px; /*Height*/
+  height: 3000px; /*Height*/
   width: 1600px;
   top: -10%;
   right: 48%;
@@ -245,10 +245,10 @@ color: #FF728D;
 }
 #illustration{
   display: flex;
-  align-self: flex-start;
-  align-items: flex-start;
+  align-self: center;
+  align-items: center;
   margin-bottom: -200px;
-  width: 100%;
+  width: fit-content;
 
   
 }
