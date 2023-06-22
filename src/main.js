@@ -1,5 +1,27 @@
-// Este es el punto de entrada de tu aplicacion
+import { Home } from "./components/Home.js";
+import { Register } from "./components/Register.js";
+import { Login } from "./components/Login.js";
+import { RecoverPassword } from "./components/RecoverPassword.js";
 
-import { myFunction } from './lib/index.js';
+const rootDiv = document.getElementById('root');
 
-myFunction();
+const routes = {
+  "/": Home,
+  "/login": Login,
+  "/register": Register,
+  "/recoverPassword": RecoverPassword,
+};
+
+export const onNavigate = (pathname) => {
+  console.log(pathname)
+  window.history.pushState({}, pathname, window.location.origin + pathname);
+  rootDiv.appendChild(routes[pathname]())
+};
+
+const component = routes[window.location.pathname]
+
+window.onpopstate = () => {
+  rootDiv.appendChild(component());
+}
+
+rootDiv.appendChild(component());

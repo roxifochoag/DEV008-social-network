@@ -18,7 +18,7 @@
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --coverage",
     "dev": "vite dev src",
-    "start": "npm run dev",
+    "start": "serve src/ -s",
     "build": "vite build",
     "preview": "vite preview"
   },
