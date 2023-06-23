@@ -158,6 +158,11 @@ label{
   transition: 0.5s;
 }
 
+.support-text{
+  width: auto;
+  margin-top: 0px;
+}
+
 .btn:hover {
     background-color: #EF2684;
 }
