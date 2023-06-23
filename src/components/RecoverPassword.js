@@ -48,7 +48,7 @@ export const RecoverPassword = () => {
 
   const labelForSendMessage = document.createElement('label');
   labelForSendMessage.textContent = 'Te enviaremos un enlace de recuperacion a tu correo electrónico';
-  labelForSendMessage.className = 'support-text'
+  labelForSendMessage.className = 'support-text';
 
   recoverPasswordDiv.appendChild(recoverPasswordDivDiv);
   recoverPasswordDivDiv.appendChild(formRecoverPassword);
