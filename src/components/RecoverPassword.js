@@ -1,3 +1,4 @@
+// import { resetPassword } from '../firebase/firebase.js';
 export const RecoverPassword = () => {
   const recoverPasswordDiv = document.createElement('div');
   recoverPasswordDiv.className = 'container';
@@ -63,3 +64,10 @@ export const RecoverPassword = () => {
 
   return recoverPasswordDiv;
 };
+
+// evento que envia el correo para cambio de contraseña
+// sendRecoveryPasswordButton.addEventListener('click', (e) =>{
+//   e.preventDefault();
+//   const userEmail = formSignUp.elements.Mail.value;
+//   resetPassword(userEmail);
+// });
