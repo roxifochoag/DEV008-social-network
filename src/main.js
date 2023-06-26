@@ -7,9 +7,9 @@ const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': Home,
-  '/Login': Login,
-  '/Register': Register,
-  '/RecoverPassword': RecoverPassword,
+  '/login': Login,
+  '/register': Register,
+  '/recoverPassword': RecoverPassword,
 };
 
 export const onNavigate = (pathname) => {
