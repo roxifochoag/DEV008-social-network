@@ -52,6 +52,6 @@
   },
   "author": "Roxi-Erika-Tatiana",
   "dependencies": {
-    "firebase": "^9.22.2"
+    "firebase": "^9.23.0"
   }
 }
