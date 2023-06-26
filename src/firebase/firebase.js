@@ -61,17 +61,17 @@ export const signIn = (user) => {
     });
 };
 
-export const resetPassword = (email) => {
-  sendPasswordResetEmail(auth, email)
-    .then((userEmail) => {
-      console.log('se envio un correo para cambiar contraseña!');
-      
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+// export const resetPassword = (email) => {
+//   sendPasswordResetEmail(auth, email)
+//     .then((userEmail) => {
+//       console.log('se envio un correo para cambiar contraseña!');
 
-      return error;
-    });
-};
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       console.log(errorCode, errorMessage);
+
+//       return error;
+//     });
+// };

@@ -1,5 +1,5 @@
 import { signUp } from '../firebase/firebase.js';
-import {onNavigate} from '../main.js'
+
 export const Register = () => {
   // creando el elemento div que contiene todo el registro
   const signUpDiv = document.createElement('div');
@@ -205,7 +205,7 @@ export const Register = () => {
     };
 
     signUp(user);
-    onNavigate('/login');
+    window.location.assign('/login');
   });
 
   return signUpDiv;
