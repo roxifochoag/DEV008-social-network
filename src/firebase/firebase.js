@@ -3,7 +3,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  getRedirectResult
+  getRedirectResult,
 } from 'firebase/auth';
 import { auth, googleProvider } from './config.js';
 
@@ -18,7 +18,7 @@ export const signUp = (user) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, "", errorMessage);
+      console.log(errorCode, '', errorMessage);
       return error;
     });
 };
@@ -30,19 +30,23 @@ export const signInGoogle = () => {
       // This gives you a Google Access Token. You can use it to access Google APIs.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-  //    const user = result.user;
-      console.log('Este usuario se logueo con google',
+      //    const user = result.user;
+      console.log(
+        'Este usuario se logueo con google',
         credential,
-        'y el token', token);
+        'y el token',
+
+        token,
+      );
     })
     .catch((error) => {
       // Handle Errors here.
     //  const errorCode = error.code;
-      //const errorMessage = error.message;
+      // const errorMessage = error.message;
       // The email of the user's account used.
-      //const email = error.customData.email;
+      // const email = error.customData.email;
       // The AuthCredential type that was used.
-   //   const credential = googleProvider.credentialFromError(error);
+      //   const credential = googleProvider.credentialFromError(error);
       console.log(error);
     // console.log(errorCode, errorMessage, email);
     });

@@ -1,4 +1,3 @@
-import { Home } from './components/Home.js';
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
 import { RecoverPassword } from './components/RecoverPassword.js';
@@ -6,8 +5,7 @@ import { RecoverPassword } from './components/RecoverPassword.js';
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/': Home,
-  '/login': Login,
+  '/': Login,
   '/register': Register,
   '/recoverPassword': RecoverPassword,
 };
