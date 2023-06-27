@@ -140,7 +140,7 @@ export const Login = () => {
       signInGoogle();
     } catch (error) {
       
-    console.log("popo",error)
+    console.log("error: ",error)
     }
   });
 
