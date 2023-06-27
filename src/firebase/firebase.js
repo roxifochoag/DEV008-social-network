@@ -1,12 +1,12 @@
 import {
+  signInWithRedirect,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  getRedirectResult,
+  getRedirectResult
 } from 'firebase/auth';
 import { auth, googleProvider } from './config.js';
 
-const provider = new GoogleAuthProvider();
 export const signUp = (user) => {
   createUserWithEmailAndPassword(auth, user.email, user.password)
     .then((userCredential) => {
@@ -24,27 +24,27 @@ export const signUp = (user) => {
 };
 
 export const signInGoogle = () => {
+  signInWithRedirect(auth, googleProvider);
   getRedirectResult(auth)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access Google APIs.
-      const credential = googleProvider.credentialFromResult(result);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      const user = result.user;
+  //    const user = result.user;
       console.log('Este usuario se logueo con google',
-        user,
-        'y el token',
-        token);
+        credential,
+        'y el token', token);
     })
     .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+    //  const errorCode = error.code;
+      //const errorMessage = error.message;
       // The email of the user's account used.
-      const email = error.customData.email;
+      //const email = error.customData.email;
       // The AuthCredential type that was used.
-      const credential = googleProvider.credentialFromError(error);
-      console.log(credential);
-      console.log(errorCode, errorMessage, email);
+   //   const credential = googleProvider.credentialFromError(error);
+      console.log(error);
+    // console.log(errorCode, errorMessage, email);
     });
 };
 
