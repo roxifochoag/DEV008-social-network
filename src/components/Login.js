@@ -1,52 +1,77 @@
 import { signIn, signInGoogle } from '../firebase/firebase.js';
 
 export const Login = () => {
-  // creando el elemento div que contiene todo el Login
-  const HomeDiv = document.createElement('div');
-  HomeDiv.className = 'container';
-  // Elemento
-  const formSignInDivDiv = document.createElement('div');
-  formSignInDivDiv.className = 'forms-container';
-  // creando elementos del formulario
+  // creando el elemento div que contiene todo el registro
+  const loginDiv = document.createElement('div');
+  loginDiv.className = 'container';
+
+  // lado izquierdo (ilustracion en este caso)
+  const loginUpLeftDiv = document.createElement('section');
+  loginUpLeftDiv.className = 'transition-div';
+
+  const loginLeftDivHeader = document.createElement('div');
+  loginLeftDivHeader.className = 'transition-header';
+
+  const logo = document.createElement('img');
+  logo.src = 'img/Logo.png';
+  logo.className = 'Logo';
+  logo.alt = 'vertical-logo';
+
+  const brandDescription = document.createElement('p');
+  brandDescription.innerText = 'Warmi es la primera red social para mujeres latinas que viven fuera de sus paises de origen';
+  brandDescription.className = 'warmi-summary';
+
+  const subTitle = document.createElement('p');
+  subTitle.innerText = '¿Nueva en Warmi?';
+  subTitle.className = 'smaller-subtitle';
+
+  const transparentBtn = document.createElement('button');
+  transparentBtn.innerHTML = 'registrate';
+  transparentBtn.className = 'btn transparent';
+
+  const illustrationContainer = document.createElement('div');
+  illustrationContainer.className = 'illustration-container';
+
+  const illustration = document.createElement('img');
+  illustration.src = 'img/illustration-homepage.png';
+  illustration.className = 'illustration';
+  illustration.alt = 'girls-illustration';
+
+  // lado derecho (formulario en este caso)
+  const loginUpRightDiv = document.createElement('section');
+  loginUpRightDiv.className = 'forms-container';
+
+  const formContainer = document.createElement('div');
+  formContainer.className = 'signin-signup';
 
   const formSignIn = document.createElement('form');
-  formSignIn.className = 'signin-signup';
+  formSignIn.className = 'sign-in-form';
   formSignIn.action = '#';
 
-  const formHeaderDiv = document.createElement('div');
-  formHeaderDiv.className = 'form-header-div';
-  // creando el titulo del login
-
   const title = document.createElement('h2');
-  title.classname = 'title';
-  title.textContent = 'Bienvenida!';
-  // creando el subtitulo del login
+  title.innerText = 'Bienvenida!';
+  title.className = 'title';
 
-  const subtitle = document.createElement('h3');
-  subtitle.classname = 'subtitle';
-  subtitle.textContent = 'Inicia sesión con tu correo registrado';
-  // creando input de mail usuario dentro de un div con un icon
+  const formSubTitle = document.createElement('h3');
+  formSubTitle.innerText = 'Inicia sesión con tu usuario registrado';
+  formSubTitle.className = 'subtitle';
 
-  const inputFieldUserMail = document.createElement('div');
-  inputFieldUserMail.className = 'input-field';
+  const inputFieldEmail = document.createElement('div');
+  inputFieldEmail.className = 'input-field';
 
-  // Crear el segundo elemento i con clase "fas fa-user"
-  const iconUserMail = document.createElement('i');
-  iconUserMail.className = 'fas fa-user';
-  // Crear el segundo input con tipo "text", clase "username-register"
-  // placeholder "Ingresa tu usuario", y nombre "Username"
-  const userMail = document.createElement('input');
-  userMail.type = 'text';
-  userMail.className = 'usermail-register';
-  userMail.placeholder = 'Ingresa su mail';
-  userMail.name = 'Usermail';
-  userMail.required = true;
+  const iconEmail = document.createElement('i');
+  iconEmail.className = 'fas fa-envelope';
 
-  // Agregar el icono al segundo div de campo de entrada
-  inputFieldUserMail.appendChild(iconUserMail);
-  inputFieldUserMail.appendChild(userMail);
+  const email = document.createElement('input');
+  email.type = 'email';
+  email.className = 'mail-register';
+  email.placeholder = 'Ingresa tu email';
+  email.name = 'Mail';
+  email.required = true;
 
-  // creando input de contraseña dentro de un div con un icon
+  inputFieldEmail.appendChild(iconEmail);
+  inputFieldEmail.appendChild(email);
+
   const inputFieldPss1 = document.createElement('div');
   inputFieldPss1.className = 'input-field';
 
@@ -63,22 +88,26 @@ export const Login = () => {
   inputFieldPss1.appendChild(iconPassword1);
   inputFieldPss1.appendChild(password1);
 
-  // Crear el elemento input para el botón de enviar
+  const btnContainer = document.createElement('section');
   const submitBtn = document.createElement('input');
   submitBtn.type = 'submit';
   submitBtn.className = 'btn';
   submitBtn.value = 'Iniciar sesión';
 
-  // Crear el elemento p para el texto de redes sociales
+  const recoverPasswordLink = document.createElement('a');
+  recoverPasswordLink.className = 'link';
+  recoverPasswordLink.innerHTML = '¿Olvidaste tu contraseña?';
+
+  btnContainer.appendChild(submitBtn);
+  btnContainer.appendChild(recoverPasswordLink);
+
   const socialText = document.createElement('p');
   socialText.className = 'social-text';
   socialText.textContent = 'Regístrate con tus redes sociales:';
 
-  // Crear el elemento div con clase "social-media"
   const socialMediaDiv = document.createElement('div');
   socialMediaDiv.className = 'social-media';
 
-  // Crear los enlaces de redes sociales
   const googleLink = document.createElement('a');
   googleLink.href = '#';
   googleLink.className = 'social-icon';
@@ -100,20 +129,28 @@ export const Login = () => {
   microsoftIcon.className = 'fab fa-microsoft';
   microsoftLink.appendChild(microsoftIcon);
 
-  // Agregar los enlaces al div de redes sociales
   socialMediaDiv.appendChild(googleLink);
   socialMediaDiv.appendChild(appleLink);
   socialMediaDiv.appendChild(microsoftLink);
 
-  // append child de cada elemento agregado al form
-  HomeDiv.appendChild(formSignInDivDiv);
-  formSignInDivDiv.appendChild(formSignIn);
-  formSignIn.appendChild(formHeaderDiv);
-  formHeaderDiv.appendChild(title);
-  formHeaderDiv.appendChild(subtitle);
-  formSignIn.appendChild(inputFieldUserMail);
+  // lado izquierdo
+  loginDiv.appendChild(loginUpLeftDiv);
+  loginUpLeftDiv.appendChild(loginLeftDivHeader);
+  loginLeftDivHeader.appendChild(logo);
+  loginLeftDivHeader.appendChild(brandDescription);
+  loginLeftDivHeader.appendChild(subTitle);
+  loginLeftDivHeader.appendChild(transparentBtn);
+  loginUpLeftDiv.appendChild(illustrationContainer);
+  illustrationContainer.appendChild(illustration);
+  // lado derecho
+  loginDiv.appendChild(loginUpRightDiv);
+  loginUpRightDiv.appendChild(formContainer);
+  formContainer.appendChild(formSignIn);
+  formSignIn.appendChild(title);
+  formSignIn.appendChild(formSubTitle);
+  formSignIn.appendChild(inputFieldEmail);
   formSignIn.appendChild(inputFieldPss1);
-  formSignIn.appendChild(submitBtn);
+  formSignIn.appendChild(btnContainer);
   formSignIn.appendChild(socialText);
   formSignIn.appendChild(socialMediaDiv);
 
@@ -139,11 +176,9 @@ export const Login = () => {
     try {
       signInGoogle();
     } catch (error) {
-      
-    console.log("error: ",error)
+      console.log('error: ', error);
     }
   });
 
-
-  return HomeDiv;
+  return loginDiv;
 };
