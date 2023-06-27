@@ -1,4 +1,4 @@
-import { signIn } from '../firebase/firebase.js';
+import { signIn, signInGoogle } from '../firebase/firebase.js';
 
 export const Login = () => {
   // creando el elemento div que contiene todo el Login
@@ -130,7 +130,20 @@ export const Login = () => {
     console.log('Llamada');
     signIn(user);
     console.log('Proceso');
+
+    signInGoogle();
   });
+
+  googleLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    try {
+      signInGoogle();
+    } catch (error) {
+      
+    console.log("error: ",error)
+    }
+  });
+
 
   return HomeDiv;
 };

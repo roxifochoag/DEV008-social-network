@@ -208,5 +208,7 @@ export const Register = () => {
     window.location.assign('/login');
   });
 
+  
+
   return signUpDiv;
 };
