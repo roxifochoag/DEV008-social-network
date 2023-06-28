@@ -221,8 +221,26 @@ label {
   color: #FF728D;
   display: inline-block;
   margin-left: 10px;
+  cursor: pointer;
 }
-
+.btn-save {
+  width: 375px;
+  background-color: #FF728D;
+  border: none;
+  outline: none;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.support-text {
+  width: 375px;
+  margin-top: 20px;
+}
 
 @media (max-width: 870px) {
   .container {

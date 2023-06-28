@@ -103,7 +103,7 @@ export const Login = () => {
 
   const socialText = document.createElement('p');
   socialText.className = 'social-text';
-  socialText.textContent = 'Regístrate con tus redes sociales:';
+  socialText.textContent = 'ingresa con:';
 
   const socialMediaDiv = document.createElement('div');
   socialMediaDiv.className = 'social-media';
@@ -115,23 +115,23 @@ export const Login = () => {
   googleIcon.className = 'fab fa-google';
   googleLink.appendChild(googleIcon);
 
-  const appleLink = document.createElement('a');
-  appleLink.href = '#';
-  appleLink.className = 'social-icon';
-  const appleIcon = document.createElement('i');
-  appleIcon.className = 'fab fa-apple';
-  appleLink.appendChild(appleIcon);
+  // const appleLink = document.createElement('a');
+  // appleLink.href = '#';
+  // appleLink.className = 'social-icon';
+  // const appleIcon = document.createElement('i');
+  // appleIcon.className = 'fab fa-apple';
+  // appleLink.appendChild(appleIcon);
 
-  const microsoftLink = document.createElement('a');
-  microsoftLink.href = '#';
-  microsoftLink.className = 'social-icon';
-  const microsoftIcon = document.createElement('i');
-  microsoftIcon.className = 'fab fa-microsoft';
-  microsoftLink.appendChild(microsoftIcon);
+  // const microsoftLink = document.createElement('a');
+  // microsoftLink.href = '#';
+  // microsoftLink.className = 'social-icon';
+  // const microsoftIcon = document.createElement('i');
+  // microsoftIcon.className = 'fab fa-microsoft';
+  // microsoftLink.appendChild(microsoftIcon);
 
   socialMediaDiv.appendChild(googleLink);
-  socialMediaDiv.appendChild(appleLink);
-  socialMediaDiv.appendChild(microsoftLink);
+  // socialMediaDiv.appendChild(appleLink);
+  // socialMediaDiv.appendChild(microsoftLink);
 
   // lado izquierdo
   loginDiv.appendChild(loginUpLeftDiv);
@@ -154,6 +154,15 @@ export const Login = () => {
   formSignIn.appendChild(socialText);
   formSignIn.appendChild(socialMediaDiv);
 
+  // re direccionando a recuperacion de contraseña
+  recoverPasswordLink.addEventListener('click', () => {
+    window.location.assign('/recoverPassword');
+  });
+
+  transparentBtn.addEventListener('click', () => {
+    window.location.assign('/register');
+  });
+
   // evento que va a guardar el registro del usuario
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -169,6 +178,7 @@ export const Login = () => {
     console.log('Proceso');
 
     signInGoogle();
+    // caso exito y caso erro! redireccion a pantalla feed(timeline)
   });
 
   googleLink.addEventListener('click', (e) => {

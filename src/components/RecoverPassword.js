@@ -1,28 +1,68 @@
 // import { resetPassword } from '../firebase/firebase.js';
 export const RecoverPassword = () => {
+  // creando el elemento div que contiene todo el registro
   const recoverPasswordDiv = document.createElement('div');
   recoverPasswordDiv.className = 'container';
 
-  const recoverPasswordDivDiv = document.createElement('div');
-  recoverPasswordDivDiv.className = 'forms-container';
+  // lado izquierdo (ilustracion en este caso)
+  const rPUpLeftDiv = document.createElement('section');
+  rPUpLeftDiv.className = 'transition-div';
 
-  const formRecoverPassword = document.createElement('form');
-  formRecoverPassword.className = 'signin-signup';
-  formRecoverPassword.action = '#';
+  const rPLeftDivHeader = document.createElement('div');
+  rPLeftDivHeader.className = 'transition-header';
 
-  const formHeaderDiv = document.createElement('div');
-  formHeaderDiv.className = 'form-header-div';
+  const logo = document.createElement('img');
+  logo.src = 'img/Logo.png';
+  logo.className = 'Logo';
+  logo.alt = 'vertical-logo';
+
+  const brandDescription = document.createElement('p');
+  brandDescription.innerText = 'Warmi es la primera red social para mujeres latinas que viven fuera de sus paises de origen';
+  brandDescription.className = 'warmi-summary';
+
+  const subTitle = document.createElement('p');
+  subTitle.innerText = '¿Nueva en Warmi?';
+  subTitle.className = 'smaller-subtitle';
+
+  const transparentBtn = document.createElement('button');
+  transparentBtn.innerHTML = 'registrate';
+  transparentBtn.className = 'btn transparent';
+
+  const illustrationContainer = document.createElement('div');
+  illustrationContainer.className = 'illustration-container';
+
+  const illustration = document.createElement('img');
+  illustration.src = 'img/illustration-homepage.png';
+  illustration.className = 'illustration';
+  illustration.alt = 'girls-illustration';
+
+  recoverPasswordDiv.appendChild(rPUpLeftDiv);
+  rPUpLeftDiv.appendChild(rPLeftDivHeader);
+  rPLeftDivHeader.appendChild(logo);
+  rPLeftDivHeader.appendChild(brandDescription);
+  rPLeftDivHeader.appendChild(subTitle);
+  rPLeftDivHeader.appendChild(transparentBtn);
+  rPUpLeftDiv.appendChild(illustrationContainer);
+  illustrationContainer.appendChild(illustration);
+
+  // lado derecho
+  const rPRightDiv = document.createElement('section');
+  rPRightDiv.className = 'forms-container';
+
+  const formContainer = document.createElement('div');
+  formContainer.className = 'signin-signup';
+
+  const formSignIn = document.createElement('form');
+  formSignIn.className = 'sign-in-form';
+  formSignIn.action = '#';
 
   const title = document.createElement('h2');
+  title.innerText = '¿Olvidaste tu contraseña?';
   title.className = 'title';
-  title.textContent = '¿Olvidaste tu contraseña?';
 
-  const subtitle = document.createElement('h3');
-  subtitle.className = 'subtitle';
-  subtitle.textContent = '¡Nosotras te ayudamos!';
-
-  const labelForMessage = document.createElement('label');
-  labelForMessage.textContent = 'Ingresa el correo electrónico con el que te registraste';
+  const formSubTitle = document.createElement('h3');
+  formSubTitle.innerText = '¡Nosotras te ayudamos!';
+  formSubTitle.className = 'subtitle';
 
   const inputFieldEmail = document.createElement('div');
   inputFieldEmail.className = 'input-field';
@@ -32,6 +72,7 @@ export const RecoverPassword = () => {
 
   const email = document.createElement('input');
   email.type = 'email';
+  email.className = 'mail-register';
   email.placeholder = 'Ingresa tu email';
   email.name = 'Mail';
   email.required = true;
@@ -39,28 +80,24 @@ export const RecoverPassword = () => {
   inputFieldEmail.appendChild(iconEmail);
   inputFieldEmail.appendChild(email);
 
-  const formButtonDiv = document.createElement('div');
-  formButtonDiv.className = 'form-button-div';
-
   const sendRecoveryPasswordButton = document.createElement('input');
   sendRecoveryPasswordButton.type = 'submit';
-  sendRecoveryPasswordButton.placeholder = 'Enviar enlace de recuperación';
+  sendRecoveryPasswordButton.value = 'Enviar enlace de recuperación';
   sendRecoveryPasswordButton.className = 'btn-save';
 
   const labelForSendMessage = document.createElement('label');
   labelForSendMessage.textContent = 'Te enviaremos un enlace de recuperacion a tu correo electrónico';
   labelForSendMessage.className = 'support-text';
 
-  recoverPasswordDiv.appendChild(recoverPasswordDivDiv);
-  recoverPasswordDivDiv.appendChild(formRecoverPassword);
-  formRecoverPassword.appendChild(formHeaderDiv);
-  formHeaderDiv.appendChild(title);
-  formHeaderDiv.appendChild(subtitle);
-  formRecoverPassword.appendChild(labelForMessage);
-  formRecoverPassword.appendChild(inputFieldEmail);
-  formRecoverPassword.appendChild(formButtonDiv);
-  formButtonDiv.appendChild(sendRecoveryPasswordButton);
-  formRecoverPassword.appendChild(labelForSendMessage);
+  // lado derecho
+  recoverPasswordDiv.appendChild(rPRightDiv);
+  rPRightDiv.appendChild(formContainer);
+  formContainer.appendChild(formSignIn);
+  formSignIn.appendChild(title);
+  formSignIn.appendChild(formSubTitle);
+  formSignIn.appendChild(inputFieldEmail);
+  formSignIn.appendChild(sendRecoveryPasswordButton);
+  formSignIn.appendChild(labelForSendMessage);
 
   return recoverPasswordDiv;
 };
