@@ -141,42 +141,6 @@ export const Register = () => {
   submitBtn.className = 'btn';
   submitBtn.value = 'Crear mi cuenta';
 
-  // Crear el elemento p para el texto de redes sociales
-  const socialText = document.createElement('p');
-  socialText.className = 'social-text';
-  socialText.textContent = 'Regístrate con tus redes sociales:';
-
-  // Crear el elemento div con clase "social-media"
-  const socialMediaDiv = document.createElement('div');
-  socialMediaDiv.className = 'social-media';
-
-  // Crear los enlaces de redes sociales
-  const googleLink = document.createElement('a');
-  googleLink.href = '#';
-  googleLink.className = 'social-icon';
-  const googleIcon = document.createElement('i');
-  googleIcon.className = 'fab fa-google';
-  googleLink.appendChild(googleIcon);
-
-  const appleLink = document.createElement('a');
-  appleLink.href = '#';
-  appleLink.className = 'social-icon';
-  const appleIcon = document.createElement('i');
-  appleIcon.className = 'fab fa-apple';
-  appleLink.appendChild(appleIcon);
-
-  const microsoftLink = document.createElement('a');
-  microsoftLink.href = '#';
-  microsoftLink.className = 'social-icon';
-  const microsoftIcon = document.createElement('i');
-  microsoftIcon.className = 'fab fa-microsoft';
-  microsoftLink.appendChild(microsoftIcon);
-
-  // Agregar los enlaces al div de redes sociales
-  socialMediaDiv.appendChild(googleLink);
-  socialMediaDiv.appendChild(appleLink);
-  socialMediaDiv.appendChild(microsoftLink);
-
   // append child de cada elemento agregado al form
   formSignUp.appendChild(title);
   formSignUp.appendChild(subtitle);
@@ -187,8 +151,6 @@ export const Register = () => {
   formSignUp.appendChild(labelCond);
   formSignUp.appendChild(labelNews);
   formSignUp.appendChild(submitBtn);
-  formSignUp.appendChild(socialText);
-  formSignUp.appendChild(socialMediaDiv);
 
   signUpDiv.appendChild(formSignUp);
 
@@ -205,7 +167,7 @@ export const Register = () => {
     };
 
     signUp(user);
-    window.location.assign('/login');
+    window.location.assign('/');
   });
 
   return signUpDiv;
