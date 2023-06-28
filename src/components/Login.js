@@ -21,7 +21,7 @@ export const Login = () => {
   brandDescription.innerText = 'Warmi es la primera red social para mujeres latinas que viven fuera de sus paises de origen';
   brandDescription.className = 'warmi-summary';
 
-  const subTitle = document.createElement('p');
+  const subTitle = document.createElement('h2');
   subTitle.innerText = '¿Nueva en Warmi?';
   subTitle.className = 'smaller-subtitle';
 
@@ -42,7 +42,7 @@ export const Login = () => {
   loginUpRightDiv.className = 'forms-container';
 
   const formContainer = document.createElement('div');
-  formContainer.className = 'signin-signup';
+  formContainer.className = 'signin';
 
   const formSignIn = document.createElement('form');
   formSignIn.className = 'sign-in-form';

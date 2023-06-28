@@ -6,6 +6,7 @@ const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': Login,
+  '/login': Login,
   '/register': Register,
   '/recoverPassword': RecoverPassword,
 };
