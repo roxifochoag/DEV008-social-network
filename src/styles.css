@@ -17,6 +17,8 @@ input {
   width: 100%;
   height: 100%;
 }
+
+/*pantalla login 
 /*contenedor izquierdo*/
 .transition-div {
   height: 100%;
@@ -38,17 +40,20 @@ input {
 
 .Logo {
   align-self: center;
-  width: 170px;
+  width: 178px;
 }
 
 .warmi-summary {
-  font-size: 14px;
+  font-size: 16px;
   color: #f0f0f0;
+
 }
 
 .smaller-subtitle {
-  font-size: 16px;
+  font-size: 18px;
   color: #f0f0f0;
+  font-weight: bold;
+
 }
 
 .illustration-container {
@@ -65,7 +70,6 @@ input {
   margin: 0;
   background: none;
   border: 2px solid #fff;
-  height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
 }
@@ -94,7 +98,7 @@ input {
   height: 100%;
 }
 
-.signin-signup {
+.signin {
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -193,7 +197,7 @@ label {
 }
 
 .btn {
-  width: 170px;
+  width: 180px;
   background-color: #FF728D;
   border: none;
   outline: none;
@@ -202,7 +206,7 @@ label {
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 10px 0;
+  margin: 15px 0;
   cursor: pointer;
   transition: 0.5s;
 }
@@ -223,6 +227,7 @@ label {
   margin-left: 10px;
   cursor: pointer;
 }
+
 .btn-save {
   width: 375px;
   background-color: #FF728D;
@@ -237,13 +242,43 @@ label {
   cursor: pointer;
   transition: 0.5s;
 }
+
 .support-text {
   width: 375px;
   margin-top: 20px;
 }
 
+/*pantalla registro */
+
+.signup {
+  width: 100%;
+  background-color: #fff;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.transition-div2 {
+  height: 100%;
+  background-color: #FF728D;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  text-align: center;
+}
+
+.transition-header2 {
+  align-self: center;
+  justify-content: center;
+  margin-top: 38%;
+  width: 60%;
+  height: auto;
+
+}
+
+/* responsive*/
 @media (max-width: 870px) {
-  .container {
+  .container-singup {
     min-height: 800px;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -251,12 +286,12 @@ label {
 
   /*contenedor izquierdo*/
 
-  .transition-header {
+  .transition-header-trasition-header2 {
     width: 70%;
   }
 
   .Logo {
-    width: 150px;
+    width: 170px;
   }
 
   .warmi-summary {
@@ -271,7 +306,7 @@ label {
   /*contenedor derecho*/
 
   form {
-    padding: 0rem 3rem;
+
     transition: all 0.2s 0.7s;
     overflow: hidden;
     grid-column: 1 / 2;
@@ -387,11 +422,39 @@ label {
     text-align: center;
   }
 
+  .signup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transition-div2 {
+    height: auto;
+    background-color: #FF728D;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    text-align: center;
+  }
+
   .transition-header {
     align-self: center;
     justify-content: center;
     padding: 10% 0px;
     width: 70%;
+  }
+
+  .transition-header2  {
+    width: 60%;
+    height: auto;
+    align-self: center;
+    justify-content: center;
+    justify-content: center;
+    padding: 10% 10px;
+    margin-top: 10%;
+  }
+
+  label {
+    font-size: small;
   }
 
   .Logo {

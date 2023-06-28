@@ -1,9 +1,33 @@
 import { signUp } from '../firebase/firebase.js';
-
+import { Login } from './Login.js';
+//import{onNavigate} from '../main.js'
 export const Register = () => {
   // creando el elemento div que contiene todo el registro
   const signUpDiv = document.createElement('div');
-  signUpDiv.className = 'signin-signup';
+  signUpDiv.className = 'signup';
+
+  const loginUpLeftDiv = document.createElement('section');
+  loginUpLeftDiv.className = 'transition-div2';
+
+  const loginLeftDivHeader = document.createElement('div');
+  loginLeftDivHeader.className = 'transition-header2';
+
+  const logo = document.createElement('img');
+  logo.src = 'img/Logo.png';
+  logo.className = 'Logo';
+  logo.alt = 'vertical-logo';
+
+  const subTitle = document.createElement('h2');
+  subTitle.innerText = '¿Estas registrado?';
+  subTitle.className = 'smaller-subtitle';
+
+  const brandDescription = document.createElement('p');
+  brandDescription.innerText = 'Warmi es la primera red social para mujeres latinas que viven fuera de sus paises de origen';
+  brandDescription.className = 'warmi-summary';
+
+  const transparentBtn = document.createElement('button');
+  transparentBtn.innerHTML = 'iniciar secion ';
+  transparentBtn.className = 'btn transparent';
 
   // creando el elemento formulario
   const formSignUp = document.createElement('form');
@@ -152,6 +176,12 @@ export const Register = () => {
   formSignUp.appendChild(labelNews);
   formSignUp.appendChild(submitBtn);
 
+  signUpDiv.appendChild(loginUpLeftDiv);
+  loginUpLeftDiv.appendChild(loginLeftDivHeader);
+  loginLeftDivHeader.appendChild(logo);
+  loginLeftDivHeader.appendChild(subTitle);
+  loginLeftDivHeader.appendChild(brandDescription);
+  loginLeftDivHeader.appendChild(transparentBtn);
   signUpDiv.appendChild(formSignUp);
 
   // evento que va a guardar el registro del usuario
@@ -167,8 +197,17 @@ export const Register = () => {
     };
 
     signUp(user);
-    window.location.assign('/');
+    //onNavigate('/login')
+    window.location.assign('/login');
   });
+  transparentBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+  window.location.assign('/login');
+
+  }
+)
+
+
 
   return signUpDiv;
 };
