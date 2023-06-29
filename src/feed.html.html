@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,30 +10,85 @@
 </head>
 
 <body class="colorwhite">
-
-  <div class="grid-container">
-    <header class="header colorbackpink">
-      <img class="logo" src="/src/img/icon-logo.png" alt="logo"/>
-      <button type="button" class="icon-hide-menu"><img src="img/icon-menu-celphone.svg"></button>
-      <input type="search" class="input-search-bar" placeholder="Buscar">
-      <div class="user-image"></div>
-    </header>
-    <aside class="item2 design">Aside</aside>
-    <main class="main">
-      <div class="user-post-container">
-        <textarea type="input" class="user-post colorwhite" placeholder="Crea un post"></textarea>
-        <button>
-          <img class="photo-icon" src="/src/img/camara-icon.svg"/>
-        </button>
-
-        <button>publicar</button>
-      </div>
-    </main>
-
-    <footer class="item4 design">footer</footer>
+  <header class="colorbackpink">
+    <img class="logo" src="/src/img/icon-logo.png" alt="logo" />
+    <img class="logo-horizontal" src="/src/img/logo-feed.png" alt="logo" />
+    <button type="button" class="icon-hide-menu"><img src="img/icon-menu-celphone.svg"></button>
+    <input type="search" class="input-search-bar color-placeholder" placeholder="Buscar">
+    <div class="user-image colorlightblue"></div>
+  </header>
+  <div class="centered-main">
+    <div class="flex-item-left">
+      <aside>
+        <div class="trending-container">
+          <div>
+            <h2 class="trendy-title colorbackpink">Tendencias</h2>
+          </div>
+          <div>
+            <h3>Hashtags</h3>
+            <p class="hashtag-template">#mercadillolatino</p>
+            <a>ver todos</a>
+          </div>
+          <div>
+            <h3>Grupos</h3>
+            <div class="group-container">
+              <img class="group-img colorlightblue" />
+              <p class="group-title">ingles basico para principiantes</p>
+            </div>
+            <a>ver todos</a>
+          </div>
+          <div>
+            <h3>Conversaciones</h3>
+            <div class="conversation-container">
+              <div class="conversation-content">
+                <img class="conversation-img colorlightblue" src="/src/img/istockphoto-1323400501-612x612.jpg" />
+                <div class="text-container">
+                  <p class="conversation-name">Jennifer Heredia</p>
+                  <p class="conversation-post">Algun consejo para las que queremos irnos de viaje a Grecia?</p>
+                </div>
+              </div>
+              <div class="conversation-actions">
+                <img class="messages-icon" src="/src/img/chat-svgrepo-com.svg" alt="message-icon-for-comment" />
+                <img class="heart-icon" src="/src/img/heart-svgrepo-com.svg" alt="heart-icon-for-likes" />
+              </div>
+            </div>
+            <a>ver todos</a>
+          </div>
+          <div>
+            <h3>Noticias</h3>
+            <div class="news-container">
+              <div class="news-content">
+                <p class="news-text">LABORATORIA expande sus puertas a Asuncion, Ciudad de Panama, La Paz, Montevideo y
+                  San Jose!</p>
+                <img class="news-img" src="/src/img/ED6FEYGGQNFGDM36CZVBK3WALE.webp" alt="main-img-from-the-article" />
+              </div>
+              <div class="conversation-actions">
+                <img class="messages-icon" src="/src/img/chat-svgrepo-com.svg" alt="message-icon-for-comment" />
+                <img class="heart-icon" src="/src/img/heart-svgrepo-com.svg" alt="heart-icon-for-likes" />
+              </div>
+            </div>
+            <a>ver todos</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="flex-item-right">
+      <main>
+        <div class="user-post-container">
+          <textarea type="input" class="user-post colorwhite" placeholder="Crea un post"></textarea>
+          <div class="user-post-btns-conatiner">
+            <button class="btn-insert-photo colorlightblue">
+              <img class="photo-icon" src="/src/img/camara-icon.svg" alt="camera-icon" />
+            </button>
+            <button class="btn-post colorbackpink">publicar</button>
+          </div>
+        </div>
+      </main>
+    </div>
   </div>
-
-<script type="module" src="main.js"></script>
+  <footer>
+  </footer>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>
