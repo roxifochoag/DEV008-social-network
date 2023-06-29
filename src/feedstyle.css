@@ -52,6 +52,7 @@ header {
   grid-area: header;
   display: flex;
   align-items: center;
+  height: 45px;
 }
 
 .logo {
@@ -442,7 +443,7 @@ main {
     justify-content: center;
     display: flex;
     align-content: center;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 
   .flex-item-left {
