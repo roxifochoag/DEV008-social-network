@@ -21,28 +21,13 @@ input {
 .colorlightblue {
   background-color: #1BC1E2;
 }
-
-.grid-container {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-rows: 45px auto;
-  grid-template-columns: 100%;
-  grid-template-areas:
-    'header'
-    'main';
-  gap: 1px;
+.colorgray {
+  background-color: #B6B6B6;
 }
 
-.item2 {
-  grid-area: aside;
-}
-
-.design {
-  height: auto;
-  text-align: center;
-  padding: 0;
-  font-size: 30px;
+.feed-container{
+  display: flex;
+  flex-direction: column;
 }
 
 /* header */
@@ -159,7 +144,40 @@ main {
   margin-left: 5px;
 }
 
+footer{
+  padding: 40px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: auto;
+  height: fit-content;
+  width: 100%;
+}
+
+.footer-first-row{
+  display: flex;
+  justify-content: center;
+}
+
+.footer-second-row{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.footer-first-row p, .footer-second-row p{
+  justify-content: center;
+  margin: auto 2%;
+  display: inline-flex;
+  font-size: 11px;
+  color: #FAFAFA;
+}
+
 @media (min-width: 500px) {
+  .centered-main {
+    margin-bottom: 90px;
+  }
   .logo {
     display: none;
     height: 24px;
@@ -187,17 +205,6 @@ main {
 }
 
 @media (min-width: 700px) {
-  .grid-container {
-    display: block;
-    width: 100%;
-    /* grid-template-rows: 45px auto;
-    grid-template-columns: 30% 70%;
-    grid-template-areas:
-      'header header'
-      'aside main';
-    column-gap: 20px; */
-    justify-content: none;
-  }
 
   .centered-main {
     justify-content: center;
@@ -409,6 +416,7 @@ main {
   .heart-icon {
     width: 15px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
   .messages-icon {
@@ -427,25 +435,14 @@ main {
 }
 
 @media (min-width: 1000px) {
-  .grid-container {
-    display: block;
-    width: 100%;
-    /* grid-template-rows: 45px auto;
-    grid-template-columns: 30% 70%;
-    grid-template-areas:
-      'header header'
-      'aside main';
-    column-gap: 20px; */
-    justify-content: none;
-  }
 
   .centered-main {
     justify-content: center;
     display: flex;
     align-content: center;
     margin-top: 30px;
+    margin-bottom: 100px;
   }
-
   .flex-item-left {
     height: auto;
     margin-right: 20px;
