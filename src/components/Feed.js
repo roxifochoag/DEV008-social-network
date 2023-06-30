@@ -1,5 +1,6 @@
 export const Feed = () => {
 
+
     //encerrar todo el feed incluyendo header
     const divFeedPrincipal = document.createElement('div')
 
