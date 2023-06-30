@@ -1,6 +1,7 @@
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
 import { RecoverPassword } from './components/RecoverPassword.js';
+import { Feed } from './components/Feed.js';
 
 const rootDiv = document.getElementById('root');
 
@@ -9,6 +10,7 @@ const routes = {
   '/login': Login,
   '/register': Register,
   '/recoverPassword': RecoverPassword,
+  '/feed': Feed,
 };
 
 export const onNavigate = (pathname) => {
