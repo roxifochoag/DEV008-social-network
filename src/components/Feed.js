@@ -1,51 +1,55 @@
 export const Feed = () => {
+    // ---------------------------HEAD----------------------
+    // Titulo del head
+    const headFeed = document.createElement('head');
+    const titleHeadFeed = document.createElement('title');
+    titleHeadFeed.innerText = 'WarmiFeed';
 
+    headFeed.appendChild(titleHeadFeed);
 
-    //encerrar todo el feed incluyendo header
+    // Encerrar todo el feed incluyendo header
     const divFeedPrincipal = document.createElement('div')
 
-    // ------------------------------------------------
+    // ---------------------------HEADER---------------------
     // Inicio del header
     // declaración de la clase del header
     const headerFeed = document.createElement('header');
     headerFeed.className = 'colorbackpink';
     // logo de warmi
-    const logo = document.createElement('img');
-    logo.className = 'logo';
-    logo.src = '../img/icon-logo.png';
-    logo.alt = 'logo';
+    const brand = document.createElement('img');
+    brand.className = 'logo';
+    brand.src = '../img/icon-logo.png';
+    brand.alt = 'logo';
     // Logo horizontal
-    const logohorizontal = document.createElement('img');
-    logohorizontal.className = 'logo-horizontal';
-    logohorizontal.src = '../img/logo-feed.png';
-    logohorizontal.alt = 'logo';
+    const brandHorizontal = document.createElement('img');
+    brandHorizontal.className = 'logo-horizontal';
+    brandHorizontal.src = '../img/logo-feed.png';
+    brandHorizontal.alt = 'logo';
     // Estructura del boton
     // Boton 
-    const IconHideMenu = document.createElement('button');
-    IconHideMenu.className = 'icon-hide-menu';
+    const iconHideMenu = document.createElement('button');
+    iconHideMenu.className = 'icon-hide-menu';
 
-    const IconMenuCelphone = document.createElement('img');
-    IconMenuCelphone.src = '../img/icon-menu-celphone.svg';
+    const iconMenuCelphone = document.createElement('img');
+    iconMenuCelphone.src = '../img/icon-menu-celphone.svg';
     //Barra de búsqueda 
-    const InputSearchBar = document.createElement('input');
-    InputSearchBar.setAttribute("type", "search");
-    InputSearchBar.className = 'input-search-bar';
-    InputSearchBar.placeholder = 'Buscar';
+    const inputSearchBar = document.createElement('input');
+    inputSearchBar.setAttribute("type", "search");
+    inputSearchBar.className = 'input-search-bar';
+    inputSearchBar.placeholder = 'Buscar';
     // User image
-    const UserImage = document.createElement('div');
-    UserImage.className = 'user-image colorlightblue'
+    const userImage = document.createElement('div');
+    userImage.className = 'user-image colorlightblue'
     // Fin del header
 
-    headerFeed.appendChild(logo);
-    headerFeed.appendChild(logohorizontal);
-    headerFeed.appendChild(IconHideMenu);
-    IconHideMenu.appendChild(IconMenuCelphone);
-    headerFeed.appendChild(InputSearchBar);
-    headerFeed.appendChild(UserImage);
+    headerFeed.appendChild(brand);
+    headerFeed.appendChild(brandHorizontal);
+    headerFeed.appendChild(iconHideMenu);
+    iconHideMenu.appendChild(iconMenuCelphone);
+    headerFeed.appendChild(inputSearchBar);
+    headerFeed.appendChild(userImage);
 
-    // ------------------------------------------------
-
-
+    // ---------------------------MAIN---------------------
     // Crear div principal
     const centeredMainDiv = document.createElement('div');
     centeredMainDiv.className = 'centered-main';
@@ -73,23 +77,23 @@ export const Feed = () => {
     trendingContainerDiv.appendChild(trendyTitleDiv);
 
     // Crear div para hashtags
-    const hashtagsDiv = document.createElement('div');
-    const hashtagsH3 = document.createElement('h3');
-    hashtagsH3.textContent = 'Hashtags';
-    const hashtagTemplateP = document.createElement('p');
-    hashtagTemplateP.className = 'hashtag-template';
-    hashtagTemplateP.textContent = '#mercadillolatino';
-    const verTodosHashtagsA = document.createElement('a');
-    verTodosHashtagsA.textContent = 'ver todos';
-    hashtagsDiv.appendChild(hashtagsH3);
-    hashtagsDiv.appendChild(hashtagTemplateP);
-    hashtagsDiv.appendChild(verTodosHashtagsA);
-    trendingContainerDiv.appendChild(hashtagsDiv);
+    const hashTagsDiv = document.createElement('div');
+    const hashTagsH3 = document.createElement('h3');
+    hashTagsH3.textContent = 'Hashtags';
+    const hashTagTemplateP = document.createElement('p');
+    hashTagTemplateP.className = 'hashtag-template';
+    hashTagTemplateP.textContent = '#mercadillolatino';
+    const seeAllHashTagsA = document.createElement('a');
+    seeAllHashTagsA.textContent = 'ver todos';
+    hashTagsDiv.appendChild(hashTagsH3);
+    hashTagsDiv.appendChild(hashTagTemplateP);
+    hashTagsDiv.appendChild(seeAllHashTagsA);
+    trendingContainerDiv.appendChild(hashTagsDiv);
 
     // Crear div para grupos
-    const gruposDiv = document.createElement('div');
-    const gruposH3 = document.createElement('h3');
-    gruposH3.textContent = 'Grupos';
+    const groupsDiv = document.createElement('div');
+    const groupsH3 = document.createElement('h3');
+    groupsH3.textContent = 'Grupos';
     const groupContainerDiv = document.createElement('div');
     groupContainerDiv.className = 'group-container';
     const groupImg = document.createElement('img');
@@ -99,18 +103,18 @@ export const Feed = () => {
     groupTitleP.textContent = 'ingles basico para principiantes';
     groupContainerDiv.appendChild(groupImg);
     groupContainerDiv.appendChild(groupTitleP);
-    const verTodosGruposA = document.createElement('a');
-    verTodosGruposA.textContent = 'ver todos';
-    gruposDiv.appendChild(gruposH3);
-    gruposDiv.appendChild(groupContainerDiv);
-    gruposDiv.appendChild(verTodosGruposA);
-    trendingContainerDiv.appendChild(gruposDiv);
+    const seeAllGroupsA = document.createElement('a');
+    seeAllGroupsA.textContent = 'ver todos';
+    groupsDiv.appendChild(groupsH3);
+    groupsDiv.appendChild(groupContainerDiv);
+    groupsDiv.appendChild(seeAllGroupsA);
+    trendingContainerDiv.appendChild(groupsDiv);
 
     // Crear div para conversaciones
-    const conversacionesDiv = document.createElement('div');
+    const conversationsDiv = document.createElement('div');
 
-    const conversacionesH3 = document.createElement('h3');
-    conversacionesH3.textContent = 'Conversaciones';
+    const conversationsH3 = document.createElement('h3');
+    conversationsH3.textContent = 'Conversaciones';
 
     const conversationContainerDiv = document.createElement('div');
     conversationContainerDiv.className = 'conversation-container';
@@ -155,11 +159,11 @@ export const Feed = () => {
 
     conversationContainerDiv.appendChild(conversationActions);
 
-    conversacionesDiv.appendChild(conversacionesH3);
-    conversacionesDiv.appendChild(conversationContainerDiv);
-    conversacionesDiv.appendChild(verTodosConversationsA)
+    conversationsDiv.appendChild(conversationsH3);
+    conversationsDiv.appendChild(conversationContainerDiv);
+    conversationsDiv.appendChild(verTodosConversationsA)
 
-    trendingContainerDiv.appendChild(conversacionesDiv);
+    trendingContainerDiv.appendChild(conversationsDiv);
 
     // ----------------news-------------------------------
 
@@ -167,50 +171,50 @@ export const Feed = () => {
     const news = document.createElement('h3');
     news.textContent = 'Noticias';
 
-    const NewsContainer = document.createElement('div');
-    NewsContainer.className = 'news-container';
+    const newsContainer = document.createElement('div');
+    newsContainer.className = 'news-container';
 
-    const NewsContent = document.createElement('div')
-    NewsContent.className = 'news-content';
+    const newsContent = document.createElement('div')
+    newsContent.className = 'news-content';
 
-    const NewsText = document.createElement('p');
-    NewsText.className = 'news-text';
-    NewsText.innerText = 'LABORATORIA expande sus puertas a Asuncion, Ciudad de Panama, La Paz, Montevideo y San Jose!';
+    const newsText = document.createElement('p');
+    newsText.className = 'news-text';
+    newsText.innerText = 'LABORATORIA expande sus puertas a Asuncion, Ciudad de Panama, La Paz, Montevideo y San Jose!';
 
-    const NewsImg = document.createElement('img');
-    NewsImg.className = 'news-img';
-    NewsImg.src = '../img/ED6FEYGGQNFGDM36CZVBK3WALE.webp';
-    NewsImg.alt = 'message-icon-for-comment';
+    const newsImg = document.createElement('img');
+    newsImg.className = 'news-img';
+    newsImg.src = '../img/ED6FEYGGQNFGDM36CZVBK3WALE.webp';
+    newsImg.alt = 'message-icon-for-comment';
 
-    const ConversationActions = document.createElement('div');
-    ConversationActions.className = 'conversation-actions';
+    const conversationsActions = document.createElement('div');
+    conversationsActions.className = 'conversation-actions';
 
-    const MessagesIcon = document.createElement('i');
-    MessagesIcon.className = 'messages-icon';
-    MessagesIcon.src = '../img/chat-svgrepo-com.svg';
-    MessagesIcon.alt = 'heart-icon-for-likes';
+    const messagesIcon = document.createElement('i');
+    messagesIcon.className = 'messages-icon';
+    messagesIcon.src = '../img/chat-svgrepo-com.svg';
+    messagesIcon.alt = 'heart-icon-for-likes';
 
-    const HeartIcon = document.createElement('i');
-    HeartIcon.className = 'heart-icon';
-    HeartIcon.src = '../img/heart-svgrepo-com.svg';
-    HeartIcon.alt = 'heart-icon-for-likes';
+    const heartIcon = document.createElement('i');
+    heartIcon.className = 'heart-icon';
+    heartIcon.src = '../img/heart-svgrepo-com.svg';
+    heartIcon.alt = 'heart-icon-for-likes';
 
-    const VertodosNews = document.createElement('a');
-    VertodosNews.innertext = 'ver todos';
+    const seeAllNews = document.createElement('a');
+    seeAllNews.innertext = 'ver todos';
 
 
-    NewsContent.appendChild(NewsText);
-    NewsContent.appendChild(NewsImg);
+    newsContent.appendChild(newsText);
+    newsContent.appendChild(newsImg);
 
-    conversationActions.appendChild(MessagesIcon);
-    conversationActions.appendChild(HeartIcon);
+    conversationsActions.appendChild(messagesIcon);
+    conversationsActions.appendChild(heartIcon);
 
-    NewsContainer.appendChild(NewsContent);
-    NewsContainer.appendChild(conversationActions)
+    newsContainer.appendChild(newsContent);
+    newsContainer.appendChild(conversationsActions)
 
     newsDiv.appendChild(news);
-    newsDiv.appendChild(NewsContainer)
-    newsDiv.appendChild(VertodosNews);
+    newsDiv.appendChild(newsContainer)
+    newsDiv.appendChild(seeAllNews);
 
     trendingContainerDiv.appendChild(newsDiv);
 
@@ -253,33 +257,33 @@ export const Feed = () => {
     const footerFeed = document.createElement('footer');
     footerFeed.className = 'colorgray';
     //  div del footer
-    const FooterFirstRow = document.createElement('div');
-    FooterFirstRow.className = 'footer-first-row';
+    const footerFirstRow = document.createElement('div');
+    footerFirstRow.className = 'footer-first-row';
     // Datos del footer
     // Informacion
-    const Informacion = document.createElement('p');
-    Informacion.innertext = 'Información';
+    const information = document.createElement('p');
+    information.innertext = 'Información';
     // Ayuda
-    const Ayuda = document.createElement('p');
-    Ayuda.innertext = 'Ayuda';
+    const help = document.createElement('p');
+    help.innertext = 'Ayuda';
     // Privacidad
-   const Privacidad = document.createElement('p');
-   Condiciones.innertext = 'Condiciones';
+   const privacy = document.createElement('p');
+   privacy.innertext = 'Condiciones';
    // Condiciones
-   const Condiciones = document.createElement('p');
-   Condiciones.innertext = 'Condiciones';
+   const conditions = document.createElement('p');
+   conditions.innertext = 'Condiciones';
     // Privacidad
-    const Denuncias = document.createElement('p');
-    Denuncias.innertext = 'Denuncias';    
+    const complaint = document.createElement('p');
+    complaint.innertext = 'Denuncias';    
     //  div del footer-second-row
-    const FooterSecondRow = document.createElement('div');
-    FooterSecondRow.className = 'footer-second-row';
+    const footerSecondRow = document.createElement('div');
+    footerSecondRow.className = 'footer-second-row';
     // Español (España)
-    const Espanhol = document.createElement('p');
-    Espanhol.innertext = 'Español (España)';
+    const spanish = document.createElement('p');
+    spanish.innertext = 'Español (España)';
     // © 2023 LABORATORIA
-    const Laboratoria = document.createElement('p');
-    Laboratoria.innertext = '© 2023 LABORATORIA';
+    const laboratoria = document.createElement('p');
+    laboratoria.innertext = '© 2023 LABORATORIA';
     // ------------------------FIN-----Footer
 
 
@@ -305,17 +309,17 @@ export const Feed = () => {
     divFeedPrincipal.appendChild(centeredMainDiv);
 
     divFeedPrincipal.appendChild(footerFeed);
-    footerFeed.appendChild(FooterFirstRow);
-    footerFeed.appendChild(FooterSecondRow);
+    footerFeed.appendChild(footerFirstRow);
+    footerFeed.appendChild(footerSecondRow);
 
-    FooterFirstRow.appendChild(Informacion);
-    FooterFirstRow.appendChild(Ayuda);
-    FooterFirstRow.appendChild(Privacidad);
-    FooterFirstRow.appendChild(Condiciones);
-    FooterFirstRow.appendChild(Denuncias);
+    footerFirstRow.appendChild(information);
+    footerFirstRow.appendChild(help);
+    footerFirstRow.appendChild(privacy);
+    footerFirstRow.appendChild(conditions);
+    footerFirstRow.appendChild(complaint);
 
-    FooterSecondRow.appendChild(Espanhol);
-    FooterSecondRow.appendChild(Laboratoria);
+    footerSecondRow.appendChild(spanish);
+    footerSecondRow.appendChild(laboratoria);
 
 
     return divFeedPrincipal;
