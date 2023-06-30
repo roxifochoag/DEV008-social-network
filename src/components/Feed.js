@@ -249,6 +249,39 @@ export const Feed = () => {
     const btnPost = document.createElement('button');
     btnPost.className = 'btn-post colorbackpink';
     btnPost.textContent = 'publicar';
+    // --------------------------INICIO---Footer
+    const footerFeed = document.createElement('footer');
+    footerFeed.className = 'colorgray';
+    //  div del footer
+    const FooterFirstRow = document.createElement('div');
+    FooterFirstRow.className = 'footer-first-row';
+    // Datos del footer
+    // Informacion
+    const Informacion = document.createElement('p');
+    Informacion.innertext = 'Información';
+    // Ayuda
+    const Ayuda = document.createElement('p');
+    Ayuda.innertext = 'Ayuda';
+    // Privacidad
+   const Privacidad = document.createElement('p');
+   Condiciones.innertext = 'Condiciones';
+   // Condiciones
+   const Condiciones = document.createElement('p');
+   Condiciones.innertext = 'Condiciones';
+    // Privacidad
+    const Denuncias = document.createElement('p');
+    Denuncias.innertext = 'Denuncias';    
+    //  div del footer-second-row
+    const FooterSecondRow = document.createElement('div');
+    FooterSecondRow.className = 'footer-second-row';
+    // Español (España)
+    const Espanhol = document.createElement('p');
+    Espanhol.innertext = 'Español (España)';
+    // © 2023 LABORATORIA
+    const Laboratoria = document.createElement('p');
+    Laboratoria.innertext = '© 2023 LABORATORIA';
+    // ------------------------FIN-----Footer
+
 
     // Añadir textarea al div user-post-container
     userPostContainerDiv.appendChild(textareaElement);
@@ -270,6 +303,20 @@ export const Feed = () => {
 
     divFeedPrincipal.appendChild(headerFeed);
     divFeedPrincipal.appendChild(centeredMainDiv);
+
+    divFeedPrincipal.appendChild(footerFeed);
+    footerFeed.appendChild(FooterFirstRow);
+    footerFeed.appendChild(FooterSecondRow);
+
+    FooterFirstRow.appendChild(Informacion);
+    FooterFirstRow.appendChild(Ayuda);
+    FooterFirstRow.appendChild(Privacidad);
+    FooterFirstRow.appendChild(Condiciones);
+    FooterFirstRow.appendChild(Denuncias);
+
+    FooterSecondRow.appendChild(Espanhol);
+    FooterSecondRow.appendChild(Laboratoria);
+
 
     return divFeedPrincipal;
 }
