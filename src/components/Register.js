@@ -5,7 +5,6 @@ export const Register = () => {
   // creando el elemento div que contiene todo el registro
   const signUpDiv = document.createElement('div');
   signUpDiv.className = 'signup';
-
   const loginUpLeftDiv = document.createElement('section');
   loginUpLeftDiv.className = 'transition-div2';
 
@@ -197,17 +196,13 @@ export const Register = () => {
     };
 
     signUp(user);
-    //onNavigate('/login')
+    // onNavigate('/login')
     window.location.assign('/login');
   });
   transparentBtn.addEventListener('click', (e) => {
     e.preventDefault();
-  window.location.assign('/login');
-
-  }
-)
-
-
+    window.location.assign('/login');
+  });
 
   return signUpDiv;
 };
