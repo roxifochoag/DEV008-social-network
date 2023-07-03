@@ -1,3 +1,4 @@
+// import { async } from '@firebase/util'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 // importamps desde fireestore ese codigo //++
@@ -25,3 +26,16 @@ export const auth = getAuth(app);
 // inicialize firestore
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
+
+// const users = doc(firestore, 'users/warmi');
+// console.log('',users);
+// function writeUser(){
+//  const docUsers = {
+//    fullname: 'Maricielo Ochoa',
+//    age: 27,
+//    mail:'mochoag@gmail.com',
+//   };
+// setDoc(users, docUsers);
+// }
+// const post = doc(firestore, 'post');
+// console.log('',post);
