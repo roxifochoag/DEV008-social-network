@@ -4,17 +4,19 @@ export const Feed = () => {
   const headFeed = document.createElement('head');
   const titleHeadFeed = document.createElement('title');
   titleHeadFeed.innerText = 'WarmiFeed';
-
   headFeed.appendChild(titleHeadFeed);
 
   // Encerrar todo el feed incluyendo header
   const divFeedPrincipal = document.createElement('div');
+  divFeedPrincipal.className = 'feed-container colorwhite';
 
   // ---------------------------HEADER---------------------
   // Inicio del header
   // declaración de la clase del header
   const headerFeed = document.createElement('header');
   headerFeed.className = 'colorbackpink';
+  divFeedPrincipal.appendChild(headerFeed);
+
   // logo de warmi
   const brand = document.createElement('img');
   brand.className = 'logo';
@@ -53,7 +55,7 @@ export const Feed = () => {
   // Crear div principal
   const centeredMainDiv = document.createElement('div');
   centeredMainDiv.className = 'centered-main';
-
+  divFeedPrincipal.appendChild(centeredMainDiv);
   // Crear div flex-item-left
   const flexItemLeftDiv = document.createElement('div');
   flexItemLeftDiv.className = 'flex-item-left';
@@ -108,57 +110,64 @@ export const Feed = () => {
   groupsDiv.appendChild(groupContainerDiv);
   groupsDiv.appendChild(seeAllGroupsA);
   trendingContainerDiv.appendChild(groupsDiv);
-
+  // --------------------------- conversations ---------------------------
   // Crear div para conversaciones
   const conversationsDiv = document.createElement('div');
+
   const conversationsH3 = document.createElement('h3');
   conversationsH3.textContent = 'Conversaciones';
 
   const conversationContainerDiv = document.createElement('div');
   conversationContainerDiv.className = 'conversation-container';
+
   // Mejorar el signo de conversaciones
   const conversationContentDiv = document.createElement('div');
   conversationContentDiv.className = 'conversation-content';
+
   const conversationImg = document.createElement('img');
   conversationImg.className = 'conversation-img colorlightblue';
   conversationImg.src = '../img/istockphoto-1323400501-612x612.jpg';
+
   const textContainerDiv = document.createElement('div');
   textContainerDiv.className = 'text-container';
+
   const conversationNameP = document.createElement('p');
   conversationNameP.className = 'conversation-name';
   conversationNameP.textContent = 'Jennifer Heredia';
+
   const conversationPostP = document.createElement('p');
   conversationPostP.className = 'conversation-post';
   conversationPostP.textContent = 'Algun consejo para las que queremos irnos de viaje a Grecia?';
 
   const conversationActions = document.createElement('div');
-  conversationActions.className = 'conversations-actions';
-  const conversationImg1 = document.createElement('i');
-  conversationImg1.className = 'messages-icon1';
+  conversationActions.className = 'conversation-actions';
+
+  const conversationImg1 = document.createElement('img');
+  conversationImg1.className = 'messages-icon';
   conversationImg1.src = '../img/chat-svgrepo-com.svg';
   conversationImg1.alt = 'message-icon-for-comment';
-  const conversationImg2 = document.createElement('i');
-  conversationImg2.className = 'messages-icon2';
+
+  const conversationImg2 = document.createElement('img');
+  conversationImg2.className = 'heart-icon';
   conversationImg2.src = '../img/heart-svgrepo-com.svg';
   conversationImg2.alt = 'heart-icon-for-likes';
 
-  const verTodosConversationsA = document.createElement('a');
-  verTodosConversationsA.innertext = 'ver todos';
-  textContainerDiv.appendChild(conversationNameP);
-  textContainerDiv.appendChild(conversationPostP);
-  conversationContentDiv.appendChild(conversationImg);
-  conversationContentDiv.appendChild(textContainerDiv);
-
-  conversationContainerDiv.appendChild(conversationContentDiv);
-
-  conversationActions.appendChild(conversationImg1);
-  conversationActions.appendChild(conversationImg2);
-
-  conversationContainerDiv.appendChild(conversationActions);
+  const seeAllConversationsA = document.createElement('a');
+  seeAllConversationsA.textContent = 'ver todos';
 
   conversationsDiv.appendChild(conversationsH3);
   conversationsDiv.appendChild(conversationContainerDiv);
-  conversationsDiv.appendChild(verTodosConversationsA);
+  conversationsDiv.appendChild(seeAllConversationsA);
+  // dentro de primer elemento
+  conversationContainerDiv.appendChild(conversationContentDiv);
+  conversationContentDiv.appendChild(conversationImg);
+  conversationContentDiv.appendChild(textContainerDiv);
+  textContainerDiv.appendChild(conversationNameP);
+  textContainerDiv.appendChild(conversationPostP);
+  // dentro de segundo element
+  conversationContainerDiv.appendChild(conversationActions);
+  conversationActions.appendChild(conversationImg1);
+  conversationActions.appendChild(conversationImg2);
 
   trendingContainerDiv.appendChild(conversationsDiv);
 
@@ -185,12 +194,12 @@ export const Feed = () => {
   const conversationsActions = document.createElement('div');
   conversationsActions.className = 'conversation-actions';
 
-  const messagesIcon = document.createElement('i');
+  const messagesIcon = document.createElement('img');
   messagesIcon.className = 'messages-icon';
   messagesIcon.src = '../img/chat-svgrepo-com.svg';
   messagesIcon.alt = 'heart-icon-for-likes';
 
-  const heartIcon = document.createElement('i');
+  const heartIcon = document.createElement('img');
   heartIcon.className = 'heart-icon';
   heartIcon.src = '../img/heart-svgrepo-com.svg';
   heartIcon.alt = 'heart-icon-for-likes';
@@ -249,34 +258,49 @@ export const Feed = () => {
   // --------------------------INICIO---Footer
   const footerFeed = document.createElement('footer');
   footerFeed.className = 'colorgray';
+  divFeedPrincipal.appendChild(footerFeed);
+
   //  div del footer
   const footerFirstRow = document.createElement('div');
   footerFirstRow.className = 'footer-first-row';
-  // Datos del footer
-  // Informacion
-  const information = document.createElement('p');
-  information.innertext = 'Información';
-  // Ayuda
-  const help = document.createElement('p');
-  help.innertext = 'Ayuda';
-  // Privacidad
-  const privacy = document.createElement('p');
-  privacy.innertext = 'Condiciones';
-  // Condiciones
-  const conditions = document.createElement('p');
-  conditions.innertext = 'Condiciones';
-  // Privacidad
-  const complaint = document.createElement('p');
-  complaint.innertext = 'Denuncias';
+  footerFeed.appendChild(footerFirstRow);
+
   //  div del footer-second-row
   const footerSecondRow = document.createElement('div');
   footerSecondRow.className = 'footer-second-row';
+  footerFeed.appendChild(footerSecondRow);
+
+  // Datos del footer
+  // Informacion
+  const information = document.createElement('p');
+  information.textContent = 'Información';
+  // Ayuda
+  const help = document.createElement('p');
+  help.textContent = 'Ayuda';
+  // Privacidad
+  const privacy = document.createElement('p');
+  privacy.textContent = 'Privacidad';
+  // Condiciones
+  const conditions = document.createElement('p');
+  conditions.textContent = 'Condiciones';
+  // Privacidad
+  const complaint = document.createElement('p');
+  complaint.textContent = 'Denuncias';
+
+  footerFirstRow.appendChild(information);
+  footerFirstRow.appendChild(help);
+  footerFirstRow.appendChild(privacy);
+  footerFirstRow.appendChild(conditions);
+  footerFirstRow.appendChild(complaint);
+  // --------------------------------------------------------------
   // Español (España)
   const spanish = document.createElement('p');
-  spanish.innertext = 'Español (España)';
+  spanish.innerText = 'Español (España)';
   // © 2023 LABORATORIA
   const laboratoria = document.createElement('p');
-  laboratoria.innertext = '© 2023 LABORATORIA';
+  laboratoria.innerText = '© 2023 LABORATORIA';
+  footerSecondRow.appendChild(spanish);
+  footerSecondRow.appendChild(laboratoria);
   // ------------------------FIN-----Footer
 
   // Añadir textarea al div user-post-container
@@ -297,20 +321,5 @@ export const Feed = () => {
   centeredMainDiv.appendChild(flexItemLeftDiv);
   centeredMainDiv.appendChild(flexItemRightDiv);
 
-  divFeedPrincipal.appendChild(headerFeed);
-  divFeedPrincipal.appendChild(centeredMainDiv);
-
-  divFeedPrincipal.appendChild(footerFeed);
-  footerFeed.appendChild(footerFirstRow);
-  footerFeed.appendChild(footerSecondRow);
-
-  footerFirstRow.appendChild(information);
-  footerFirstRow.appendChild(help);
-  footerFirstRow.appendChild(privacy);
-  footerFirstRow.appendChild(conditions);
-  footerFirstRow.appendChild(complaint);
-
-  footerSecondRow.appendChild(spanish);
-  footerSecondRow.appendChild(laboratoria);
   return divFeedPrincipal;
 };

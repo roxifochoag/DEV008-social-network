@@ -151,6 +151,15 @@ label {
   transition: 0.5s;
   font-size: 1.1rem;
 }
+.messages-icon1 img {
+   width: 1%;
+  color: #acacac;
+  }
+.messages-icon2 img {
+   width: 1%;
+   color: #acacac;
+ }
+ 
 
 .input-field input {
   background: none;
@@ -551,8 +560,6 @@ label {
 
 
 /*****************************************************FEED******/
-
-
 /*design colors*/
 .colorbackpink {
   background-color: #FF728D;
@@ -566,27 +573,14 @@ label {
   background-color: #1BC1E2;
 }
 
-.grid-container {
-  width: 100%;
+.colorgray {
+  background-color: #B6B6B6;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  display: grid;
-  grid-template-rows: 45px auto;
-  grid-template-columns: 100%;
-  grid-template-areas:
-    'header'
-    'main';
-  gap: 1px;
-}
-
-.item2 {
-  grid-area: aside;
-}
-
-.design {
-  height: auto;
-  text-align: center;
-  padding: 0;
-  font-size: 30px;
 }
 
 /* header */
@@ -611,6 +605,7 @@ header {
 .icon-hide-menu {
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .input-search-bar {
@@ -633,6 +628,7 @@ header {
   width: 30px;
   border-radius: 50%;
   margin-left: auto;
+  cursor: pointer;
 }
 
 /*aside*/
@@ -642,9 +638,9 @@ aside {
 
 /* main */
 main {
-  grid-area: main;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .user-post-container {
@@ -653,6 +649,7 @@ main {
   padding: 5px 10px;
   margin-top: 10px;
   display: grid;
+  align-self: center;
   grid-template-columns: 100%;
   grid-template-rows: 4fr 1fr;
   width: 85%;
@@ -690,6 +687,12 @@ main {
   border-radius: 7px;
   outline: none;
   padding: 8px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn-insert-photo:hover {
+  background-color: #EF2684;
 }
 
 .btn-post {
@@ -701,9 +704,113 @@ main {
   color: #FAFAFA;
   font-weight: 600;
   margin-left: 5px;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
+.btn-post:hover {
+  background-color: #EF2684;
+}
+
+.user-published-post {
+  border: 1px solid #B6B6B6;
+  border-radius: 15px;
+  margin-top: 20px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 0px 16px;
+  width: 83%;
+  height: fit-content;
+}
+
+.user-published-post-content {
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.conversation-img {
+  display: flex;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.user-published-post-text-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.user-published-post-title {
+  margin: 0px 0px 0px 0px;
+  font-weight: 600;
+}
+
+.user-published-post-text {
+  font-size: 13px;
+  text-justify: distribute-all-lines;
+  hyphens: auto;
+  margin: 0px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
+
+.user-published-post-actions {
+  display: flex;
+  padding-bottom: 5px;
+}
+
+.heart-icon, .messages-icon1, .messages-icon2 {
+  width: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.messages-icon {
+  width: 20px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+footer {
+  padding: 40px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: auto;
+  height: fit-content;
+  width: 100%;
+}
+
+.footer-first-row {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-second-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.footer-first-row p,
+.footer-second-row p {
+  justify-content: center;
+  margin: auto 2%;
+  display: inline-flex;
+  font-size: 11px;
+  color: #FAFAFA;
+}
+
+
 @media (min-width: 500px) {
+  .centered-main {
+    margin-bottom: 90px;
+  }
+
   .logo {
     display: none;
     height: 24px;
@@ -728,316 +835,325 @@ main {
     height: 28px;
     font-size: 14px;
   }
-}
 
-@media (min-width: 700px) {
-  .grid-container {
-    display: block;
-    width: 100%;
-    /* grid-template-rows: 45px auto;
-    grid-template-columns: 30% 70%;
-    grid-template-areas:
-      'header header'
-      'aside main';
-    column-gap: 20px; */
-    justify-content: none;
+  @media (min-width: 700px) {
+
+    .centered-main {
+      justify-content: center;
+      display: flex;
+      align-content: center;
+      margin-top: 20px;
+    }
+
+    .flex-item-left {
+      height: auto;
+      margin-right: 20px;
+    }
+
+    aside {
+      color: #252525;
+      grid-area: aside;
+      display: flex;
+      justify-content: center;
+      width: auto;
+    }
+
+    .flex-item-right {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+    }
+
+    .trending-container {
+      margin: 0px;
+    }
+
+    .trendy-title {
+      margin-top: 0px;
+    }
+
+    main {
+      width: 100%;
+      margin-right: 0px;
+      padding-right: 0px;
+
+    }
+
+    .user-post-container {
+      margin: 0px;
+      display: grid;
+      width: 100%;
+      height: 145px;
+    }
+
+    .user-post {
+      box-sizing: border-box;
+      resize: none;
+      padding: 10px 10px;
+      border: none;
+      border-radius: 15px;
+      height: 110px;
+      width: 100%;
+      font-weight: 600;
+      font-size: 15px;
+      outline: none;
+    }
+
+    /* template del post de un usuario en feed*/
+    .user-published-post {
+      padding: 10px 10px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .user-published-post-text-content {
+      margin-left: 10px;
+    }
+
+    .user-published-post-actions {
+      padding-bottom: 0px;
+    }
+
+    /*header*/
+    header {
+      padding-left: 5%;
+      padding-right: 5%;
+      display: flex;
+      justify-content: space-between;
+      height: 45px;
+    }
+
+    .logo-horizontal {
+      display: block;
+      width: 100px;
+    }
+
+    .icon-hide-menu {
+      display: none;
+      border: none;
+      background: none;
+    }
+
+    .input-search-bar {
+      margin-left: 3%;
+      font-size: 14px;
+      align-self: center;
+      justify-self: center;
+    }
+
+    .user-image {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      margin-left: 0;
+    }
+
+    .trending-container {
+      width: 200px;
+      margin-left: auto;
+    }
+
+    h2 {
+      color: #FAFAFA;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    h3 {
+      font-size: 13px;
+      margin-bottom: 10px;
+      margin-top: 0px;
+      font-weight: 600;
+    }
+
+    aside div div {
+      display: grid;
+      row-gap: 0px;
+    }
+
+    aside div div a {
+      color: #1BC1E2;
+      cursor: pointer;
+      text-decoration-line: underline;
+      font-size: 12px;
+      margin-left: auto;
+      margin-top: 10px;
+    }
+
+    /*template trending #*/
+    .hashtag-template {
+      margin: 0px;
+      color: #FF728D;
+      font-size: 13px;
+    }
+
+    /*template trending groups*/
+    .group-container {
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    .group-img {
+      width: 15px;
+      height: 15px;
+    }
+
+    .group-title {
+      margin: 0px;
+      font-size: 13px;
+      margin-left: 3px;
+    }
+
+    /*template trending conversations*/
+    .conversation-container,
+    .news-container {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #B6B6B6;
+      border-radius: 10px;
+      padding-top: 6px;
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+
+    .conversation-content,
+    .news-content {
+      display: flex;
+      padding-bottom: 5px;
+    }
+
+    .conversation-img {
+      display: flex;
+      border-radius: 20px;
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      margin: 0px;
+      padding-left: 6px;
+      padding-bottom: 6px;
+    }
+
+    .conversation-name {
+      margin: 2px 0px;
+      font-size: 13px;
+      font-weight: bold;
+
+    }
+
+    .conversation-post,
+    .news-text {
+      margin: 0px 0px;
+      font-size: 12px;
+      hyphens: auto;
+    }
+
+    .conversation-actions {
+      border-top: 1px solid #B6B6B6;
+      padding: 3px 0px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .heart-icon {
+      width: 15px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .messages-icon {
+      width: 15px;
+      margin-left: auto;
+      cursor: pointer;
+    }
+
+    /*template noticias*/
+    .news-img {
+      height: 100%;
+      width: 40%;
+      object-fit: cover;
+      margin-left: 2px;
+      border-radius: 0px 5px 5px 0px;
+    }
   }
 
-  .centered-main {
-    justify-content: center;
-    display: flex;
-    align-content: center;
-    margin-top: 20px;
+  @media (min-width: 1000px) {
+
+    .centered-main {
+      justify-content: center;
+      display: flex;
+      align-content: center;
+      margin-top: 30px;
+      margin-bottom: 100px;
+    }
+
+    .flex-item-left {
+      height: auto;
+      margin-right: 20px;
+    }
+
+    aside {
+      width: auto;
+    }
+
+    .flex-item-right {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+    }
+
+    .trending-container {
+      margin: 0px;
+    }
+
+    .trendy-title {
+      margin-top: 0px;
+    }
+
+    main {
+      width: 100%;
+      margin-right: 0px;
+      padding-right: 0px;
+
+    }
+
+    .user-post-container {
+      margin: 0px;
+      display: grid;
+      width: 100%;
+      height: 145px;
+    }
+
+    .user-post {
+      box-sizing: border-box;
+      resize: none;
+      padding: 10px 10px;
+      border: none;
+      border-radius: 15px;
+      height: 110px;
+      width: 100%;
+      font-weight: 600;
+      font-size: 15px;
+      outline: none;
+    }
   }
 
-  .flex-item-left {
-    height: auto;
-    margin-right: 20px;
-  }
+  @media (min-width: 1125px) {
+    .flex-item-right {
+      width: fit-content;
+    }
 
-  aside {
-    color: #252525;
-    grid-area: aside;
-    display: flex;
-    justify-content: center;
-    width: auto;
-  }
+    .user-post-container,
+    .user-published-post {
+      width: 680px;
+    }
 
-  .flex-item-right {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-  }
-
-  .trending-container {
-    margin: 0px;
-  }
-
-  .trendy-title {
-    margin-top: 0px;
-  }
-
-  main {
-    width: 100%;
-    margin-right: 0px;
-    padding-right: 0px;
-
-  }
-
-  .user-post-container {
-    margin: 0px;
-    display: grid;
-    width: 100%;
-    height: 145px;
-  }
-
-  .user-post {
-    box-sizing: border-box;
-    resize: none;
-    padding: 10px 10px;
-    border: none;
-    border-radius: 15px;
-    height: 110px;
-    width: 100%;
-    font-weight: 600;
-    font-size: 15px;
-    outline: none;
-  }
-
-  /*header*/
-  header {
-    padding-left: 5%;
-    padding-right: 5%;
-    display: flex;
-    justify-content: space-between;
-    height: 45px;
-  }
-
-  .logo-horizontal {
-    display: block;
-    width: 100px;
-  }
-
-  .icon-hide-menu {
-    display: none;
-    border: none;
-    background: none;
-  }
-
-  .input-search-bar {
-    margin-left: 3%;
-    font-size: 14px;
-    align-self: center;
-    justify-self: center;
-  }
-
-  .user-image {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    margin-left: 0;
-  }
-
-  .trending-container {
-    width: 200px;
-    margin-left: auto;
-  }
-
-  h2 {
-    color: #FAFAFA;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
-  h3 {
-    font-size: 13px;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    font-weight: 600;
-  }
-
-  aside div div {
-    display: grid;
-    row-gap: 0px;
-  }
-
-  aside div div a {
-    color: #1BC1E2;
-    cursor: pointer;
-    text-decoration-line: underline;
-    font-size: 12px;
-    margin-left: auto;
-    margin-top: 10px;
-  }
-
-  /*template trending #*/
-  .hashtag-template {
-    margin: 0px;
-    color: #FF728D;
-    font-size: 13px;
-  }
-
-  /*template trending groups*/
-  .group-container {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .group-img {
-    width: 15px;
-    height: 15px;
-  }
-
-  .group-title {
-    margin: 0px;
-    font-size: 13px;
-    margin-left: 3px;
-    text-overflow: ellipsis;
-  }
-
-  /*template trending conversations*/
-  .conversation-container,
-  .news-container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #B6B6B6;
-    padding-top: 6px;
-    padding-left: 6px;
-    padding-right: 6px;
-  }
-
-  .conversation-content,
-  .news-content {
-    display: flex;
-    padding-bottom: 5px;
-  }
-
-  .conversation-img {
-    display: flex;
-    border-radius: 20px;
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-  }
-
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-    padding-left: 6px;
-    padding-bottom: 6px;
-  }
-
-  .conversation-name {
-    margin: 2px 0px;
-    font-size: 13px;
-    font-weight: bold;
-
-  }
-
-  .conversation-post,
-  .news-text {
-    margin: 0px 0px;
-    font-size: 12px;
-  }
-
-  .conversation-actions {
-    border-top: 1px solid #B6B6B6;
-    padding: 3px 0px;
-    display: flex;
-    flex-direction: row;
-  }
-
-  .heart-icon {
-    width: 15px;
-    margin-left: 10px;
-  }
-
-  .messages-icon {
-    width: 15px;
-    margin-left: auto;
-    cursor: pointer;
-  }
-
-  /*template noticias*/
-  .news-img {
-    height: 100%;
-    width: 40%;
-    object-fit: cover;
-    margin-left: 2px;
-  }
-}
-
-@media (min-width: 1000px) {
-  .grid-container {
-    display: block;
-    width: 100%;
-    /* grid-template-rows: 45px auto;
-    grid-template-columns: 30% 70%;
-    grid-template-areas:
-      'header header'
-      'aside main';
-    column-gap: 20px; */
-    justify-content: none;
-  }
-
-  .centered-main {
-    justify-content: center;
-    display: flex;
-    align-content: center;
-    margin-top: 30px;
-  }
-
-  .flex-item-left {
-    height: auto;
-    margin-right: 20px;
-  }
-
-  aside {
-    width: auto;
-  }
-
-  .flex-item-right {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-  }
-
-  .trending-container {
-    margin: 0px;
-  }
-
-  .trendy-title {
-    margin-top: 0px;
-  }
-
-  main {
-    width: 100%;
-    margin-right: 0px;
-    padding-right: 0px;
-
-  }
-
-  .user-post-container {
-    margin: 0px;
-    display: grid;
-    width: 100%;
-    height: 145px;
-  }
-
-  .user-post {
-    box-sizing: border-box;
-    resize: none;
-    padding: 10px 10px;
-    border: none;
-    border-radius: 15px;
-    height: 110px;
-    width: 100%;
-    font-weight: 600;
-    font-size: 15px;
-    outline: none;
-  }
-}
+  }}
