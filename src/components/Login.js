@@ -170,7 +170,7 @@ export const Login = () => {
     console.log('miuser', formSignIn.elements);
 
     const user = {
-      email: formSignIn.elements.Usermail.value,
+      email: formSignIn.elements.Mail.value,
       password: formSignIn.elements.Password.value,
     };
     console.log('Llamada');
@@ -179,6 +179,7 @@ export const Login = () => {
 
     signInGoogle();
     // caso exito y caso erro! redireccion a pantalla feed(timeline)
+    window.location.assign('/feed');
   });
 
   googleLink.addEventListener('click', (e) => {
