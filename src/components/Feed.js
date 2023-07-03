@@ -8,7 +8,7 @@ export const Feed = () => {
   headFeed.appendChild(titleHeadFeed);
 
   // Encerrar todo el feed incluyendo header
-  const divFeedPrincipal = document.createElement('div')
+  const divFeedPrincipal = document.createElement('div');
 
   // ---------------------------HEADER---------------------
   // Inicio del header
@@ -225,7 +225,7 @@ export const Feed = () => {
 
   // Crear textarea
   const textareaElement = document.createElement('textarea');
-  textareaElement.setAttribute("type", "input");
+  textareaElement.setAttribute('type', 'input');
   textareaElement.className = 'user-post colorwhite';
   textareaElement.placeholder = 'Crea un post';
 
