@@ -116,7 +116,7 @@ export const Feed = () => {
 
   const conversationContainerDiv = document.createElement('div');
   conversationContainerDiv.className = 'conversation-container';
-
+  // Mejorar el signo de conversaciones
   const conversationContentDiv = document.createElement('div');
   conversationContentDiv.className = 'conversation-content';
   const conversationImg = document.createElement('img');
@@ -133,11 +133,11 @@ export const Feed = () => {
 
   const conversationActions = document.createElement('div');
   conversationActions.className = 'conversations-actions';
-  const conversationImg1 = document.createElement('img');
+  const conversationImg1 = document.createElement('i');
   conversationImg1.className = 'messages-icon1';
   conversationImg1.src = '../img/chat-svgrepo-com.svg';
   conversationImg1.alt = 'message-icon-for-comment';
-  const conversationImg2 = document.createElement('img');
+  const conversationImg2 = document.createElement('i');
   conversationImg2.className = 'messages-icon2';
   conversationImg2.src = '../img/heart-svgrepo-com.svg';
   conversationImg2.alt = 'heart-icon-for-likes';
