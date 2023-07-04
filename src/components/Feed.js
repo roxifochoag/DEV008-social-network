@@ -255,6 +255,51 @@ export const Feed = () => {
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post colorbackpink';
   btnPost.textContent = 'publicar';
+
+  // Post
+  // 1er post publicado
+  const userPublishedPost = document.createElement('div');
+  userPublishedPost.className = 'user-published-post';
+
+  const userPublishedPostContent = document.createElement('div');
+  userPublishedPostContent.className = 'user-published-post-content';
+  userPublishedPost.appendChild(userPublishedPostContent);
+
+  const conversationImg3 = document.createElement('img');
+  conversationImg3.className = 'conversation-img';
+  conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
+  userPublishedPost.appendChild(conversationImg3);
+
+  const userPublishedPostTextContent = document.createElement('div');
+  userPublishedPostTextContent.className = 'user-published-post-text-content';
+  userPublishedPost.appendChild(userPublishedPostTextContent);
+
+  const userPublishedPostTitle = document.createElement('p');
+  userPublishedPostTitle.className = 'user-published-post-title';
+  userPublishedPostTitle.textContent = 'Amanda Osorio';
+  userPublishedPostTextContent.appendChild(userPublishedPostTitle);
+
+  const userPublishedPostText = document.createElement('p');
+  userPublishedPostText.className = 'user-published-post-text';
+  userPublishedPostText.textContent = 'Estaran organizando clases de Francés gratuitas: Nivel A1-A2 Martes y Viernes de 19:00 - 21:00 - 01/Set en las instalaciones de Miami-Dade College para las que reciden en   Miami!';
+  userPublishedPostTextContent.appendChild(userPublishedPostText);
+
+  const userPublishedPostActions = document.createElement('div');
+  userPublishedPostActions.className = 'user-published-post-actions';
+  userPublishedPost.appendChild(userPublishedPostActions);
+
+  const messagesIcon3 = document.createElement('img');
+  messagesIcon3.className = 'messages-icon';
+  messagesIcon3.src = 'img/chat-svgrepo-com.svg';
+  messagesIcon3.alt = 'message-icon-for-comment';
+  userPublishedPostActions.appendChild(messagesIcon3);
+
+  const heartIcon3 = document.createElement('img');
+  heartIcon3.className = 'heart-icon';
+  heartIcon3.src = 'img/heart-svgrepo-com.svg';
+  heartIcon3.alt = 'heart-icon-for-likes';
+  userPublishedPostActions.appendChild(heartIcon3);
+
   // --------------------------INICIO---Footer
   const footerFeed = document.createElement('footer');
   footerFeed.className = 'colorgray';
@@ -315,6 +360,7 @@ export const Feed = () => {
 
   // Añadir div user-post-container al elemento main
   mainElement.appendChild(userPostContainerDiv);
+  mainElement.appendChild(userPublishedPost);
 
   flexItemRightDiv.appendChild(mainElement);
 
