@@ -101,7 +101,7 @@ export const Feed = () => {
   groupImg.className = 'group-img colorlightblue';
   const groupTitleP = document.createElement('p');
   groupTitleP.className = 'group-title';
-  groupTitleP.textContent = 'ingles basico para principiantes';
+  groupTitleP.textContent = 'inglés básico para principiantes';
   groupContainerDiv.appendChild(groupImg);
   groupContainerDiv.appendChild(groupTitleP);
   const seeAllGroupsA = document.createElement('a');
@@ -203,11 +203,11 @@ export const Feed = () => {
   heartIcon.className = 'heart-icon';
   heartIcon.src = '../img/heart-svgrepo-com.svg';
   heartIcon.alt = 'heart-icon-for-likes';
-
-  const seeAllNews = document.createElement('a');
-  seeAllNews.innertext = 'ver todos';
   newsContent.appendChild(newsText);
   newsContent.appendChild(newsImg);
+
+  const seeAllNews = document.createElement('a');
+  seeAllNews.innerText = 'ver todos';
 
   conversationsActions.appendChild(messagesIcon);
   conversationsActions.appendChild(heartIcon);
@@ -295,10 +295,10 @@ export const Feed = () => {
   // --------------------------------------------------------------
   // Español (España)
   const spanish = document.createElement('p');
-  spanish.innerText = 'Español (España)';
+  spanish.textContent = 'Español (España)';
   // © 2023 LABORATORIA
   const laboratoria = document.createElement('p');
-  laboratoria.innerText = '© 2023 LABORATORIA';
+  laboratoria.textContent = '© 2023 LABORATORIA';
   footerSecondRow.appendChild(spanish);
   footerSecondRow.appendChild(laboratoria);
   // ------------------------FIN-----Footer
