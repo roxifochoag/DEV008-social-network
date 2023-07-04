@@ -295,10 +295,12 @@ export const Feed = () => {
   // --------------------------------------------------------------
   // Español (España)
   const spanish = document.createElement('p');
+
   spanish.textContent = 'Español (España)';
   // © 2023 LABORATORIA
   const laboratoria = document.createElement('p');
   laboratoria.textContent = '© 2023 LABORATORIA';
+
   footerSecondRow.appendChild(spanish);
   footerSecondRow.appendChild(laboratoria);
   // ------------------------FIN-----Footer
@@ -317,7 +319,6 @@ export const Feed = () => {
   mainElement.appendChild(userPostContainerDiv);
 
   flexItemRightDiv.appendChild(mainElement);
-
   centeredMainDiv.appendChild(flexItemLeftDiv);
   centeredMainDiv.appendChild(flexItemRightDiv);
 
