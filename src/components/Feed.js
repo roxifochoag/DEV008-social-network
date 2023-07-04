@@ -9,12 +9,17 @@ export const Feed = () => {
 
   // Encerrar todo el feed incluyendo header
   const divFeedPrincipal = document.createElement('div');
+  divFeedPrincipal.className = 'feed-container colorwhite';
+
 
   // ---------------------------HEADER---------------------
   // Inicio del header
   // declaración de la clase del header
   const headerFeed = document.createElement('header');
   headerFeed.className = 'colorbackpink';
+  divFeedPrincipal.appendChild(headerFeed);
+
+
   // logo de warmi
   const brand = document.createElement('img');
   brand.className = 'logo';
@@ -29,8 +34,9 @@ export const Feed = () => {
   // Boton
   const iconHideMenu = document.createElement('button');
   iconHideMenu.className = 'icon-hide-menu';
+  
+  const iconMenuCelphone = document.createElement('i');
 
-  const iconMenuCelphone = document.createElement('img');
   iconMenuCelphone.src = '../img/icon-menu-celphone.svg';
   // Barra de búsqueda
   const inputSearchBar = document.createElement('input');
@@ -53,6 +59,7 @@ export const Feed = () => {
   // Crear div principal
   const centeredMainDiv = document.createElement('div');
   centeredMainDiv.className = 'centered-main';
+  divFeedPrincipal.appendChild(centeredMainDiv);
 
   // Crear div flex-item-left
   const flexItemLeftDiv = document.createElement('div');
@@ -82,9 +89,12 @@ export const Feed = () => {
   hashTagsH3.textContent = 'Hashtags';
   const hashTagTemplateP = document.createElement('p');
   hashTagTemplateP.className = 'hashtag-template';
+
   hashTagTemplateP.textContent = '#mercadillolatino';
+
   const seeAllHashTagsA = document.createElement('a');
   seeAllHashTagsA.textContent = 'ver todos';
+  
   hashTagsDiv.appendChild(hashTagsH3);
   hashTagsDiv.appendChild(hashTagTemplateP);
   hashTagsDiv.appendChild(seeAllHashTagsA);
@@ -100,7 +110,9 @@ export const Feed = () => {
   groupImg.className = 'group-img colorlightblue';
   const groupTitleP = document.createElement('p');
   groupTitleP.className = 'group-title';
-  groupTitleP.textContent = 'ingles basico para principiantes';
+
+  groupTitleP.textContent = 'inglés básico para principiantes';
+
   groupContainerDiv.appendChild(groupImg);
   groupContainerDiv.appendChild(groupTitleP);
   const seeAllGroupsA = document.createElement('a');
@@ -109,6 +121,8 @@ export const Feed = () => {
   groupsDiv.appendChild(groupContainerDiv);
   groupsDiv.appendChild(seeAllGroupsA);
   trendingContainerDiv.appendChild(groupsDiv);
+
+  // --------------------------- conversations ---------------------------
 
   // Crear div para conversaciones
   const conversationsDiv = document.createElement('div');
@@ -119,54 +133,59 @@ export const Feed = () => {
   const conversationContainerDiv = document.createElement('div');
   conversationContainerDiv.className = 'conversation-container';
 
+  // Mejorar el signo de conversaciones
   const conversationContentDiv = document.createElement('div');
   conversationContentDiv.className = 'conversation-content';
+
   const conversationImg = document.createElement('img');
   conversationImg.className = 'conversation-img colorlightblue';
   conversationImg.src = '../img/istockphoto-1323400501-612x612.jpg';
+
   const textContainerDiv = document.createElement('div');
   textContainerDiv.className = 'text-container';
+
   const conversationNameP = document.createElement('p');
   conversationNameP.className = 'conversation-name';
   conversationNameP.textContent = 'Jennifer Heredia';
+
   const conversationPostP = document.createElement('p');
   conversationPostP.className = 'conversation-post';
   conversationPostP.textContent = 'Algun consejo para las que queremos irnos de viaje a Grecia?';
 
   const conversationActions = document.createElement('div');
-  conversationActions.className = 'conversations-actions';
+  conversationActions.className = 'conversation-actions';
+
   const conversationImg1 = document.createElement('img');
-  conversationImg1.className = 'messages-icon1';
+  conversationImg1.className = 'messages-icon';
   conversationImg1.src = '../img/chat-svgrepo-com.svg';
   conversationImg1.alt = 'message-icon-for-comment';
+
   const conversationImg2 = document.createElement('img');
-  conversationImg2.className = 'messages-icon2';
+  conversationImg2.className = 'heart-icon';
   conversationImg2.src = '../img/heart-svgrepo-com.svg';
   conversationImg2.alt = 'heart-icon-for-likes';
 
-  const verTodosConversationsA = document.createElement('a');
-  verTodosConversationsA.innertext = 'ver todos';
-
-  textContainerDiv.appendChild(conversationNameP);
-  textContainerDiv.appendChild(conversationPostP);
-  conversationContentDiv.appendChild(conversationImg);
-  conversationContentDiv.appendChild(textContainerDiv);
-
-  conversationContainerDiv.appendChild(conversationContentDiv);
-
-  conversationActions.appendChild(conversationImg1);
-  conversationActions.appendChild(conversationImg2);
-
-  conversationContainerDiv.appendChild(conversationActions);
+  const seeAllConversationsA = document.createElement('a');
+  seeAllConversationsA.textContent = 'ver todos';
 
   conversationsDiv.appendChild(conversationsH3);
   conversationsDiv.appendChild(conversationContainerDiv);
-  conversationsDiv.appendChild(verTodosConversationsA);
+  conversationsDiv.appendChild(seeAllConversationsA);
+  // dentro de primer elemento
+  conversationContainerDiv.appendChild(conversationContentDiv);
+  conversationContentDiv.appendChild(conversationImg);
+  conversationContentDiv.appendChild(textContainerDiv);
+  textContainerDiv.appendChild(conversationNameP);
+  textContainerDiv.appendChild(conversationPostP);
+  // dentro de segundo element
+  conversationContainerDiv.appendChild(conversationActions);
+  conversationActions.appendChild(conversationImg1);
+  conversationActions.appendChild(conversationImg2);
 
   trendingContainerDiv.appendChild(conversationsDiv);
 
   // ----------------news-------------------------------
-
+  
   const newsDiv = document.createElement('div');
   const news = document.createElement('h3');
   news.textContent = 'Noticias';
@@ -189,21 +208,21 @@ export const Feed = () => {
   const conversationsActions = document.createElement('div');
   conversationsActions.className = 'conversation-actions';
 
-  const messagesIcon = document.createElement('i');
+  const messagesIcon = document.createElement('img');
+
   messagesIcon.className = 'messages-icon';
   messagesIcon.src = '../img/chat-svgrepo-com.svg';
   messagesIcon.alt = 'heart-icon-for-likes';
 
-  const heartIcon = document.createElement('i');
+  const heartIcon = document.createElement('img');
   heartIcon.className = 'heart-icon';
   heartIcon.src = '../img/heart-svgrepo-com.svg';
   heartIcon.alt = 'heart-icon-for-likes';
-
-  const seeAllNews = document.createElement('a');
-  seeAllNews.innertext = 'ver todos';
-
   newsContent.appendChild(newsText);
   newsContent.appendChild(newsImg);
+
+  const seeAllNews = document.createElement('a');
+  seeAllNews.innerText = 'ver todos';
 
   conversationsActions.appendChild(messagesIcon);
   conversationsActions.appendChild(heartIcon);
@@ -221,7 +240,7 @@ export const Feed = () => {
 
   flexItemLeftDiv.appendChild(asideElement);
 
-  /// /main de user post container que va en el flex-item-right
+  // main de user post container que va en el flex-item-right
 
   const mainElement = document.createElement('main');
 
@@ -252,37 +271,100 @@ export const Feed = () => {
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post colorbackpink';
   btnPost.textContent = 'publicar';
+
+  // Post
+  // 1er post publicado
+  const userPublishedPost = document.createElement('div');
+  userPublishedPost.className = 'user-published-post';
+
+  const userPublishedPostContent = document.createElement('div');
+  userPublishedPostContent.className = 'user-published-post-content';
+  userPublishedPost.appendChild(userPublishedPostContent);
+
+  const conversationImg3 = document.createElement('img');
+  conversationImg3.className = 'conversation-img';
+  conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
+  userPublishedPost.appendChild(conversationImg3);
+
+  const userPublishedPostTextContent = document.createElement('div');
+  userPublishedPostTextContent.className = 'user-published-post-text-content';
+  userPublishedPost.appendChild(userPublishedPostTextContent);
+
+  const userPublishedPostTitle = document.createElement('p');
+  userPublishedPostTitle.className = 'user-published-post-title';
+  userPublishedPostTitle.textContent = 'Amanda Osorio';
+  userPublishedPostTextContent.appendChild(userPublishedPostTitle);
+
+  const userPublishedPostText = document.createElement('p');
+  userPublishedPostText.className = 'user-published-post-text';
+  userPublishedPostText.textContent = 'Estaran organizando clases de Francés gratuitas: Nivel A1-A2 Martes y Viernes de 19:00 - 21:00 - 01/Set en las instalaciones de Miami-Dade College para las que reciden en   Miami!';
+  userPublishedPostTextContent.appendChild(userPublishedPostText);
+
+  const userPublishedPostActions = document.createElement('div');
+  userPublishedPostActions.className = 'user-published-post-actions';
+  userPublishedPost.appendChild(userPublishedPostActions);
+
+  const messagesIcon3 = document.createElement('img');
+  messagesIcon3.className = 'messages-icon';
+  messagesIcon3.src = 'img/chat-svgrepo-com.svg';
+  messagesIcon3.alt = 'message-icon-for-comment';
+  userPublishedPostActions.appendChild(messagesIcon3);
+
+  const heartIcon3 = document.createElement('img');
+  heartIcon3.className = 'heart-icon';
+  heartIcon3.src = 'img/heart-svgrepo-com.svg';
+  heartIcon3.alt = 'heart-icon-for-likes';
+  userPublishedPostActions.appendChild(heartIcon3);
+
   // --------------------------INICIO---Footer
   const footerFeed = document.createElement('footer');
   footerFeed.className = 'colorgray';
+  divFeedPrincipal.appendChild(footerFeed);
+
   //  div del footer
   const footerFirstRow = document.createElement('div');
   footerFirstRow.className = 'footer-first-row';
-  // Datos del footer
-  // Informacion
-  const information = document.createElement('p');
-  information.innertext = 'Información';
-  // Ayuda
-  const help = document.createElement('p');
-  help.innertext = 'Ayuda';
-  // Privacidad
-  const privacy = document.createElement('p');
-  privacy.innertext = 'Condiciones';
-  // Condiciones
-  const conditions = document.createElement('p');
-  conditions.innertext = 'Condiciones';
-  // Privacidad
-  const complaint = document.createElement('p');
-  complaint.innertext = 'Denuncias';
+  footerFeed.appendChild(footerFirstRow);
+
   //  div del footer-second-row
   const footerSecondRow = document.createElement('div');
   footerSecondRow.className = 'footer-second-row';
+  footerFeed.appendChild(footerSecondRow);
+
+  // Datos del footer
+  // Informacion
+  const information = document.createElement('p');
+  information.textContent = 'Información';
+  // Ayuda
+  const help = document.createElement('p');
+  help.textContent = 'Ayuda';
+  // Privacidad
+  const privacy = document.createElement('p');
+  privacy.textContent = 'Privacidad';
+  // Condiciones
+  const conditions = document.createElement('p');
+  conditions.textContent = 'Condiciones';
+  // Privacidad
+  const complaint = document.createElement('p');
+  complaint.textContent = 'Denuncias';
+
+  footerFirstRow.appendChild(information);
+  footerFirstRow.appendChild(help);
+  footerFirstRow.appendChild(privacy);
+  footerFirstRow.appendChild(conditions);
+  footerFirstRow.appendChild(complaint);
+  // --------------------------------------------------------------
   // Español (España)
   const spanish = document.createElement('p');
-  spanish.innertext = 'Español (España)';
+
+  spanish.textContent = 'Español (España)';
   // © 2023 LABORATORIA
   const laboratoria = document.createElement('p');
-  laboratoria.innertext = '© 2023 LABORATORIA';
+  laboratoria.textContent = '© 2023 LABORATORIA';
+
+  footerSecondRow.appendChild(spanish);
+  footerSecondRow.appendChild(laboratoria);
+
   // ------------------------FIN-----Footer
 
   // Añadir textarea al div user-post-container
@@ -298,28 +380,12 @@ export const Feed = () => {
   // Añadir div user-post-container al elemento main
   mainElement.appendChild(userPostContainerDiv);
 
-  flexItemRightDiv.appendChild(mainElement);
+  mainElement.appendChild(userPublishedPost);
 
+  flexItemRightDiv.appendChild(mainElement);
   centeredMainDiv.appendChild(flexItemLeftDiv);
   centeredMainDiv.appendChild(flexItemRightDiv);
 
-  divFeedPrincipal.appendChild(headerFeed);
-  divFeedPrincipal.appendChild(centeredMainDiv);
-
-  divFeedPrincipal.appendChild(footerFeed);
-  footerFeed.appendChild(footerFirstRow);
-  footerFeed.appendChild(footerSecondRow);
-
-  footerFirstRow.appendChild(information);
-  footerFirstRow.appendChild(help);
-  footerFirstRow.appendChild(privacy);
-  footerFirstRow.appendChild(conditions);
-  footerFirstRow.appendChild(complaint);
-
-  footerSecondRow.appendChild(spanish);
-  footerSecondRow.appendChild(laboratoria);
-
-  //   btnPost.addEventListener('click', createPost);
-
   return divFeedPrincipal;
 };
+
