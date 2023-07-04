@@ -21,25 +21,27 @@ export const signUp = async (user) => {
   }
 };
 
-export const signInGoogle = () => {
-  signInWithPopup(auth, googleProvider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access Google APIs.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      //    const user = result.user;
-      console.log(
-        'Este usuario se logueo con google',
-        credential,
-        'y el token',
-        token,
-      );
+export const signInGoogle = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
 
-      window.location.assign('/feed');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    // This gives you a Google Access Token. You can use it to access Google APIs.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    //    const user = result.user;
+    console.log(
+      'Este usuario se logueo con google',
+      credential,
+      'y el token',
+      token,
+    );
+
+    localStorage.setItem('userCredentials', JSON.stringify(result));
+    window.location.assign('/feed');
+    window.alert('Ingreso Exitoso');
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 // SignIn

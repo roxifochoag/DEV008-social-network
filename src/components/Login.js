@@ -178,20 +178,12 @@ export const Login = () => {
     console.log('Proceso');
 
     window.alert('Ingreso Exitoso');
-   
+
     // caso exito y caso erro! redireccion a pantalla feed(timeline)
     window.location.assign('/feed');
   });
 
-  googleLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    try {
-      signInGoogle();
-      window.alert('Ingreso Exitoso');
-    } catch (error) {
-      console.log('error: ', error);
-    }
-  });
+  googleLink.addEventListener('click', signInGoogle);
 
   return loginDiv;
 };
