@@ -1,10 +1,10 @@
 import { signUp } from '../firebase/firebase.js';
-import { Login } from './Login.js';
-//import{onNavigate} from '../main.js'
+
 export const Register = () => {
   // creando el elemento div que contiene todo el registro
   const signUpDiv = document.createElement('div');
   signUpDiv.className = 'signup';
+
   const loginUpLeftDiv = document.createElement('section');
   loginUpLeftDiv.className = 'transition-div2';
 
@@ -184,19 +184,16 @@ export const Register = () => {
   signUpDiv.appendChild(formSignUp);
 
   // evento que va a guardar el registro del usuario
-  submitBtn.addEventListener('click', (e) => {
+  submitBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-
-    console.log(formSignUp.elements);
 
     const user = {
       email: formSignUp.elements.Mail.value,
-      name: formSignUp.elements.Username.value,
+      username: formSignUp.elements.Username.value,
       password: formSignUp.elements.Password[0].value,
     };
 
-    signUp(user);
-    // onNavigate('/login')
+    await signUp(user);
     window.location.assign('/login');
   });
   transparentBtn.addEventListener('click', (e) => {
