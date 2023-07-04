@@ -240,7 +240,7 @@ export const Feed = () => {
 
   // Crear div user-post-btns-container
   const userPostBtnsContainerDiv = document.createElement('div');
-  userPostBtnsContainerDiv.className = 'user-post-btns-container';
+  userPostBtnsContainerDiv.className = 'user-post-btns-conatiner';
 
   // Crear botón para insertar foto
   const btnInsertPhoto = document.createElement('button');
@@ -266,13 +266,13 @@ export const Feed = () => {
   userPublishedPost.appendChild(userPublishedPostContent);
 
   const conversationImg3 = document.createElement('img');
-  conversationImg3.className = 'conversation-img';
+  conversationImg3.className = 'conversation-img colorlightblue';
   conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
-  userPublishedPost.appendChild(conversationImg3);
+  userPublishedPostContent.appendChild(conversationImg3);
 
   const userPublishedPostTextContent = document.createElement('div');
   userPublishedPostTextContent.className = 'user-published-post-text-content';
-  userPublishedPost.appendChild(userPublishedPostTextContent);
+  userPublishedPostContent.appendChild(userPublishedPostTextContent);
 
   const userPublishedPostTitle = document.createElement('p');
   userPublishedPostTitle.className = 'user-published-post-title';
