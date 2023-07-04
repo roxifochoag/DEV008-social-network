@@ -5,22 +5,21 @@ import {
   createUserWithEmailAndPassword,
   getRedirectResult,
 } from 'firebase/auth';
-import { auth, googleProvider } from './config.js';
+import { setDoc, doc } from 'firebase/firestore';
+import { auth, googleProvider, db } from './config.js';
 
-export const signUp = (user) => {
-  createUserWithEmailAndPassword(auth, user.email, user.password)
-    .then((userCredential) => {
-      const userCreated = userCredential.user;
-      console.log(userCredential);
+export const signUp = async (user) => {
+  try {
+    const firebaseUser = await createUserWithEmailAndPassword(auth, user.email, user.password);
 
-      return userCreated;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, '', errorMessage);
-      return error;
+    await setDoc(doc(db, 'users', firebaseUser.user.uid), {
+      first_name: '',
+      last_name: '',
+      username: user.username,
     });
+  } catch (error) {
+    console.log({ error });
+  }
 };
 
 export const signInGoogle = () => {
