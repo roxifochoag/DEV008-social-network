@@ -176,8 +176,9 @@ export const Login = () => {
     console.log('Llamada');
     signIn(user);
     console.log('Proceso');
+
     window.alert('Ingreso Exitoso');
-    signInGoogle();
+   
     // caso exito y caso erro! redireccion a pantalla feed(timeline)
     window.location.assign('/feed');
   });
@@ -194,3 +195,9 @@ export const Login = () => {
 
   return loginDiv;
 };
+
+// al momento de log capturar el UID
+
+// pasar el UID al feed
+
+// convertir el contenido del UID a un objeto
