@@ -194,6 +194,7 @@ export const Register = () => {
     };
 
     await signUp(user);
+    alert('Registrado con éxito');
     window.location.assign('/login');
   });
   transparentBtn.addEventListener('click', (e) => {

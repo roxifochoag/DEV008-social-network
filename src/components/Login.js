@@ -176,6 +176,9 @@ export const Login = () => {
     console.log('Llamada');
     signIn(user);
     console.log('Proceso');
+
+    window.alert('Ingreso Exitoso');
+   
     // caso exito y caso erro! redireccion a pantalla feed(timeline)
     window.location.assign('/feed');
   });
@@ -184,6 +187,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       signInGoogle();
+      window.alert('Ingreso Exitoso');
     } catch (error) {
       console.log('error: ', error);
     }
