@@ -177,10 +177,9 @@ export const Login = () => {
     signIn(user);
     console.log('Proceso');
 
-    window.alert('Ingreso Exitoso');
-
     // caso exito y caso erro! redireccion a pantalla feed(timeline)
     window.location.assign('/feed');
+    window.alert('Ingreso Exitoso');
   });
 
   googleLink.addEventListener('click', signInGoogle);
