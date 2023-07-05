@@ -177,9 +177,3 @@ export const Login = () => {
 
   return loginDiv;
 };
-
-// al momento de log capturar el UID
-
-// pasar el UID al feed
-
-// convertir el contenido del UID a un objeto

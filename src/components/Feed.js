@@ -229,13 +229,14 @@ export const Feed = () => {
   const mainElement = document.createElement('main');
 
   // Crear div user-post-container
-  const userPostContainerDiv = document.createElement('div');
+  const userPostContainerDiv = document.createElement('form');
   userPostContainerDiv.className = 'user-post-container';
+  userPostContainerDiv.id = 'db-post-form';
 
   // Crear textarea
   const textareaElement = document.createElement('textarea');
-  textareaElement.setAttribute('type', 'input');
   textareaElement.className = 'user-post colorwhite';
+  textareaElement.id = 'db-post-content';
   textareaElement.placeholder = 'Crea un post';
 
   // Crear div user-post-btns-container
@@ -245,6 +246,7 @@ export const Feed = () => {
   // Crear botón para insertar foto
   const btnInsertPhoto = document.createElement('button');
   btnInsertPhoto.className = 'btn-insert-photo colorlightblue';
+  btnInsertPhoto.type = 'button';
   const photoIconImg = document.createElement('img');
   photoIconImg.className = 'photo-icon';
   photoIconImg.src = '../img/camara-icon.svg';
@@ -255,6 +257,7 @@ export const Feed = () => {
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post colorbackpink';
   btnPost.textContent = 'publicar';
+  btnPost.type = 'submit';
 
   // Post
   // 1er post publicado
@@ -367,6 +370,8 @@ export const Feed = () => {
   flexItemRightDiv.appendChild(mainElement);
   centeredMainDiv.appendChild(flexItemLeftDiv);
   centeredMainDiv.appendChild(flexItemRightDiv);
+
+  // Creacion de un post
 
   return divFeedPrincipal;
 };
