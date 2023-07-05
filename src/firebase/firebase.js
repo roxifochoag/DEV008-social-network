@@ -16,6 +16,8 @@ export const signUp = async (user) => {
       last_name: '',
       username: user.username,
     });
+    window.location.assign('/login');
+    window.alert('Registro exitoso');
   } catch (error) {
     console.log({ error });
   }
@@ -49,6 +51,8 @@ export const signIn = (user) => {
   signInWithEmailAndPassword(auth, user.email, user.password)
     .then((userCredential) => {
       console.log('usefb', userCredential);
+      window.location.assign('/feed');
+      window.alert('Ingreso Exitoso');
     })
     .catch((error) => {
       const errorCode = error.code;
