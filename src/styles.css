@@ -151,15 +151,17 @@ label {
   transition: 0.5s;
   font-size: 1.1rem;
 }
+
 .messages-icon1 img {
-   width: 1%;
+  width: 1%;
   color: #acacac;
-  }
+}
+
 .messages-icon2 img {
-   width: 1%;
-   color: #acacac;
- }
- 
+  width: 1%;
+  color: #acacac;
+}
+
 
 .input-field input {
   font-size: 16px;
@@ -453,7 +455,7 @@ label {
     width: 70%;
   }
 
-  .transition-header2  {
+  .transition-header2 {
     width: 60%;
     height: auto;
     align-self: center;
@@ -647,22 +649,22 @@ main {
 .user-post-container {
   border: 1px solid #B6B6B6;
   border-radius: 15px;
-  padding: 5px 10px;
+  padding: 0px;
   margin-top: 10px;
   display: grid;
   align-self: center;
   grid-template-columns: 100%;
-  grid-template-rows: 4fr 1fr;
+  grid-template-rows: 2fr 1fr;
   width: 85%;
-  height: 145px;
+  height: fit-content;
 }
 
 .user-post {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+  margin: 0px;
   resize: none;
-  padding-top: 10px;
-  padding-left: 5px;
+  padding: 15px 15px;
   border: none;
   border-radius: 15px;
   height: 110px;
@@ -676,10 +678,13 @@ main {
 }
 
 .user-post-btns-conatiner {
+  padding-bottom: 5px;
+  padding-right: 10px;
   width: auto;
   margin-left: auto;
   align-items: center;
   display: flex;
+  height: fit-content;
 }
 
 .btn-insert-photo {
@@ -713,6 +718,14 @@ main {
   background-color: #EF2684;
 }
 
+.timeline-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+}
+
 .user-published-post {
   border: 1px solid #B6B6B6;
   border-radius: 15px;
@@ -720,9 +733,12 @@ main {
   align-self: center;
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 0px 16px;
   width: 83%;
   height: fit-content;
+}
+
+.user-published-post-div {
+  padding: 10px 10px 5px 10px;
 }
 
 .user-published-post-content {
@@ -763,7 +779,9 @@ main {
   padding-bottom: 5px;
 }
 
-.heart-icon, .messages-icon1, .messages-icon2 {
+.heart-icon,
+.messages-icon1,
+.messages-icon2 {
   width: 20px;
   margin-left: 10px;
   cursor: pointer;
@@ -836,7 +854,9 @@ footer {
     height: 28px;
     font-size: 14px;
   }
-
+  .user-published-post {
+    width: 85%;
+  }
   @media (min-width: 700px) {
 
     .centered-main {
@@ -883,9 +903,7 @@ footer {
 
     .user-post-container {
       margin: 0px;
-      display: grid;
       width: 100%;
-      height: 145px;
     }
 
     .user-post {
@@ -903,7 +921,7 @@ footer {
 
     /* template del post de un usuario en feed*/
     .user-published-post {
-      padding: 10px 10px;
+      padding: 0px;
       width: 100%;
       margin-top: 10px;
     }
@@ -1128,9 +1146,7 @@ footer {
 
     .user-post-container {
       margin: 0px;
-      display: grid;
       width: 100%;
-      height: 145px;
     }
 
     .user-post {
@@ -1157,4 +1173,5 @@ footer {
       width: 680px;
     }
 
-  }}
+  }
+}

@@ -1,3 +1,5 @@
+import { savePost, showPosts } from '../firebase/firebase.js';
+
 export const Feed = () => {
   // ---------------------------HEAD----------------------
   // Titulo del head
@@ -231,7 +233,6 @@ export const Feed = () => {
   // Crear div user-post-container
   const userPostContainerDiv = document.createElement('form');
   userPostContainerDiv.className = 'user-post-container';
-  userPostContainerDiv.id = 'db-post-form';
 
   // Crear textarea
   const textareaElement = document.createElement('textarea');
@@ -261,12 +262,20 @@ export const Feed = () => {
 
   // Post
   // 1er post publicado
+  const timelinePostsContainer = document.createElement('div');
+  timelinePostsContainer.className = 'timeline-container';
+
   const userPublishedPost = document.createElement('div');
   userPublishedPost.className = 'user-published-post';
+  timelinePostsContainer.appendChild(userPublishedPost);
+
+  const userPublishedPostDiv = document.createElement('div');
+  userPublishedPostDiv.className = 'user-published-post-div';
+  userPublishedPost.appendChild(userPublishedPostDiv);
 
   const userPublishedPostContent = document.createElement('div');
   userPublishedPostContent.className = 'user-published-post-content';
-  userPublishedPost.appendChild(userPublishedPostContent);
+  userPublishedPostDiv.appendChild(userPublishedPostContent);
 
   const conversationImg3 = document.createElement('img');
   conversationImg3.className = 'conversation-img colorlightblue';
@@ -289,7 +298,7 @@ export const Feed = () => {
 
   const userPublishedPostActions = document.createElement('div');
   userPublishedPostActions.className = 'user-published-post-actions';
-  userPublishedPost.appendChild(userPublishedPostActions);
+  userPublishedPostDiv.appendChild(userPublishedPostActions);
 
   const messagesIcon3 = document.createElement('img');
   messagesIcon3.className = 'messages-icon';
@@ -365,13 +374,35 @@ export const Feed = () => {
 
   // Añadir div user-post-container al elemento main
   mainElement.appendChild(userPostContainerDiv);
-  mainElement.appendChild(userPublishedPost);
+  mainElement.appendChild(timelinePostsContainer);
 
   flexItemRightDiv.appendChild(mainElement);
   centeredMainDiv.appendChild(flexItemLeftDiv);
   centeredMainDiv.appendChild(flexItemRightDiv);
 
   // Creacion de un post
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    const TimelinePosts = await showPosts();
+    let html = '';
+
+    TimelinePosts.forEach((doc) => {
+      const data = doc.data();
+      html += `
+        <div>
+          <p>${data.text}<p>
+        </div>
+      ` 
+    });
+    timelinePostsContainer.innerHTML = html;
+  });
+
+  userPostContainerDiv.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    savePost(textareaElement.value);
+    userPostContainerDiv.reset();
+  });
 
   return divFeedPrincipal;
 };
