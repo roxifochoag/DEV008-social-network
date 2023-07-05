@@ -192,11 +192,9 @@ export const Register = () => {
       username: formSignUp.elements.Username.value,
       password: formSignUp.elements.Password[0].value,
     };
-
     await signUp(user);
-    alert('Registrado con éxito');
-    window.location.assign('/login');
   });
+
   transparentBtn.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.assign('/login');

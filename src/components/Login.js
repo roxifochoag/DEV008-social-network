@@ -166,20 +166,11 @@ export const Login = () => {
   // evento que va a guardar el registro del usuario
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-
-    console.log('miuser', formSignIn.elements);
-
     const user = {
       email: formSignIn.elements.Mail.value,
       password: formSignIn.elements.Password.value,
     };
-    console.log('Llamada');
     signIn(user);
-    console.log('Proceso');
-
-    // caso exito y caso erro! redireccion a pantalla feed(timeline)
-    window.location.assign('/feed');
-    window.alert('Ingreso Exitoso');
   });
 
   googleLink.addEventListener('click', signInGoogle);
