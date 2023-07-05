@@ -4,7 +4,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
+import
+{
+  setDoc, doc, collection, onSnapshot, addDoc, getDocs,
+} from 'firebase/firestore';
 import { auth, googleProvider, db } from './config.js';
 
 export const signUp = async (user) => {
@@ -59,6 +62,15 @@ export const signIn = (user) => {
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
     });
+};
+
+export const savePost = (text) => addDoc(collection(db, 'post'), { text });
+
+export const showPosts = () => getDocs(collection(db, 'post'));
+
+export const onGetPosts = () => console.log('onGetPosts');
+export {
+  onSnapshot,
 };
 
 // export const resetPassword = (email) => {
