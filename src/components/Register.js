@@ -43,6 +43,8 @@ export const Register = () => {
   subtitle.className = 'subtitle';
   subtitle.textContent = 'Con esta cuenta podrás conectar con otras mujeres latinas que se encuentran alrededor del mundo';
 
+  const closer = document.createElement('div');
+  closer.className = 'closer';
   // --------------------name---------------------
   // creando input de nombre usuario dentro de un div con un icon
   const inputFieldName = document.createElement('div');
@@ -86,6 +88,8 @@ export const Register = () => {
   // Agregar el icono al segundo div de campo de entrada
   inputFieldLastName.appendChild(iconLastName);
   inputFieldLastName.appendChild(userLastName);
+  closer.appendChild(inputFieldName);
+  closer.appendChild(inputFieldLastName);
 
   // --------------------username---------------------
   // creando input de nombre usuario dentro de un div con un icon
@@ -126,8 +130,11 @@ export const Register = () => {
 
   inputFieldEmail.appendChild(iconEmail);
   inputFieldEmail.appendChild(email);
-  // -----------------------------------------------------------------
+ // -----------------------------------------------------------------
   // creando input de contraseña dentro de un div con un icon
+  const closer1 = document.createElement('div');
+  closer1.className = 'closer';
+
   const inputFieldPss1 = document.createElement('div');
   inputFieldPss1.className = 'input-field-short';
 
@@ -143,7 +150,7 @@ export const Register = () => {
 
   inputFieldPss1.appendChild(iconPassword1);
   inputFieldPss1.appendChild(password1);
-
+ 
   // creando input de contraseña dos dentro de un div con un icon
   const inputFieldPss2 = document.createElement('div');
   inputFieldPss2.className = 'input-field-short';
@@ -160,6 +167,9 @@ export const Register = () => {
 
   inputFieldPss2.appendChild(iconPassword2);
   inputFieldPss2.appendChild(password2);
+  closer1.appendChild(inputFieldPss1);
+  closer1.appendChild(inputFieldPss2);
+
 
   // crear label de subscribcion
   const labelNews = document.createElement('label');
@@ -213,12 +223,10 @@ export const Register = () => {
   // append child de cada elemento agregado al form
   formSignUp.appendChild(title);
   formSignUp.appendChild(subtitle);
-  formSignUp.appendChild(inputFieldName);
-  formSignUp.appendChild(inputFieldLastName);
+  formSignUp.appendChild(closer);
   formSignUp.appendChild(inputFieldUserName);
   formSignUp.appendChild(inputFieldEmail);
-  formSignUp.appendChild(inputFieldPss1);
-  formSignUp.appendChild(inputFieldPss2);
+  formSignUp.appendChild(closer1);
   formSignUp.appendChild(labelCond);
   formSignUp.appendChild(labelNews);
   formSignUp.appendChild(submitBtn);
