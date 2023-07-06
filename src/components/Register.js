@@ -25,7 +25,7 @@ export const Register = () => {
   brandDescription.className = 'warmi-summary';
 
   const transparentBtn = document.createElement('button');
-  transparentBtn.innerHTML = 'iniciar secion ';
+  transparentBtn.innerHTML = 'iniciar sesión ';
   transparentBtn.className = 'btn transparent';
 
   // creando el elemento formulario
@@ -43,23 +43,51 @@ export const Register = () => {
   subtitle.className = 'subtitle';
   subtitle.textContent = 'Con esta cuenta podrás conectar con otras mujeres latinas que se encuentran alrededor del mundo';
 
-  // creando input de email dentro de un div con un icon
-  const inputFieldEmail = document.createElement('div');
-  inputFieldEmail.className = 'input-field';
+  // --------------------name---------------------
+  // creando input de nombre usuario dentro de un div con un icon
+  const inputFieldName = document.createElement('div');
+  inputFieldName.className = 'input-field-short';
+  // Crear el segundo elemento i con clase "fas fa-user"
+  const iconName = document.createElement('i');
+  iconName.className = 'fas fa-user';
 
-  const iconEmail = document.createElement('i');
-  iconEmail.className = 'fas fa-envelope';
+  // Crear el segundo input con tipo "text", clase "username-register"
+  // placeholder "Ingresa tu usuario", y nombre "Username"
+  const userName1 = document.createElement('input');
+  userName1.type = 'text';
+  userName1.className = 'name-register';
+  userName1.placeholder = 'Nombre';
+  userName1.id = 'Name';
+  userName1.name = 'Name';
+  userName1.required = true;
 
-  const email = document.createElement('input');
-  email.type = 'email';
-  email.className = 'mail-register';
-  email.placeholder = 'Ingresa tu email';
-  email.name = 'Mail';
-  email.required = true;
+  // Agregar el icono al segundo div de campo de entrada
+  inputFieldName.appendChild(iconName);
+  inputFieldName.appendChild(userName1);
 
-  inputFieldEmail.appendChild(iconEmail);
-  inputFieldEmail.appendChild(email);
+  // --------------------lastname---------------------
+  // creando input de nombre usuario dentro de un div con un icon
+  const inputFieldLastName = document.createElement('div');
+  inputFieldLastName.className = 'input-field-short';
 
+  // Crear el segundo elemento i con clase "fas fa-user"
+  const iconLastName = document.createElement('i');
+  iconLastName.className = 'fas fa-user';
+
+  // Crear el segundo input con tipo "text", clase "username-register"
+  // placeholder "Ingresa tu usuario", y nombre "Username"
+  const userLastName = document.createElement('input');
+  userLastName.type = 'text';
+  userLastName.className = 'lastName-register';
+  userLastName.placeholder = 'Apellidos';
+  userLastName.name = 'Lastname';
+  userLastName.required = true;
+
+  // Agregar el icono al segundo div de campo de entrada
+  inputFieldLastName.appendChild(iconLastName);
+  inputFieldLastName.appendChild(userLastName);
+
+  // --------------------username---------------------
   // creando input de nombre usuario dentro de un div con un icon
   const inputFieldUserName = document.createElement('div');
   inputFieldUserName.className = 'input-field';
@@ -81,9 +109,27 @@ export const Register = () => {
   inputFieldUserName.appendChild(iconUserName);
   inputFieldUserName.appendChild(userName);
 
+  // --------------------------mail-----------------------------------
+  // creando input de email dentro de un div con un icon
+  const inputFieldEmail = document.createElement('div');
+  inputFieldEmail.className = 'input-field';
+
+  const iconEmail = document.createElement('i');
+  iconEmail.className = 'fas fa-envelope';
+
+  const email = document.createElement('input');
+  email.type = 'email';
+  email.className = 'mail-register';
+  email.placeholder = 'Ingresa tu email';
+  email.name = 'Mail';
+  email.required = true;
+
+  inputFieldEmail.appendChild(iconEmail);
+  inputFieldEmail.appendChild(email);
+  // -----------------------------------------------------------------
   // creando input de contraseña dentro de un div con un icon
   const inputFieldPss1 = document.createElement('div');
-  inputFieldPss1.className = 'input-field';
+  inputFieldPss1.className = 'input-field-short';
 
   const iconPassword1 = document.createElement('i');
   iconPassword1.className = 'fas fa-lock';
@@ -91,7 +137,7 @@ export const Register = () => {
   const password1 = document.createElement('input');
   password1.type = 'password';
   password1.className = 'password-register';
-  password1.placeholder = 'Ingresa tu contraseña';
+  password1.placeholder = 'Contraseña';
   password1.name = 'Password';
   password1.required = true;
 
@@ -100,7 +146,7 @@ export const Register = () => {
 
   // creando input de contraseña dos dentro de un div con un icon
   const inputFieldPss2 = document.createElement('div');
-  inputFieldPss2.className = 'input-field';
+  inputFieldPss2.className = 'input-field-short';
 
   const iconPassword2 = document.createElement('i');
   iconPassword2.className = 'fas fa-lock';
@@ -108,7 +154,7 @@ export const Register = () => {
   const password2 = document.createElement('input');
   password2.type = 'password';
   password2.className = 'password-register';
-  password2.placeholder = 'Repite tu contraseña';
+  password2.placeholder = 'Confirmar';
   password2.name = 'Password';
   password2.required = true;
 
@@ -167,8 +213,10 @@ export const Register = () => {
   // append child de cada elemento agregado al form
   formSignUp.appendChild(title);
   formSignUp.appendChild(subtitle);
-  formSignUp.appendChild(inputFieldEmail);
+  formSignUp.appendChild(inputFieldName);
+  formSignUp.appendChild(inputFieldLastName);
   formSignUp.appendChild(inputFieldUserName);
+  formSignUp.appendChild(inputFieldEmail);
   formSignUp.appendChild(inputFieldPss1);
   formSignUp.appendChild(inputFieldPss2);
   formSignUp.appendChild(labelCond);
