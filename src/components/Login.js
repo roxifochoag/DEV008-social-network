@@ -111,8 +111,10 @@ export const Login = () => {
   const googleLink = document.createElement('a');
   googleLink.href = '#';
   googleLink.className = 'social-icon';
-  const googleIcon = document.createElement('i');
-  googleIcon.className = 'fab fa-google';
+  const googleIcon = document.createElement('img');
+  googleIcon.src ='img/google.png';
+
+  googleIcon.className = 'googleIcon';
   googleLink.appendChild(googleIcon);
 
   // const appleLink = document.createElement('a');

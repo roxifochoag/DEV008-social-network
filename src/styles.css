@@ -202,6 +202,9 @@ label {
   font-size: 1.1rem;
   transition: 0.3s;
 }
+.googleIcon{
+  width: 40px;
+}
 
 .social-icon:hover {
   color: #EF2684;
