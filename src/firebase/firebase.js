@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import
 {
-  setDoc, doc, collection, onSnapshot, addDoc, getDocs, query, orderBy
+  setDoc, doc, collection, onSnapshot, addDoc, getDocs, query, orderBy,
 } from 'firebase/firestore';
 import { auth, googleProvider, db } from './config.js';
 
@@ -64,11 +64,15 @@ export const signIn = (user) => {
     });
 };
 
-export const savePost = async (text) => await addDoc(collection(db, 'post'), { text: text, timeline: Date.now() });
+export const savePost = async (text) => (
+  addDoc(collection(db, 'post'), {
+    text,
+    timeline: Date.now(),
+  })
+);
 
-export const showPosts = async () => await getDocs(query(collection(db, 'post'), orderBy("timeline", "desc")));
+export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
 
-export const onGetPosts = () => console.log('onGetPosts');
 export {
   onSnapshot,
 };

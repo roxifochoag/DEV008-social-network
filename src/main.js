@@ -1,3 +1,4 @@
+// import { auth } from './firebase/config.js';
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
 import { RecoverPassword } from './components/RecoverPassword.js';
@@ -5,12 +6,27 @@ import { Feed } from './components/Feed.js';
 
 const rootDiv = document.getElementById('root');
 
+const ProtectedRoute = (route) => {
+  // Google proctection
+  // const user = auth.currentUser;
+
+  // if (user) {
+  // // User is signed in, see docs for a list of available properties
+  // // https://firebase.google.com/docs/reference/js/auth.user
+  //   return route;
+  // }
+
+  // return () => window.location.replace('/');
+  console.log('Protected route');
+  return route;
+};
+
 const routes = {
   '/': Login,
   '/login': Login,
   '/register': Register,
   '/recoverPassword': RecoverPassword,
-  '/feed': Feed,
+  '/feed': ProtectedRoute(Feed),
 };
 
 export const onNavigate = (pathname) => {
