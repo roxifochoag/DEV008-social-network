@@ -1,4 +1,64 @@
+import { doc, onSnapshot } from 'firebase/firestore';
 import { savePost, showPosts } from '../firebase/firebase.js';
+import { db } from '../firebase/config.js';
+
+// Creacion de un post
+function addPostToFeed(id, content, container) {
+  const timelinePostsContainer = document.createElement('div');
+  const userPublishedPost = document.createElement('div');
+  userPublishedPost.className = 'user-published-post';
+  timelinePostsContainer.appendChild(userPublishedPost);
+
+  const userPublishedPostDiv = document.createElement('div');
+  userPublishedPostDiv.className = 'user-published-post-div';
+  userPublishedPost.appendChild(userPublishedPostDiv);
+
+  const userPublishedPostContent = document.createElement('div');
+  userPublishedPostContent.className = 'user-published-post-content';
+  userPublishedPostDiv.appendChild(userPublishedPostContent);
+
+  const conversationImg3 = document.createElement('img');
+  conversationImg3.className = 'conversation-img colorlightblue';
+  conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
+  userPublishedPostContent.appendChild(conversationImg3);
+
+  const userPublishedPostTextContent = document.createElement('div');
+  userPublishedPostTextContent.className = 'user-published-post-text-content';
+  userPublishedPostContent.appendChild(userPublishedPostTextContent);
+
+  const userPublishedPostTitle = document.createElement('p');
+  userPublishedPostTitle.className = 'user-published-post-title';
+  userPublishedPostTitle.textContent = 'Amanda Osorio';
+  userPublishedPostTextContent.appendChild(userPublishedPostTitle);
+
+  const userPublishedPostText = document.createElement('p');
+  userPublishedPostText.className = 'user-published-post-text';
+  userPublishedPostText.textContent = content;
+  userPublishedPostTextContent.appendChild(userPublishedPostText);
+
+  const userPublishedPostActions = document.createElement('div');
+  userPublishedPostActions.className = 'user-published-post-actions';
+  userPublishedPostDiv.appendChild(userPublishedPostActions);
+
+  const messagesIcon3 = document.createElement('img');
+  messagesIcon3.className = 'messages-icon';
+  messagesIcon3.src = 'img/chat-svgrepo-com.svg';
+  messagesIcon3.alt = 'message-icon-for-comment';
+  userPublishedPostActions.appendChild(messagesIcon3);
+
+  const heartIcon3 = document.createElement('img');
+  heartIcon3.className = 'heart-icon';
+  heartIcon3.src = 'img/heart-svgrepo-com.svg';
+  heartIcon3.alt = 'heart-icon-for-likes';
+  userPublishedPostActions.appendChild(heartIcon3);
+
+  container.prepend(timelinePostsContainer);
+
+  onSnapshot(doc(db, 'post', id), (snapshotDoc) => {
+    const updatedPost = snapshotDoc.data();
+    userPublishedPostText.textContent = updatedPost.text;
+  });
+}
 
 export const Feed = () => {
   // ---------------------------HEAD----------------------
@@ -260,57 +320,8 @@ export const Feed = () => {
   btnPost.textContent = 'publicar';
   btnPost.type = 'submit';
 
-  // Post
-  // 1er post publicado
-  const timelinePostsContainer = document.createElement('div');
-  timelinePostsContainer.className = 'timeline-container';
-
-  const userPublishedPost = document.createElement('div');
-  userPublishedPost.className = 'user-published-post';
-  timelinePostsContainer.appendChild(userPublishedPost);
-
-  const userPublishedPostDiv = document.createElement('div');
-  userPublishedPostDiv.className = 'user-published-post-div';
-  userPublishedPost.appendChild(userPublishedPostDiv);
-
-  const userPublishedPostContent = document.createElement('div');
-  userPublishedPostContent.className = 'user-published-post-content';
-  userPublishedPostDiv.appendChild(userPublishedPostContent);
-
-  const conversationImg3 = document.createElement('img');
-  conversationImg3.className = 'conversation-img colorlightblue';
-  conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
-  userPublishedPostContent.appendChild(conversationImg3);
-
-  const userPublishedPostTextContent = document.createElement('div');
-  userPublishedPostTextContent.className = 'user-published-post-text-content';
-  userPublishedPostContent.appendChild(userPublishedPostTextContent);
-
-  const userPublishedPostTitle = document.createElement('p');
-  userPublishedPostTitle.className = 'user-published-post-title';
-  userPublishedPostTitle.textContent = 'Amanda Osorio';
-  userPublishedPostTextContent.appendChild(userPublishedPostTitle);
-
-  const userPublishedPostText = document.createElement('p');
-  userPublishedPostText.className = 'user-published-post-text';
-  userPublishedPostText.textContent = 'Estaran organizando clases de Francés gratuitas: Nivel A1-A2 Martes y Viernes de 19:00 - 21:00 - 01/Set en las instalaciones de Miami-Dade College para las que reciden en   Miami!';
-  userPublishedPostTextContent.appendChild(userPublishedPostText);
-
-  const userPublishedPostActions = document.createElement('div');
-  userPublishedPostActions.className = 'user-published-post-actions';
-  userPublishedPostDiv.appendChild(userPublishedPostActions);
-
-  const messagesIcon3 = document.createElement('img');
-  messagesIcon3.className = 'messages-icon';
-  messagesIcon3.src = 'img/chat-svgrepo-com.svg';
-  messagesIcon3.alt = 'message-icon-for-comment';
-  userPublishedPostActions.appendChild(messagesIcon3);
-
-  const heartIcon3 = document.createElement('img');
-  heartIcon3.className = 'heart-icon';
-  heartIcon3.src = 'img/heart-svgrepo-com.svg';
-  heartIcon3.alt = 'heart-icon-for-likes';
-  userPublishedPostActions.appendChild(heartIcon3);
+  // Feed container
+  const feedContainer = document.createElement('div');
 
   // --------------------------INICIO---Footer
   const footerFeed = document.createElement('footer');
@@ -375,87 +386,31 @@ export const Feed = () => {
   // Añadir div user-post-container al elemento main
   mainElement.appendChild(userPostContainerDiv);
 
+  // Añadir feed container al main
+  mainElement.appendChild(feedContainer);
+
   flexItemRightDiv.appendChild(mainElement);
   centeredMainDiv.appendChild(flexItemLeftDiv);
   centeredMainDiv.appendChild(flexItemRightDiv);
 
-  // Creacion de un post
-
+  // Mostrar feed
   window.addEventListener('DOMContentLoaded', async () => {
     const TimelinePosts = await showPosts();
-    let html = '';
-    console.log(TimelinePosts)
 
-
-    TimelinePosts.forEach((doc) => {
-      const data = doc.data();
-
-      const timelinePostsContainer = document.createElement('div');
-      timelinePostsContainer.className = 'timeline-container';
-
-      const userPublishedPost = document.createElement('div');
-      userPublishedPost.className = 'user-published-post';
-      timelinePostsContainer.appendChild(userPublishedPost);
-
-      const userPublishedPostDiv = document.createElement('div');
-      userPublishedPostDiv.className = 'user-published-post-div';
-      userPublishedPost.appendChild(userPublishedPostDiv);
-
-      const userPublishedPostContent = document.createElement('div');
-      userPublishedPostContent.className = 'user-published-post-content';
-      userPublishedPostDiv.appendChild(userPublishedPostContent);
-
-      const conversationImg3 = document.createElement('img');
-      conversationImg3.className = 'conversation-img colorlightblue';
-      conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
-      userPublishedPostContent.appendChild(conversationImg3);
-
-      const userPublishedPostTextContent = document.createElement('div');
-      userPublishedPostTextContent.className = 'user-published-post-text-content';
-      userPublishedPostContent.appendChild(userPublishedPostTextContent);
-
-      const userPublishedPostTitle = document.createElement('p');
-      userPublishedPostTitle.className = 'user-published-post-title';
-      userPublishedPostTitle.textContent = 'Amanda Osorio';
-      userPublishedPostTextContent.appendChild(userPublishedPostTitle);
-
-      const userPublishedPostText = document.createElement('p');
-      userPublishedPostText.className = 'user-published-post-text';
-      userPublishedPostText.textContent = data.text
-      userPublishedPostTextContent.appendChild(userPublishedPostText);
-
-      const userPublishedPostActions = document.createElement('div');
-      userPublishedPostActions.className = 'user-published-post-actions';
-      userPublishedPostDiv.appendChild(userPublishedPostActions);
-
-      const messagesIcon3 = document.createElement('img');
-      messagesIcon3.className = 'messages-icon';
-      messagesIcon3.src = 'img/chat-svgrepo-com.svg';
-      messagesIcon3.alt = 'message-icon-for-comment';
-      userPublishedPostActions.appendChild(messagesIcon3);
-
-      const heartIcon3 = document.createElement('img');
-      heartIcon3.className = 'heart-icon';
-      heartIcon3.src = 'img/heart-svgrepo-com.svg';
-      heartIcon3.alt = 'heart-icon-for-likes';
-      userPublishedPostActions.appendChild(heartIcon3);
-
-
-      /*  html += `
-          <div>
-            <p>${data.text}<p>
-          </div>
-        `*/
-
-      mainElement.appendChild(timelinePostsContainer);
+    TimelinePosts.forEach((postDocument) => {
+      const post = postDocument.data();
+      addPostToFeed(postDocument.id, post.text, feedContainer);
     });
-    //timelinePostsContainer.innerHTML = html;
   });
 
-  userPostContainerDiv.addEventListener('submit', (e) => {
+  // Guardar post en firebase
+  userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    savePost(textareaElement.value);
+    // Stores it to firebase
+    const postDocument = await savePost(textareaElement.value);
+    addPostToFeed(postDocument.id, textareaElement.value, feedContainer);
+
     userPostContainerDiv.reset();
   });
 
