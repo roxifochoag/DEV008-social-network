@@ -4,20 +4,21 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import
-{
-  setDoc, doc, collection, onSnapshot, addDoc, getDocs, query, orderBy,
+import {
+  setDoc, doc, collection, onSnapshot, addDoc, getDocs, query, orderBy, where,
 } from 'firebase/firestore';
 import { auth, googleProvider, db } from './config.js';
+import { async } from 'regenerator-runtime';
 
 export const signUp = async (user) => {
   try {
     const firebaseUser = await createUserWithEmailAndPassword(auth, user.email, user.password);
 
     await setDoc(doc(db, 'users', firebaseUser.user.uid), {
-      first_name: '',
-      last_name: '',
+      first_name: user.name,
+      last_name: user.lastName,
       username: user.username,
+      email: user.email
     });
     window.location.assign('/login');
     window.alert('Registro exitoso');
@@ -30,20 +31,26 @@ export const signInGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
 
-    // This gives you a Google Access Token. You can use it to access Google APIs.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    //    const user = result.user;
-    console.log(
-      'Este usuario se logueo con google',
-      credential,
-      'y el token',
-      token,
-    );
+    const userRegistered = await getUser(result.user.email)
+    if (!userRegistered) {
+      alert("No tienes cuenta con nosotras, por favor registrate")
+      window.location.assign('/register');
+    } else {
+      // This gives you a Google Access Token. You can use it to access Google APIs.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      //    const user = result.user;
+      console.log(
+        'Este usuario se logueo con google',
+        credential,
+        'y el token',
+        token,
+      );
 
-    localStorage.setItem('userCredentials', JSON.stringify(result));
-    window.location.assign('/feed');
-    window.alert('Ingreso Exitoso');
+      localStorage.setItem('userCredentials', JSON.stringify(result));
+      window.location.assign('/feed');
+      window.alert('Ingreso Exitoso');
+    }
   } catch (error) {
     console.error(error);
   }
@@ -53,7 +60,7 @@ export const signInGoogle = async () => {
 export const signIn = (user) => {
   signInWithEmailAndPassword(auth, user.email, user.password)
     .then((userCredential) => {
-      console.log('usefb', userCredential);
+      localStorage.setItem('userCredentials', JSON.stringify(userCredential));
       window.location.assign('/feed');
       window.alert('Ingreso Exitoso');
     })
@@ -64,9 +71,11 @@ export const signIn = (user) => {
     });
 };
 
-export const savePost = async (text) => (
+export const savePost = async (text, name) => (
+
   addDoc(collection(db, 'post'), {
-    text,
+    text: text,
+    name: name,
     timeline: Date.now(),
   })
 );
@@ -76,6 +85,25 @@ export const showPosts = async () => getDocs(query(collection(db, 'post'), order
 export {
   onSnapshot,
 };
+
+export const getUser = async (email) => {
+  return new Promise((resolve, reject) => {
+    let user = []
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("email", "==", email));
+    getDocs(q)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          user.push(doc.data())
+          return doc.data()
+        });
+        console.log(user)
+        resolve(user[0])
+      }).catch((error) => {
+        reject(error)
+      })
+  })
+}
 
 // export const resetPassword = (email) => {
 //   sendPasswordResetEmail(auth, email)

@@ -1,9 +1,9 @@
 import { doc, onSnapshot } from 'firebase/firestore';
-import { savePost, showPosts } from '../firebase/firebase.js';
+import { getUser, savePost, showPosts } from '../firebase/firebase.js';
 import { db } from '../firebase/config.js';
 
 // Creacion de un post
-function addPostToFeed(id, content, container) {
+function addPostToFeed(id, content, container, name) {
   const timelinePostsContainer = document.createElement('div');
   const userPublishedPost = document.createElement('div');
   userPublishedPost.className = 'user-published-post';
@@ -28,7 +28,7 @@ function addPostToFeed(id, content, container) {
 
   const userPublishedPostTitle = document.createElement('p');
   userPublishedPostTitle.className = 'user-published-post-title';
-  userPublishedPostTitle.textContent = 'Amanda Osorio';
+  userPublishedPostTitle.textContent = name;
   userPublishedPostTextContent.appendChild(userPublishedPostTitle);
 
   const userPublishedPostText = document.createElement('p');
@@ -399,7 +399,7 @@ export const Feed = () => {
 
     TimelinePosts.forEach((postDocument) => {
       const post = postDocument.data();
-      addPostToFeed(postDocument.id, post.text, feedContainer);
+      addPostToFeed(postDocument.id, post.text, feedContainer, post.name);
     });
   });
 
@@ -407,9 +407,13 @@ export const Feed = () => {
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    //obtener usuario de localstorage
+    let user = localStorage.getItem('userCredentials')
+    user = JSON.parse(user)
     // Stores it to firebase
-    const postDocument = await savePost(textareaElement.value);
-    addPostToFeed(postDocument.id, textareaElement.value, feedContainer);
+    const userFs = await getUser(user.user.email);
+    const postDocument = await savePost(textareaElement.value, userFs.username);
+    addPostToFeed(postDocument.id, textareaElement.value, feedContainer, userFs.username);
 
     userPostContainerDiv.reset();
   });

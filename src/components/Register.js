@@ -244,6 +244,8 @@ export const Register = () => {
     e.preventDefault();
 
     const user = {
+      name: formSignUp.elements.Name.value,
+      lastName: formSignUp.elements.Lastname.value, 
       email: formSignUp.elements.Mail.value,
       username: formSignUp.elements.Username.value,
       password: formSignUp.elements.Password[0].value,
