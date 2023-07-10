@@ -130,7 +130,7 @@ export const Register = () => {
 
   inputFieldEmail.appendChild(iconEmail);
   inputFieldEmail.appendChild(email);
- // -----------------------------------------------------------------
+  // -----------------------------------------------------------------
   // creando input de contraseña dentro de un div con un icon
   const closer1 = document.createElement('div');
   closer1.className = 'closer';
@@ -150,7 +150,7 @@ export const Register = () => {
 
   inputFieldPss1.appendChild(iconPassword1);
   inputFieldPss1.appendChild(password1);
- 
+
   // creando input de contraseña dos dentro de un div con un icon
   const inputFieldPss2 = document.createElement('div');
   inputFieldPss2.className = 'input-field-short';
@@ -169,9 +169,7 @@ export const Register = () => {
   inputFieldPss2.appendChild(password2);
   closer1.appendChild(inputFieldPss1);
   closer1.appendChild(inputFieldPss2);
-
-
-  // crear label de subscribcion
+  // crear label de subscripción
   const labelNews = document.createElement('label');
   labelNews.setAttribute('for', 'subscribeNews');
 
@@ -244,8 +242,9 @@ export const Register = () => {
     e.preventDefault();
 
     const user = {
+
       name: formSignUp.elements.Name.value,
-      lastName: formSignUp.elements.Lastname.value, 
+      lastName: formSignUp.elements.Lastname.value,
       email: formSignUp.elements.Mail.value,
       username: formSignUp.elements.Username.value,
       password: formSignUp.elements.Password[0].value,
