@@ -2,6 +2,8 @@
 import {
   signUp,
   signIn,
+  savePost,
+  showPosts,
   /*
   signInGoogle,
   getUser,
@@ -92,7 +94,7 @@ describe('signIn', () => {
   it('debería realizar el inicio de sesión correctamente', async () => {
     // Crea un objeto de usuario de prueba
     const user = {
-      email: 'john.doe@example.com',
+      email: 'cam@gmail.com',
       password: 'password123',
     };
 
@@ -115,7 +117,7 @@ describe('signIn', () => {
     expect(auth.signInWithEmailAndPassword).toHaveBeenCalledWith(user.email, user.password);
     expect(localStorageMock.setItem).toHaveBeenCalledWith(
       'userCredentials',
-      JSON.stringify({ /* datos del usuario */ })
+      JSON.stringify({ /* datos del usuario */ }),
     );
     expect(window.location.assign).toHaveBeenCalledWith('/feed');
     expect(window.alert).toHaveBeenCalledWith('Ingreso Exitoso');
@@ -130,7 +132,7 @@ describe('signIn', () => {
 
     // Crea mocks para las funciones y objetos externos que se utilizan dentro de la función signIn
     const auth = {
-      signInWithEmailAndPassword: jest.fn().mockRejectedValue(new Error('Error en el inicio de sesión'))
+      signInWithEmailAndPassword: jest.fn().mockRejectedValue(new Error('Error en el inicio de sesión')),
     };
     const consoleSpy = jest.spyOn(console, 'log');
 
@@ -143,5 +145,61 @@ describe('signIn', () => {
 
     // Verifica que la función console.log haya sido llamada con el error
     expect(consoleSpy).toHaveBeenCalledWith(new Error('Error en el inicio de sesión'));
+  });
+});
+// ---------------------------probar post
+// save post
+describe('savePost', () => {
+  it('debería guardar correctamente un post', async () => {
+    // Crea los datos de prueba
+    const text = 'Este es un nuevo post';
+    const name = 'Roxi Ochoa';
+
+    // Crea mocks para las funciones y objetos externos
+    // que se utilizan dentro de la función savePost
+    const db = {
+      collection: jest.fn(),
+      addDoc: jest.fn().mockResolvedValue(),
+    };
+    const dateNowMock = jest.spyOn(Date, 'now').mockReturnValue(1625918400000); // 10 de julio de 2021
+
+    // Ejecuta la función savePost
+    await savePost(text, name, db);
+
+    // Verifica que las funciones hayan sido llamadas con los argumentos correctos
+    expect(db.collection).toHaveBeenCalledWith(db, 'post');
+    expect(db.addDoc).toHaveBeenCalledWith({
+      text,
+      name,
+      timeline: 1625918400000, // 10 de julio de 2021
+    });
+
+    // Restaura el comportamiento original de Date.now
+    dateNowMock.mockRestore();
+  });
+});
+// mostrar post
+describe('showPosts', () => {
+  it('debería obtener correctamente los posts', async () => {
+    // Crea mocks para las funciones y objetos externos
+    // que se utilizan dentro de la función showPosts
+    const db = {
+      collection: jest.fn(),
+      query: jest.fn(),
+      orderBy: jest.fn(),
+      getDocs: jest.fn().mockResolvedValue(/* datos de prueba */),
+    };
+
+    // Ejecuta la función showPosts
+    const result = await showPosts(db);
+
+    // Verifica que las funciones hayan sido llamadas con los argumentos correctos
+    expect(db.collection).toHaveBeenCalledWith(db, 'post');
+    expect(db.query).toHaveBeenCalledWith(/* parámetros del query */);
+    expect(db.orderBy).toHaveBeenCalledWith('timeline', 'asc');
+    expect(db.getDocs).toHaveBeenCalled();
+
+    // Verifica que la función devuelva el resultado esperado
+    expect(result).toEqual(/* datos de prueba */);
   });
 });
