@@ -2,7 +2,9 @@
 import { initializeApp } from 'firebase/app';
 // importamps desde fireestore ese codigo //++
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import {
+  getAuth, GoogleAuthProvider,
+} from 'firebase/auth';
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

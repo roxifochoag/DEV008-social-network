@@ -1,8 +1,8 @@
 import {
-  doc, onSnapshot,
+  doc, onSnapshot, getDoc,
 } from 'firebase/firestore';
 import {
-  getUser, savePost, showPosts,
+  savePost, showPosts,
 } from '../firebase/firebase.js';
 import { db } from '../firebase/config.js';
 
@@ -345,7 +345,10 @@ export const Feed = () => {
   // --------------------------------------------------------------
 
   // Creacion de un post
-  function addPostToFeed(id, content, container, name) {
+  async function addPostToFeed(container, post) {
+    const authorDocument = await getDoc(post.author);
+    const author = authorDocument.data();
+
     const userPublishedPost = document.createElement('div');
     userPublishedPost.className = 'user-published-post';
 
@@ -359,7 +362,7 @@ export const Feed = () => {
 
     const conversationImg3 = document.createElement('img');
     conversationImg3.className = 'conversation-img colorlightblue';
-    conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
+    conversationImg3.src = author.picture;
     userPublishedPostContent.appendChild(conversationImg3);
 
     const userPublishedPostTextContent = document.createElement('div');
@@ -372,7 +375,7 @@ export const Feed = () => {
 
     const userPublishedPostTitle = document.createElement('p');
     userPublishedPostTitle.className = 'user-published-post-title';
-    userPublishedPostTitle.textContent = name;
+    userPublishedPostTitle.textContent = author.username;
     textContentUpperRow.appendChild(userPublishedPostTitle);
 
     const userPublishedPostEdit = document.createElement('p');
@@ -396,7 +399,7 @@ export const Feed = () => {
     //
     const userPublishedPostText = document.createElement('p');
     userPublishedPostText.className = 'user-published-post-text';
-    userPublishedPostText.textContent = content;
+    userPublishedPostText.textContent = post.text;
     userPublishedPostTextContent.appendChild(userPublishedPostText);
 
     const userPublishedPostActions = document.createElement('div');
@@ -417,7 +420,7 @@ export const Feed = () => {
 
     container.prepend(userPublishedPost);
 
-    onSnapshot(doc(db, 'post', id), (snapshotDoc) => {
+    onSnapshot(doc(db, 'post', post.uid), (snapshotDoc) => {
       const updatedPost = snapshotDoc.data();
       userPublishedPostText.textContent = updatedPost.text;
     });
@@ -427,23 +430,18 @@ export const Feed = () => {
   window.addEventListener('DOMContentLoaded', async () => {
     const TimelinePosts = await showPosts();
 
-    TimelinePosts.forEach((postDocument) => {
+    TimelinePosts.forEach(async (postDocument) => {
       const post = postDocument.data();
-      addPostToFeed(postDocument.id, post.text, feedContainer, post.name);
+      await addPostToFeed(feedContainer, post);
     });
   });
 
   // Guardar post en firebase
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // obtener usuario de localstorage
-    let user = localStorage.getItem('userCredentials');
-    user = JSON.parse(user);
-    // lo guarda en firebase
-    const userFs = await getUser(user.user.email);
-    const postDocument = await savePost(textareaElement.value, userFs.username);
-    addPostToFeed(postDocument.id, textareaElement.value, feedContainer, userFs.username);
+    const postRef = await savePost(textareaElement.value);
+    const postDocument = await getDoc(postRef);
+    await addPostToFeed(feedContainer, postDocument.data());
 
     userPostContainerDiv.reset();
   });
