@@ -88,6 +88,64 @@ export const signIn = (user) => {
     });
 };
 
+// Creacion de un post
+export function addPostToFeed(id, content, container, name) {
+  const timelinePostsContainer = document.createElement('div');
+  const userPublishedPost = document.createElement('div');
+  userPublishedPost.className = 'user-published-post';
+  timelinePostsContainer.appendChild(userPublishedPost);
+
+  const userPublishedPostDiv = document.createElement('div');
+  userPublishedPostDiv.className = 'user-published-post-div';
+  userPublishedPost.appendChild(userPublishedPostDiv);
+
+  const userPublishedPostContent = document.createElement('div');
+  userPublishedPostContent.className = 'user-published-post-content';
+  userPublishedPostDiv.appendChild(userPublishedPostContent);
+
+  const conversationImg3 = document.createElement('img');
+  conversationImg3.className = 'conversation-img colorlightblue';
+  conversationImg3.src = 'img/istockphoto-1323400501-612x612.jpg';
+  userPublishedPostContent.appendChild(conversationImg3);
+
+  const userPublishedPostTextContent = document.createElement('div');
+  userPublishedPostTextContent.className = 'user-published-post-text-content';
+  userPublishedPostContent.appendChild(userPublishedPostTextContent);
+
+  const userPublishedPostTitle = document.createElement('p');
+  userPublishedPostTitle.className = 'user-published-post-title';
+  userPublishedPostTitle.textContent = name;
+  userPublishedPostTextContent.appendChild(userPublishedPostTitle);
+
+  const userPublishedPostText = document.createElement('p');
+  userPublishedPostText.className = 'user-published-post-text';
+  userPublishedPostText.textContent = content;
+  userPublishedPostTextContent.appendChild(userPublishedPostText);
+
+  const userPublishedPostActions = document.createElement('div');
+  userPublishedPostActions.className = 'user-published-post-actions';
+  userPublishedPostDiv.appendChild(userPublishedPostActions);
+
+  const messagesIcon3 = document.createElement('img');
+  messagesIcon3.className = 'messages-icon';
+  messagesIcon3.src = 'img/chat-svgrepo-com.svg';
+  messagesIcon3.alt = 'message-icon-for-comment';
+  userPublishedPostActions.appendChild(messagesIcon3);
+
+  const heartIcon3 = document.createElement('img');
+  heartIcon3.className = 'heart-icon';
+  heartIcon3.src = 'img/heart-svgrepo-com.svg';
+  heartIcon3.alt = 'heart-icon-for-likes';
+  userPublishedPostActions.appendChild(heartIcon3);
+
+  container.prepend(timelinePostsContainer);
+
+  onSnapshot(doc(db, 'post', id), (snapshotDoc) => {
+    const updatedPost = snapshotDoc.data();
+    userPublishedPostText.textContent = updatedPost.text;
+  });
+}
+
 export const savePost = async (text, name) => (
 
   addDoc(collection(db, 'post'), {
