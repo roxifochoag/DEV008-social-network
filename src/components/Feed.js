@@ -407,10 +407,10 @@ export const Feed = () => {
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    //obtener usuario de localstorage
-    let user = localStorage.getItem('userCredentials')
-    user = JSON.parse(user)
-    // Stores it to firebase
+    // obtener usuario de localstorage
+    let user = localStorage.getItem('userCredentials');
+    user = JSON.parse(user);
+    // lo guarda en firebase
     const userFs = await getUser(user.user.email);
     const postDocument = await savePost(textareaElement.value, userFs.username);
     addPostToFeed(postDocument.id, textareaElement.value, feedContainer, userFs.username);

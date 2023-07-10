@@ -112,7 +112,7 @@ export const Login = () => {
   googleLink.href = '#';
   googleLink.className = 'social-icon';
   const googleIcon = document.createElement('img');
-  googleIcon.src ='img/google.png';
+  googleIcon.src = 'img/google.png';
 
   googleIcon.className = 'googleIcon';
   googleLink.appendChild(googleIcon);
