@@ -7,8 +7,8 @@ import {
 import {
   setDoc, doc, collection, onSnapshot, addDoc, getDocs, query, orderBy, where,
 } from 'firebase/firestore';
-import { auth, googleProvider, db } from './config.js';
 import { async } from 'regenerator-runtime';
+import { auth, googleProvider, db } from './config.js';
 
 export const signUp = async (user) => {
   try {
@@ -18,7 +18,7 @@ export const signUp = async (user) => {
       first_name: user.name,
       last_name: user.lastName,
       username: user.username,
-      email: user.email
+      email: user.email,
     });
     window.location.assign('/login');
     window.alert('Registro exitoso');
@@ -27,13 +27,30 @@ export const signUp = async (user) => {
   }
 };
 
+export const getUser = async (email) => new Promise((resolve, reject) => {
+  const user = [];
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('email', '==', email));
+  getDocs(q)
+    .then((querySnapshot) => {
+      querySnapshot.forEach(() => {
+        user.push(doc.data());
+        return doc.data();
+      });
+      console.log(user);
+      resolve(user[0]);
+    }).catch((error) => {
+      reject(error);
+    });
+});
+
 export const signInGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
 
-    const userRegistered = await getUser(result.user.email)
+    const userRegistered = await getUser(result.user.email);
     if (!userRegistered) {
-      alert("No tienes cuenta con nosotras, por favor registrate")
+      alert('No tienes cuenta con nosotras, por favor registrate');
       window.location.assign('/register');
     } else {
       // This gives you a Google Access Token. You can use it to access Google APIs.
@@ -74,8 +91,8 @@ export const signIn = (user) => {
 export const savePost = async (text, name) => (
 
   addDoc(collection(db, 'post'), {
-    text: text,
-    name: name,
+    text,
+    name,
     timeline: Date.now(),
   })
 );
@@ -85,25 +102,6 @@ export const showPosts = async () => getDocs(query(collection(db, 'post'), order
 export {
   onSnapshot,
 };
-
-export const getUser = async (email) => {
-  return new Promise((resolve, reject) => {
-    let user = []
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("email", "==", email));
-    getDocs(q)
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          user.push(doc.data())
-          return doc.data()
-        });
-        console.log(user)
-        resolve(user[0])
-      }).catch((error) => {
-        reject(error)
-      })
-  })
-}
 
 // export const resetPassword = (email) => {
 //   sendPasswordResetEmail(auth, email)
