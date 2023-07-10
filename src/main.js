@@ -6,7 +6,6 @@ import { Feed } from './components/Feed.js';
 const rootDiv = document.getElementById('root');
 
 const ProtectedRoute = (route) => {
-
   console.log('Protected route');
   return route;
 };
