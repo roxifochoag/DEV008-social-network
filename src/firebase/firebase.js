@@ -33,7 +33,7 @@ export const getUser = async (email) => new Promise((resolve, reject) => {
   const q = query(usersRef, where('email', '==', email));
   getDocs(q)
     .then((querySnapshot) => {
-      querySnapshot.forEach(() => {
+      querySnapshot.forEach((doc) => {
         user.push(doc.data());
         return doc.data();
       });
