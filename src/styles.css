@@ -221,22 +221,6 @@ label {
   font-size: 1rem;
 }
 
-/*******************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
@@ -651,12 +635,15 @@ label {
 
 /* header */
 header {
-  padding-left: 3%;
-  padding-right: 3%;
-  grid-area: header;
+  height: 50px;
   display: flex;
+  flex-direction: column;
+  padding: 0px 5px;
+}
+.header-container {
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  height: 45px;
 }
 
 .logo {
@@ -672,13 +659,15 @@ header {
   border: none;
   background: none;
   cursor: pointer;
+  margin-left: 2px;
+  margin-right: 12px;
 }
 
 .input-search-bar {
-  margin-left: 4%;
+  margin-right:auto;
   padding-left: 10px;
   height: 25px;
-  width: 50%;
+  width: 200px;
   border: 0;
   border-radius: 50px;
   font-size: 12px;
@@ -807,6 +796,7 @@ main {
 .user-published-post-content {
   display: flex;
   padding-bottom: 5px;
+  width: 100%;
 }
 
 .conversation-img {
@@ -832,7 +822,7 @@ main {
 }
 
 .user-published-post-title {
-  margin: 0px 0px 0px 0px;
+  margin: 0px;
   font-weight: 600;
 }
 
@@ -887,11 +877,11 @@ main {
 /**/
 .user-published-post-text {
   font-size: 13px;
-  text-justify: distribute-all-lines;
   hyphens: auto;
   margin: 0px;
   padding-top: 5px;
   padding-bottom: 2px;
+  width: 100%;
 }
 
 .user-published-post-actions {
@@ -965,12 +955,11 @@ footer {
   .icon-hide-menu {
     border: none;
     background: none;
-    margin-left: 3px;
+    margin-left: 4px;
   }
 
   .input-search-bar {
-    margin-left: 3px;
-    width: 60%;
+    width: 35%;
     height: 28px;
     font-size: 14px;
   }
@@ -980,7 +969,7 @@ footer {
   }
 
   @media (min-width: 700px) {
-
+  
     .centered-main {
       justify-content: center;
       display: flex;
@@ -1057,17 +1046,11 @@ footer {
     }
 
     /*header*/
-    header {
-      padding-left: 5%;
-      padding-right: 5%;
-      display: flex;
-      justify-content: space-between;
-      height: 45px;
-    }
 
     .logo-horizontal {
       display: block;
       width: 100px;
+      margin-right: auto;
     }
 
     .icon-hide-menu {
@@ -1079,15 +1062,14 @@ footer {
     .input-search-bar {
       margin-left: 3%;
       font-size: 14px;
-      align-self: center;
       justify-self: center;
+      max-width: ;
     }
 
     .user-image {
       height: 30px;
       width: 30px;
       border-radius: 50%;
-      margin-left: 0;
     }
 
     .trending-container {
@@ -1223,10 +1205,21 @@ footer {
       margin-left: 2px;
       border-radius: 0px 5px 5px 0px;
     }
+    .text-plus {
+      width: 60%;
+    }
   }
 
   @media (min-width: 1000px) {
-
+    .header-container{
+      justify-content: center;
+      align-content: center;
+    }
+    .input-search-bar{
+      justify-self: center;
+      min-width: 40%;
+      max-width: 50%;
+    }
     .centered-main {
       justify-content: center;
       display: flex;

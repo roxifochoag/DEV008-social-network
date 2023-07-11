@@ -26,6 +26,10 @@ export const Feed = () => {
   headerFeed.className = 'colorbackpink';
   divFeedPrincipal.appendChild(headerFeed);
 
+  const headerContainer = document.createElement('header');
+  headerContainer.className = 'header-container';
+  headerFeed.appendChild(headerContainer);
+
   // logo de warmi
   const brand = document.createElement('img');
   brand.className = 'logo';
@@ -41,7 +45,7 @@ export const Feed = () => {
   const iconHideMenu = document.createElement('button');
   iconHideMenu.className = 'icon-hide-menu';
 
-  const iconMenuCelphone = document.createElement('i');
+  const iconMenuCelphone = document.createElement('img');
   iconMenuCelphone.src = '../img/icon-menu-celphone.svg';
   // Barra de búsqueda
   const inputSearchBar = document.createElement('input');
@@ -53,12 +57,12 @@ export const Feed = () => {
   userImage.className = 'user-image colorlightblue';
   // Fin del header
 
-  headerFeed.appendChild(brand);
-  headerFeed.appendChild(brandHorizontal);
-  headerFeed.appendChild(iconHideMenu);
+  headerContainer.appendChild(brand);
+  headerContainer.appendChild(brandHorizontal);
+  headerContainer.appendChild(iconHideMenu);
   iconHideMenu.appendChild(iconMenuCelphone);
-  headerFeed.appendChild(inputSearchBar);
-  headerFeed.appendChild(userImage);
+  headerContainer.appendChild(inputSearchBar);
+  headerContainer.appendChild(userImage);
 
   // ---------------------------MAIN---------------------
   // Crear div principal
@@ -192,7 +196,7 @@ export const Feed = () => {
   newsContent.className = 'news-content';
 
   const newsText = document.createElement('p');
-  newsText.className = 'news-text';
+  newsText.className = 'news-text text-plus';
   newsText.innerText = 'LABORATORIA expande sus puertas a Asuncion, Ciudad de Panama, La Paz, Montevideo y San Jose!';
 
   const newsImg = document.createElement('img');
