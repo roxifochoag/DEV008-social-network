@@ -9,8 +9,9 @@ import {
   setDoc,
   doc,
   collection,
-  onSnapshot,
   addDoc,
+  deleteDoc,
+  updateDoc,
   getDocs,
   query,
   orderBy,
@@ -97,12 +98,18 @@ export const savePost = async (text) => (
   })
 );
 
+// Mostrar los post
 export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
-
+// Actualizar los Posts
 export const updatePost = (post) => {
-  onSnapshot(doc(db, 'post', post.author.id), () => {
-    console.log('snapshot hecho');
+  updateDoc(doc(db, 'post', post.author.id), () => {
+    console.log('Post actualizado');
   });
+};
+// Eliminar los post
+export const deletePost = (post) => {
+  deleteDoc(doc(db, 'post', post.author.id));
+  console.log('Post eliminado');
 };
 
 // export const resetPassword = (email) => {
