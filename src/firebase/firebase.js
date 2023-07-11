@@ -6,9 +6,18 @@ import {
   setPersistence,
 } from 'firebase/auth';
 import {
-  setDoc, doc, collection, onSnapshot, addDoc, getDocs, query, orderBy,
+  setDoc,
+  doc,
+  collection,
+  onSnapshot,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
 } from 'firebase/firestore';
+/*
 import { async } from 'regenerator-runtime';
+*/
 import { auth, googleProvider, db } from './config.js';
 
 export const signUp = async (user) => {
@@ -69,6 +78,7 @@ export const signIn = async (user) => {
   try {
     await setPersistence(auth, browserLocalPersistence);
     const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
+    console.log(userCredentials);
     // localStorage.setItem('userCredentials', JSON.stringify(userCredentials));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
@@ -90,8 +100,8 @@ export const savePost = async (text) => (
 export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
 
 export const updatePost = (post) => {
-  onSnapshot(doc(db, "post", post.author.id), () => {
-    console.log("snapshot hecho")
+  onSnapshot(doc(db, 'post', post.author.id), () => {
+    console.log('snapshot hecho');
   });
 };
 

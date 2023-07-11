@@ -10,7 +10,7 @@ import {
   savePost,
 */
 
-} from 'src/firebase/firebase.js';
+} from '../src/firebase/firebase.js';
 
 // Importa las dependencias que necesites, como `jest`, `mocks`, etc.
 
