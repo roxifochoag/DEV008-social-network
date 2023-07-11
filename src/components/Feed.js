@@ -1,6 +1,10 @@
 import { getDoc } from 'firebase/firestore';
 import {
-  savePost, showPosts, updatePost
+  savePost, showPosts,
+  /*
+  updatePost,
+  deletePost,
+  */
 } from '../firebase/firebase.js';
 
 export const Feed = () => {
@@ -416,9 +420,8 @@ export const Feed = () => {
     userPublishedPostActions.appendChild(heartIcon3);
 
     container.prepend(userPublishedPost);
-    
-   // updatePost(post)
 
+    // updatePost(post)
   }
 
   // Mostrar feed
