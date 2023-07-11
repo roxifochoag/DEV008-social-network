@@ -1,10 +1,7 @@
+import { getDoc } from 'firebase/firestore';
 import {
-  doc, onSnapshot, getDoc,
-} from 'firebase/firestore';
-import {
-  savePost, showPosts,
+  savePost, showPosts, updatePost
 } from '../firebase/firebase.js';
-import { db } from '../firebase/config.js';
 
 export const Feed = () => {
   // ---------------------------HEAD----------------------
@@ -419,11 +416,9 @@ export const Feed = () => {
     userPublishedPostActions.appendChild(heartIcon3);
 
     container.prepend(userPublishedPost);
+    
+   // updatePost(post)
 
-    onSnapshot(doc(db, 'post', post.uid), (snapshotDoc) => {
-      const updatedPost = snapshotDoc.data();
-      userPublishedPostText.textContent = updatedPost.text;
-    });
   }
 
   // Mostrar feed

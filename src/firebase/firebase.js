@@ -89,8 +89,10 @@ export const savePost = async (text) => (
 
 export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
 
-export {
-  onSnapshot,
+export const updatePost = (post) => {
+  onSnapshot(doc(db, "post", post.author.id), () => {
+    console.log("snapshot hecho")
+  });
 };
 
 // export const resetPassword = (email) => {
