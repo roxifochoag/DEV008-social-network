@@ -872,7 +872,8 @@ main {
 
 .user-published-post-actions {
   display: flex;
-  padding-bottom: 5px;
+  height: 15px;
+  align-items: center;
 }
 
 .heart-icon,
@@ -881,6 +882,13 @@ main {
   width: 20px;
   margin-left: 10px;
   cursor: pointer;
+}
+
+.likes-counter{
+  font-size: 13px;
+  margin-left: 3px;
+  padding: 0px;
+  color: #B6B6B6;
 }
 
 .messages-icon {

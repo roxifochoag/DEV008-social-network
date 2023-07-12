@@ -429,17 +429,18 @@ export const Feed = () => {
 
     const messagesIcon3 = document.createElement('img');
     messagesIcon3.className = 'messages-icon';
-    messagesIcon3.src = 'img/chat-svgrepo-com.svg';
+    messagesIcon3.src = '/img/chat-square-dots-fill.svg';
     messagesIcon3.alt = 'message-icon-for-comment';
     userPublishedPostActions.appendChild(messagesIcon3);
 
     const heartIcon3 = document.createElement('img');
     heartIcon3.className = 'heart-icon';
-    heartIcon3.src = 'img/heart-svgrepo-com.svg';
+    heartIcon3.src = '/img/heart-fill-white.svg';
     heartIcon3.alt = 'heart-icon-for-likes';
     userPublishedPostActions.appendChild(heartIcon3);
 
     const likesCounter = document.createElement('span');
+    likesCounter.className = 'likes-counter';
     likesCounter.innerText = ` ${post.liked_by.length} `;
     userPublishedPostActions.appendChild(likesCounter);
 
@@ -450,12 +451,15 @@ export const Feed = () => {
       const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
 
       if (userAlreadyLiked) {
+        heartIcon3.src = '/img/heart-fill-white.svg';
         await updateDoc(postRef, {
           liked_by: arrayRemove(userRef),
         });
       } else {
+        heartIcon3.src = '/img/heart-fill-custom.svg';
         await updateDoc(postRef, {
           liked_by: arrayUnion(userRef),
+
         });
       }
     });
@@ -464,6 +468,9 @@ export const Feed = () => {
     onSnapshot(postRef, (freshPostDocument) => {
       const freshPost = freshPostDocument.data();
       likesCounter.innerText = ` ${freshPost.liked_by.length} `;
+      if (freshPost.liked_by.length === 0) {
+        likesCounter.innerText = '';
+      }
     });
 
     container.prepend(userPublishedPost);
