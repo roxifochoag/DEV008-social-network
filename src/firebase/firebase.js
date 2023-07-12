@@ -4,23 +4,23 @@ import {
   createUserWithEmailAndPassword,
   browserLocalPersistence,
   setPersistence,
-  onAuthStateChanged
 } from 'firebase/auth';
 import {
   setDoc,
   doc,
   collection,
-  onSnapshot,
   addDoc,
+  deleteDoc,
+  updateDoc,
   getDocs,
   query,
   orderBy,
-  getDoc
 } from 'firebase/firestore';
-/*
-import { async } from 'regenerator-runtime';
-*/
-import { auth, googleProvider, db } from './config.js';
+import {
+  auth,
+  googleProvider,
+  db,
+} from './config.js';
 
 export const signUp = async (user) => {
   try {
@@ -96,18 +96,33 @@ export const savePost = async (text) => (
     text,
     author: doc(db, '/users', auth.currentUser.uid),
     timeline: Date.now(),
-    liked_by: [],
   })
 );
+export const getTasks = () => getDocs(collection(db, 'post'), {
+});
 
+// Mostrar los post
 export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
-
+// Actualizar los Posts
 export const updatePost = (post) => {
-  onSnapshot(doc(db, 'post', post.author.id), () => {
-    console.log('snapshot hecho');
-  });
+  updateDoc(doc(db, 'post', post.user.uid), post)
+    .then(() => {
+      console.log('Post actualizado');
+    })
+    .catch((error) => {
+      console.error('Error al actualizar el post:', error);
+    });
 };
-
+// Eliminar los post
+export const deletePost = (post) => {
+  deleteDoc(doc(db, 'post', post))
+    .then(() => {
+      console.log('Post eliminado', post);
+    })
+    .catch((error) => {
+      console.error('Error al eliminar el post:', error);
+    });
+};
 
 // export const resetPassword = (email) => {
 //   sendPasswordResetEmail(auth, email)
