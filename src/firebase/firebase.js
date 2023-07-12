@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   browserLocalPersistence,
   setPersistence,
+  onAuthStateChanged
 } from 'firebase/auth';
 import {
   setDoc,
@@ -15,6 +16,7 @@ import {
   getDocs,
   query,
   orderBy,
+  getDoc
 } from 'firebase/firestore';
 /*
 import { async } from 'regenerator-runtime';
@@ -95,6 +97,7 @@ export const savePost = async (text) => (
     text,
     author: doc(db, '/users', auth.currentUser.uid),
     timeline: Date.now(),
+    liked_by: [],
   })
 );
 
@@ -111,6 +114,7 @@ export const deletePost = (post) => {
   deleteDoc(doc(db, 'post', post.author.id));
   console.log('Post eliminado');
 };
+
 
 // export const resetPassword = (email) => {
 //   sendPasswordResetEmail(auth, email)

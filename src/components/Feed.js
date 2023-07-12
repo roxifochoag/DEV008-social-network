@@ -1,4 +1,7 @@
-import { getDoc } from 'firebase/firestore';
+import {
+  getDoc, updateDoc, arrayUnion, doc, arrayRemove, onSnapshot,
+} from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import {
   savePost, showPosts,
   /*
@@ -6,6 +9,7 @@ import {
   deletePost,
   */
 } from '../firebase/firebase.js';
+import { auth, db } from '../firebase/config.js';
 
 export const Feed = () => {
   // ---------------------------HEAD----------------------
@@ -54,7 +58,18 @@ export const Feed = () => {
   inputSearchBar.placeholder = 'Buscar';
   // User image
   const userImage = document.createElement('div');
-  userImage.className = 'user-image colorlightblue';
+  const pictureProfile = document.createElement('img');
+  pictureProfile.className = 'conversation-img colorlightblue';
+  const userNameHed = document.createElement('p');
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const author = auth.currentUser;
+      userNameHed.innerText = author ? author.displayName : 'usuario';
+      pictureProfile.src = author ? author.photoURL : '../img/istockphoto-1323400501-612x612.jpg';
+      userImage.appendChild(pictureProfile);
+    }
+  });
+
   // Fin del header
 
   headerContainer.appendChild(brand);
@@ -63,6 +78,7 @@ export const Feed = () => {
   iconHideMenu.appendChild(iconMenuCelphone);
   headerContainer.appendChild(inputSearchBar);
   headerContainer.appendChild(userImage);
+  headerContainer.appendChild(userNameHed);
 
   // ---------------------------MAIN---------------------
   // Crear div principal
@@ -350,7 +366,7 @@ export const Feed = () => {
   // --------------------------------------------------------------
 
   // Creacion de un post
-  async function addPostToFeed(container, post) {
+  async function addPostToFeed(container, postRef, post) {
     const authorDocument = await getDoc(post.author);
     const author = authorDocument.data();
 
@@ -423,6 +439,33 @@ export const Feed = () => {
     heartIcon3.alt = 'heart-icon-for-likes';
     userPublishedPostActions.appendChild(heartIcon3);
 
+    const likesCounter = document.createElement('span');
+    likesCounter.innerText = ` ${post.liked_by.length} `;
+    userPublishedPostActions.appendChild(likesCounter);
+
+    heartIcon3.addEventListener('click', async () => {
+      const userRef = doc(db, 'users', auth.currentUser.uid);
+      const freshPostDocument = await getDoc(postRef);
+      const freshPost = freshPostDocument.data();
+      const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
+
+      if (userAlreadyLiked) {
+        await updateDoc(postRef, {
+          liked_by: arrayRemove(userRef),
+        });
+      } else {
+        await updateDoc(postRef, {
+          liked_by: arrayUnion(userRef),
+        });
+      }
+    });
+
+    // Necesario para recibir actualizaciones automáticamente desde firebase, cuando el post cambie
+    onSnapshot(postRef, (freshPostDocument) => {
+      const freshPost = freshPostDocument.data();
+      likesCounter.innerText = ` ${freshPost.liked_by.length} `;
+    });
+
     container.prepend(userPublishedPost);
 
     // updatePost(post)
@@ -432,9 +475,9 @@ export const Feed = () => {
   window.addEventListener('DOMContentLoaded', async () => {
     const TimelinePosts = await showPosts();
 
-    TimelinePosts.forEach(async (postDocument) => {
+    TimelinePosts.forEach((postDocument) => {
       const post = postDocument.data();
-      await addPostToFeed(feedContainer, post);
+      addPostToFeed(feedContainer, postDocument.ref, post);
     });
   });
 
@@ -443,7 +486,7 @@ export const Feed = () => {
     e.preventDefault();
     const postRef = await savePost(textareaElement.value);
     const postDocument = await getDoc(postRef);
-    await addPostToFeed(feedContainer, postDocument.data());
+    await addPostToFeed(feedContainer, postRef, postDocument.data());
 
     userPostContainerDiv.reset();
   });
