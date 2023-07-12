@@ -1,4 +1,6 @@
-import { getDoc } from 'firebase/firestore';
+import {
+  getDoc, updateDoc, arrayUnion, doc, arrayRemove,
+} from 'firebase/firestore';
 import {
   savePost, showPosts,
   /*
@@ -6,6 +8,7 @@ import {
   deletePost,
   */
 } from '../firebase/firebase.js';
+import { auth, db } from '../firebase/config.js';
 
 export const Feed = () => {
   // ---------------------------HEAD----------------------
@@ -350,7 +353,7 @@ export const Feed = () => {
   // --------------------------------------------------------------
 
   // Creacion de un post
-  async function addPostToFeed(container, post) {
+  async function addPostToFeed(container, postRef, post) {
     const authorDocument = await getDoc(post.author);
     const author = authorDocument.data();
 
@@ -423,6 +426,23 @@ export const Feed = () => {
     heartIcon3.alt = 'heart-icon-for-likes';
     userPublishedPostActions.appendChild(heartIcon3);
 
+    heartIcon3.addEventListener('click', async () => {
+      const userRef = doc(db, 'users', auth.currentUser.uid);
+      const freshPostDocument = await getDoc(postRef);
+      const freshPost = freshPostDocument.data();
+      const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
+
+      if (userAlreadyLiked) {
+        await updateDoc(postRef, {
+          liked_by: arrayRemove(userRef),
+        });
+      } else {
+        await updateDoc(postRef, {
+          liked_by: arrayUnion(userRef),
+        });
+      }
+    });
+
     container.prepend(userPublishedPost);
 
     // updatePost(post)
@@ -432,10 +452,29 @@ export const Feed = () => {
   window.addEventListener('DOMContentLoaded', async () => {
     const TimelinePosts = await showPosts();
 
-    TimelinePosts.forEach(async (postDocument) => {
+    const timelinePromises = TimelinePosts.docs.map(async (postDocument) => {
       const post = postDocument.data();
-      await addPostToFeed(feedContainer, post);
+      return addPostToFeed(feedContainer, postDocument.ref, post);
     });
+
+    await Promise.all(timelinePromises);
+
+    // const likeButtons = divFeedPrincipal.querySelectorAll('.heart-icon');
+    // // console.log(likeButtons);
+    // likeButtons.forEach((likeButton) => {
+    //   likeButton.addEventListener('click', () => {
+    //     // reconocer el usuario conectado y jalar su id
+    //     const loggedUser = auth.currentUser;
+    //     const userName = loggedUser.displayName;
+    //     console.log(userName);
+    //     const postCollection = collection(db, 'post');
+    //     console.log(postCollection);
+    //     // updateDoc(likeCounter, {
+    //     //   liked_by: arrayUnion(loggedUser),
+    //     // });
+    //     //
+    //   });
+    // });
   });
 
   // Guardar post en firebase
@@ -443,7 +482,7 @@ export const Feed = () => {
     e.preventDefault();
     const postRef = await savePost(textareaElement.value);
     const postDocument = await getDoc(postRef);
-    await addPostToFeed(feedContainer, postDocument.data());
+    await addPostToFeed(feedContainer, postRef, postDocument.data());
 
     userPostContainerDiv.reset();
   });
