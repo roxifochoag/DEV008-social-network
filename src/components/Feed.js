@@ -4,7 +4,6 @@ import {
 import { onAuthStateChanged } from 'firebase/auth';
 import {
   savePost, showPosts, deletePost,
-
   /*
   updatePost,
   */
@@ -418,30 +417,30 @@ export const Feed = () => {
     eraseButton.textContent = 'eliminar';
     eraseButton.setAttribute('id', 'idBotonDelete');
     PostEditButtons.appendChild(eraseButton);
+
     /*
 |-----------------------------------------|
 |             DELETE POST                 |
 |-----------------------------------------|
     */
 
-    eraseButton.addEventListener('click', () => {
+    eraseButton.addEventListener('click', async () => {
       function alerta() {
-      const option = confirm('Confirme el borrado del Post');
-     if (option === true) {
-         deletePost(doc.id);
-        .then(() => {
-              console.log('Post eliminado');
-         }).catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.Message;
-              console.log(errorCode, errorMessage);
-          });
+        const option = confirm('Confirme el borrado del Post');
+        if (option === true) {
+          deletePost(postRef.id);
+          userPublishedPost.parentElement.removeChild(userPublishedPost);
+          // .then(() => {
+          console.log('Post eliminado');
+          //     }).catch((error) => {
+          //          const errorCode = error.code;
+          //          const errorMessage = error.Message;
+          //          console.log(errorCode, errorMessage);
+          //      });
         }
-       }
+      }
       alerta();
-      });
-
- 
+    });
 
     const userPublishedPostText = document.createElement('p');
     userPublishedPostText.className = 'user-published-post-text';
@@ -525,4 +524,3 @@ export const Feed = () => {
 
   return divFeedPrincipal;
 };
-
