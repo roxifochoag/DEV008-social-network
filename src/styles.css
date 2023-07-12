@@ -624,13 +624,13 @@ label {
 header {
   height: 50px;
   display: flex;
-  flex-direction: column;
   padding: 0px 5px;
 }
 .header-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -664,12 +664,20 @@ header {
 .input-search-bar::placeholder {
   color: #B6B6B6;
 }
+.user-name-header{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  font-size: 15px;
+  color: #FAFAFA;
+  display:none;
+}
 
 .user-image {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
-  margin-left: auto;
+  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -930,6 +938,9 @@ footer {
 
 
 @media (min-width: 500px) {
+  .user-name-header {
+    display: block;
+  }
   .centered-main {
     margin-bottom: 90px;
   }
@@ -963,7 +974,13 @@ footer {
   }
 
   @media (min-width: 700px) {
-  
+    .header-container{
+      padding: 0px 20px;
+    }
+    .user-image{
+      width: 40px;
+      height: 40px;
+    }
     .centered-main {
       justify-content: center;
       display: flex;
@@ -1050,15 +1067,9 @@ footer {
     }
 
     .input-search-bar {
-      margin-left: 3%;
+      width: 50%;
       font-size: 14px;
       justify-self: center;
-    }
-
-    .user-image {
-      height: 30px;
-      width: 30px;
-      border-radius: 50%;
     }
 
     .trending-container {
@@ -1206,8 +1217,7 @@ footer {
     }
     .input-search-bar{
       justify-self: center;
-      min-width: 40%;
-      max-width: 50%;
+      width: 50%;
     }
     .centered-main {
       justify-content: center;
@@ -1264,6 +1274,10 @@ footer {
   }
 
   @media (min-width: 1125px) {
+    .header-container{
+      padding: 0px 30px;
+    }
+    
     .flex-item-right {
       width: fit-content;
     }
