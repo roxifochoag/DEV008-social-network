@@ -15,6 +15,7 @@ import {
   getDocs,
   query,
   orderBy,
+  serverTimestamp,
 } from 'firebase/firestore';
 import {
   auth,
@@ -22,6 +23,11 @@ import {
   db,
 } from './config.js';
 
+/*
+|-----------------------------------------|
+|             Register - SignUp           |
+|-----------------------------------------|
+*/
 export const signUp = async (user) => {
   try {
     const firebaseUser = await createUserWithEmailAndPassword(auth, user.email, user.password);
@@ -56,7 +62,11 @@ export const signUp = async (user) => {
 //       reject(error);
 //     });
 // });
-
+/*
+|-----------------------------------------|
+|             Loguin - signInGoogle       |
+|-----------------------------------------|
+*/
 export const signInGoogle = async () => {
   try {
     await setPersistence(auth, browserLocalPersistence);
@@ -75,7 +85,11 @@ export const signInGoogle = async () => {
   }
 };
 
-// SignIn
+/*
+|-----------------------------------------|
+|              Loguin - signIn            |
+|-----------------------------------------|
+*/
 export const signIn = async (user) => {
   try {
     await setPersistence(auth, browserLocalPersistence);
@@ -90,40 +104,56 @@ export const signIn = async (user) => {
     console.log(errorCode, errorMessage);
   }
 };
-
+/*
+|-----------------------------------------|
+|             POST - savePost             |
+|-----------------------------------------|
+*/
 export const savePost = async (text) => (
   addDoc(collection(db, 'post'), {
     text,
     author: doc(db, '/users', auth.currentUser.uid),
     timeline: Date.now(),
+    liked_by: [],
   })
 );
-export const getTasks = () => getDocs(collection(db, 'post'), {
-});
-
-// Mostrar los post
+/*
+|-----------------------------------------|
+|             POST - showPosts            |
+|-----------------------------------------|
+*/
 export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
-// Actualizar los Posts
-export const updatePost = (post) => {
-  updateDoc(doc(db, 'post', post.user.uid), post)
-    .then(() => {
-      console.log('Post actualizado');
-    })
-    .catch((error) => {
-      console.error('Error al actualizar el post:', error);
-    });
+/*
+|-----------------------------------------|
+|             POST - updatePost           |
+|-----------------------------------------|
+*/
+export const updatePost = (newPost, post) => {
+  const user = auth.currentUser.uid;
+  const connDocRef = doc(db, 'post', post);
+  return updateDoc(connDocRef, { postContent: newPost, nowdate: serverTimestamp() });
 };
-// Eliminar los post
-export const deletePost = (post) => {
-  deleteDoc(doc(db, 'post', post))
+/*
+|-----------------------------------------|
+|             POST - deletePost           |
+|-----------------------------------------|
+*/
+export const deletePost = (id) => {
+  const user = auth.currentUser.uid;
+  deleteDoc(doc(db, 'post', id))
     .then(() => {
-      console.log('Post eliminado', post);
+      console.log('Post eliminado', id);
+      console.log('del Usuario', user);
     })
     .catch((error) => {
       console.error('Error al eliminar el post:', error);
     });
 };
-
+/*
+|-----------------------------------------|
+|             Recover password            |
+|-----------------------------------------|
+*/
 // export const resetPassword = (email) => {
 //   sendPasswordResetEmail(auth, email)
 //     .then((userEmail) => {

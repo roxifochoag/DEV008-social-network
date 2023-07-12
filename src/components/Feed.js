@@ -3,10 +3,10 @@ import {
 } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import {
-  savePost, showPosts,
+  savePost, showPosts, deletePost,
+
   /*
   updatePost,
-  deletePost,
   */
 } from '../firebase/firebase.js';
 import { auth, db } from '../firebase/config.js';
@@ -416,8 +416,33 @@ export const Feed = () => {
     const eraseButton = document.createElement('li');
     eraseButton.className = 'edit-post-option two';
     eraseButton.textContent = 'eliminar';
+    eraseButton.setAttribute('id', 'idBotonDelete');
     PostEditButtons.appendChild(eraseButton);
-    //
+    /*
+|-----------------------------------------|
+|             DELETE POST                 |
+|-----------------------------------------|
+    */
+
+    eraseButton.addEventListener('click', () => {
+      function alerta() {
+      const option = confirm('Confirme el borrado del Post');
+     if (option === true) {
+         deletePost(doc.id);
+        .then(() => {
+              console.log('Post eliminado');
+         }).catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.Message;
+              console.log(errorCode, errorMessage);
+          });
+        }
+       }
+      alerta();
+      });
+
+ 
+
     const userPublishedPostText = document.createElement('p');
     userPublishedPostText.className = 'user-published-post-text';
     userPublishedPostText.textContent = post.text;
@@ -493,3 +518,4 @@ export const Feed = () => {
 
   return divFeedPrincipal;
 };
+
