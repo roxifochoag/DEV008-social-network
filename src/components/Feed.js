@@ -1,9 +1,9 @@
 import {
-  getDoc, updateDoc, arrayUnion, doc, arrayRemove,
+  getDoc, updateDoc, arrayUnion, doc, arrayRemove, onSnapshot,
 } from 'firebase/firestore';
-import {onAuthStateChanged} from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth';
 import {
-  savePost, showPosts
+  savePost, showPosts,
   /*
   updatePost,
   deletePost,
@@ -64,12 +64,11 @@ export const Feed = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const author = auth.currentUser;
-      userNameHed.innerText = author ? author.displayName : 'usuario'
+      userNameHed.innerText = author ? author.displayName : 'usuario';
       pictureProfile.src = author ? author.photoURL : '../img/istockphoto-1323400501-612x612.jpg';
       userImage.appendChild(pictureProfile);
-
     }
-  });  
+  });
 
   // Fin del header
 
@@ -440,6 +439,10 @@ export const Feed = () => {
     heartIcon3.alt = 'heart-icon-for-likes';
     userPublishedPostActions.appendChild(heartIcon3);
 
+    const likesCounter = document.createElement('span');
+    likesCounter.innerText = ` ${post.liked_by.length} `;
+    userPublishedPostActions.appendChild(likesCounter);
+
     heartIcon3.addEventListener('click', async () => {
       const userRef = doc(db, 'users', auth.currentUser.uid);
       const freshPostDocument = await getDoc(postRef);
@@ -457,6 +460,12 @@ export const Feed = () => {
       }
     });
 
+    // Necesario para recibir actualizaciones automáticamente desde firebase, cuando el post cambie
+    onSnapshot(postRef, (freshPostDocument) => {
+      const freshPost = freshPostDocument.data();
+      likesCounter.innerText = ` ${freshPost.liked_by.length} `;
+    });
+
     container.prepend(userPublishedPost);
 
     // updatePost(post)
@@ -466,12 +475,10 @@ export const Feed = () => {
   window.addEventListener('DOMContentLoaded', async () => {
     const TimelinePosts = await showPosts();
 
-    const timelinePromises = TimelinePosts.docs.map(async (postDocument) => {
+    TimelinePosts.forEach((postDocument) => {
       const post = postDocument.data();
-      return addPostToFeed(feedContainer, postDocument.ref, post);
+      addPostToFeed(feedContainer, postDocument.ref, post);
     });
-
-    await Promise.all(timelinePromises);
   });
 
   // Guardar post en firebase
