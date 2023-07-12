@@ -458,23 +458,6 @@ export const Feed = () => {
     });
 
     await Promise.all(timelinePromises);
-
-    // const likeButtons = divFeedPrincipal.querySelectorAll('.heart-icon');
-    // // console.log(likeButtons);
-    // likeButtons.forEach((likeButton) => {
-    //   likeButton.addEventListener('click', () => {
-    //     // reconocer el usuario conectado y jalar su id
-    //     const loggedUser = auth.currentUser;
-    //     const userName = loggedUser.displayName;
-    //     console.log(userName);
-    //     const postCollection = collection(db, 'post');
-    //     console.log(postCollection);
-    //     // updateDoc(likeCounter, {
-    //     //   liked_by: arrayUnion(loggedUser),
-    //     // });
-    //     //
-    //   });
-    // });
   });
 
   // Guardar post en firebase
