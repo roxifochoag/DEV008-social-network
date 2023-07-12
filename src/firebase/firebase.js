@@ -138,11 +138,11 @@ export const updatePost = (newPost, post) => {
 |             POST - deletePost           |
 |-----------------------------------------|
 */
-export const deletePost = (id) => {
+export const deletePost = (post) => {
   const user = auth.currentUser.uid;
-  deleteDoc(doc(db, 'post', id))
+  deleteDoc(doc(db, 'post', post))
     .then(() => {
-      console.log('Post eliminado', id);
+      console.log('Post eliminado', post);
       console.log('del Usuario', user);
     })
     .catch((error) => {
