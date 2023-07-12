@@ -75,10 +75,6 @@ input {
   font-size: 0.8rem;
 }
 
-.social-text {
-  font-size: 16px;
-}
-
 /*contenedor izquierdo*/
 .container {
   width: 100%;
@@ -223,7 +219,7 @@ label {
 
 .social-text {
   padding: 0.7rem 0;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .social-media {
@@ -275,7 +271,6 @@ label {
 }
 
 .link {
-  font-family: 'Inria Sans';
   text-decoration: none;
   font-style: normal;
   font-weight: 700;
@@ -409,8 +404,7 @@ label {
   }
 
   .social-text {
-    padding: auto;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .social-media {
@@ -445,7 +439,6 @@ label {
   }
 
   .link {
-    font-family: 'Inria Sans';
     text-decoration: none;
     font-style: normal;
     font-weight: 700;
@@ -506,7 +499,6 @@ label {
     width: 60%;
     height: auto;
     align-self: center;
-    justify-content: center;
     justify-content: center;
     padding: 10% 10px;
     margin-top: 10%;
@@ -583,12 +575,7 @@ label {
     line-height: 18px;
   }
 
-  .social-text {
-    padding: 0.7rem 0;
-    font-size: 14px;
-  }
-
-  .social-icon {
+    .social-icon {
     font-size: 22px;
   }
 
@@ -837,7 +824,6 @@ main {
   cursor: pointer;
 }
 
-/**/
 .edit-post-option-container {
   border: 1px solid #B6B6B6;
   padding: 0px;
@@ -874,7 +860,7 @@ main {
 .two:hover{
   border-radius: 0px 0px 8px 8px;
 }
-/**/
+
 .user-published-post-text {
   font-size: 13px;
   hyphens: auto;
@@ -997,11 +983,7 @@ footer {
       width: 60%;
     }
 
-    .trending-container {
-      margin: 0px;
-    }
-
-    .trendy-title {
+   .trendy-title {
       margin-top: 0px;
     }
 
@@ -1241,10 +1223,6 @@ footer {
       justify-content: center;
       align-items: center;
       width: 60%;
-    }
-
-    .trending-container {
-      margin: 0px;
     }
 
     .trendy-title {
