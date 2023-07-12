@@ -1,8 +1,9 @@
 import {
   getDoc, updateDoc, arrayUnion, doc, arrayRemove,
 } from 'firebase/firestore';
+import {onAuthStateChanged} from 'firebase/auth'
 import {
-  savePost, showPosts,
+  savePost, showPosts
   /*
   updatePost,
   deletePost,
@@ -57,7 +58,19 @@ export const Feed = () => {
   inputSearchBar.placeholder = 'Buscar';
   // User image
   const userImage = document.createElement('div');
-  userImage.className = 'user-image colorlightblue';
+  const pictureProfile = document.createElement('img');
+  pictureProfile.className = 'conversation-img colorlightblue';
+  const userNameHed = document.createElement('p');
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const author = auth.currentUser;
+      userNameHed.innerText = author ? author.displayName : 'usuario'
+      pictureProfile.src = author ? author.photoURL : '../img/istockphoto-1323400501-612x612.jpg';
+      userImage.appendChild(pictureProfile);
+
+    }
+  });  
+
   // Fin del header
 
   headerContainer.appendChild(brand);
@@ -66,6 +79,7 @@ export const Feed = () => {
   iconHideMenu.appendChild(iconMenuCelphone);
   headerContainer.appendChild(inputSearchBar);
   headerContainer.appendChild(userImage);
+  headerContainer.appendChild(userNameHed);
 
   // ---------------------------MAIN---------------------
   // Crear div principal

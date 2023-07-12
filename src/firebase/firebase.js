@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   browserLocalPersistence,
   setPersistence,
+  onAuthStateChanged
 } from 'firebase/auth';
 import {
   setDoc,
@@ -14,6 +15,7 @@ import {
   getDocs,
   query,
   orderBy,
+  getDoc
 } from 'firebase/firestore';
 /*
 import { async } from 'regenerator-runtime';
@@ -105,6 +107,7 @@ export const updatePost = (post) => {
     console.log('snapshot hecho');
   });
 };
+
 
 // export const resetPassword = (email) => {
 //   sendPasswordResetEmail(auth, email)
