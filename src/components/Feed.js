@@ -29,7 +29,7 @@ export const Feed = () => {
   headerFeed.className = 'colorbackpink';
   divFeedPrincipal.appendChild(headerFeed);
 
-  const headerContainer = document.createElement('header');
+  const headerContainer = document.createElement('div');
   headerContainer.className = 'header-container';
   headerFeed.appendChild(headerContainer);
 
@@ -56,16 +56,17 @@ export const Feed = () => {
   inputSearchBar.className = 'input-search-bar';
   inputSearchBar.placeholder = 'Buscar';
   // User image
-  const userImage = document.createElement('div');
-  const pictureProfile = document.createElement('img');
-  pictureProfile.className = 'conversation-img colorlightblue';
   const userNameHed = document.createElement('p');
+  userNameHed.className = 'user-name-header';
+  const pictureProfile = document.createElement('img');
+  pictureProfile.className = 'user-image colorlightblue';
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const author = auth.currentUser;
       userNameHed.innerText = author ? author.displayName : 'usuario';
       pictureProfile.src = author ? author.photoURL : '../img/istockphoto-1323400501-612x612.jpg';
-      userImage.appendChild(pictureProfile);
+      headerContainer.appendChild(pictureProfile);
     }
   });
 
@@ -76,7 +77,6 @@ export const Feed = () => {
   headerContainer.appendChild(iconHideMenu);
   iconHideMenu.appendChild(iconMenuCelphone);
   headerContainer.appendChild(inputSearchBar);
-  headerContainer.appendChild(userImage);
   headerContainer.appendChild(userNameHed);
 
   // ---------------------------MAIN---------------------
