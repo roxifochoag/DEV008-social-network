@@ -94,6 +94,7 @@ export const savePost = async (text) => (
     text,
     author: doc(db, '/users', auth.currentUser.uid),
     timeline: Date.now(),
+    liked_by: [],
   })
 );
 
