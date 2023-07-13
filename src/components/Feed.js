@@ -171,12 +171,12 @@ export const Feed = () => {
 
   const conversationImg1 = document.createElement('img');
   conversationImg1.className = 'messages-icon';
-  conversationImg1.src = '../img/chat-svgrepo-com.svg';
+  conversationImg1.src = '/img/chat-square-dots-fill.svg';
   conversationImg1.alt = 'message-icon-for-comment';
 
   const conversationImg2 = document.createElement('img');
   conversationImg2.className = 'heart-icon';
-  conversationImg2.src = '../img/heart-svgrepo-com.svg';
+  conversationImg2.src = '/img/heart-fill-white.svg';
   conversationImg2.alt = 'heart-icon-for-likes';
 
   const seeAllConversationsA = document.createElement('a');
@@ -222,12 +222,12 @@ export const Feed = () => {
 
   const messagesIcon = document.createElement('img');
   messagesIcon.className = 'messages-icon';
-  messagesIcon.src = '../img/chat-svgrepo-com.svg';
+  messagesIcon.src = '/img/chat-square-dots-fill.svg';
   messagesIcon.alt = 'heart-icon-for-likes';
 
   const heartIcon = document.createElement('img');
   heartIcon.className = 'heart-icon';
-  heartIcon.src = '../img/heart-svgrepo-com.svg';
+  heartIcon.src = '/img/heart-fill-white.svg';
   heartIcon.alt = 'heart-icon-for-likes';
   newsContent.appendChild(newsText);
   newsContent.appendChild(newsImg);
@@ -261,6 +261,7 @@ export const Feed = () => {
   textareaElement.className = 'user-post colorwhite';
   textareaElement.id = 'db-post-content';
   textareaElement.placeholder = 'Crea un post';
+  textareaElement.required = true;
 
   const userPostBtnsContainerDiv = document.createElement('div');
   userPostBtnsContainerDiv.className = 'user-post-btns-conatiner';
@@ -411,6 +412,10 @@ export const Feed = () => {
     } else {
       userPublishedPostEdit.appendChild(PostEditButtons);
       PostEditButtons.appendChild(reportButton);
+      reportButton.addEventListener('click', async () => {
+        // eslint-disable-next-line no-alert
+        (window.confirm('Reporte enviado, Gracias por ayudarnos a ser una mejor comunidad'));
+      });
     }
     /*
 |-----------------------------------------|
