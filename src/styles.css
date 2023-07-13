@@ -868,6 +868,11 @@ main {
 .two:hover{
   border-radius: 0px 0px 8px 8px;
 }
+.three:hover{
+  color: #EF2684;
+  background-color:#FAFAFA;
+  border-radius: 9px 9px 9px 9px;
+}
 
 .user-published-post-text {
   font-size: 13px;
