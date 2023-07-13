@@ -17,7 +17,9 @@ import {
   orderBy,
   serverTimestamp,
   getDoc,
-  onSnapshot,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot
 } from 'firebase/firestore';
 import {
   auth,
@@ -44,7 +46,7 @@ export const signUp = async (user) => {
     window.location.assign('/login');
     window.alert('Registro exitoso');
   } catch (error) {
-    console.log({ error });
+    window.alert(`register error: ${error.message}`);
   }
 };
 
@@ -90,7 +92,7 @@ export const signInGoogle = async () => {
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
   } catch (error) {
-    console.error(error);
+    window.alert(`google login error: ${error.message}`);
   }
 };
 
@@ -112,9 +114,7 @@ export const signIn = async (user) => {
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
   } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    window.alert(`login error: ${error.message}`);
   }
 };
 /*
@@ -143,8 +143,37 @@ export const showPosts = async () => getDocs(query(collection(db, 'post'), order
 */
 export const updatePost = (newPost, post) => {
   const user = auth.currentUser.uid;
-  const connDocRef = doc(db, 'post', post);
-  return updateDoc(connDocRef, { postContent: newPost, nowdate: serverTimestamp() });
+  const postRef = doc(db, 'post', post);
+  updateDoc(postRef, { text: newPost, timeline: Date.now(), })
+  .then(() => {
+    console.log('Post actualizado', post);
+    console.log('del Usuario', user);
+  })
+  .catch((error) => {
+    console.error('Error al editar el post:', error);
+  });
+};
+/*
+|---------------------------------------------|
+|             POST - updateLikePost           |
+|---------------------------------------------|
+*/
+export const updateLikePost = async (postRef, freshPost) => {
+  const userRef = doc(db, 'users', auth.currentUser.uid)
+  const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
+  if (userAlreadyLiked) {
+    await updateDoc(postRef, {
+      liked_by: arrayRemove(userRef),
+    });
+
+    return '/img/heart-fill-white.svg'
+  } else {
+    await updateDoc(postRef, {
+      liked_by: arrayUnion(userRef),
+    });
+
+    return '/img/heart-fill-custom.svg';
+  }
 };
 /*
 |-----------------------------------------|
@@ -162,6 +191,22 @@ export const deletePost = (post) => {
       console.error('Error al eliminar el post:', error);
     });
 };
+
+/*
+|----------------------------------------------|
+|             POST - get data author           |
+|----------------------------------------------|
+*/
+export const getDataAuthor = (ref) => {
+  return new Promise((resolve, reject) => {
+    getDoc(ref).then((authorDocument) => {
+
+      resolve(authorDocument.data())
+    }).catch(error => {
+      reject(error)
+    })
+  })
+}
 /*
 |-----------------------------------------|
 |             Recover password            |

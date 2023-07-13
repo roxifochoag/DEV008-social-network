@@ -5,8 +5,9 @@ export const Register = () => {
   const signUpDiv = document.createElement('div');
   signUpDiv.className = 'signup';
 
-  const loginUpLeftDiv = document.createElement('section');
-  loginUpLeftDiv.className = 'transition-div2';
+  // lado derecho (ilustracion en este caso)
+  const loginUpRightDiv = document.createElement('section');
+  loginUpRightDiv.className = 'transition-div2';
 
   const loginLeftDivHeader = document.createElement('div');
   loginLeftDivHeader.className = 'transition-header2';
@@ -28,23 +29,22 @@ export const Register = () => {
   transparentBtn.innerHTML = 'iniciar sesión ';
   transparentBtn.className = 'btn transparent';
 
-  // creando el elemento formulario
+  // lado izquierdo (formulario de registro en este caso)
   const formSignUp = document.createElement('form');
   formSignUp.className = 'sign-up-form';
   formSignUp.action = '#';
 
-  // creando el titulo del registr
   const title = document.createElement('h3');
   title.className = 'title';
   title.textContent = 'Crea tu cuenta';
 
-  // creando subtitulo registro
   const subtitle = document.createElement('h4');
   subtitle.className = 'subtitle';
   subtitle.textContent = 'Con esta cuenta podrás conectar con otras mujeres latinas que se encuentran alrededor del mundo';
 
   const closer = document.createElement('div');
   closer.className = 'closer';
+  
   // --------------------name---------------------
   // creando input de nombre usuario dentro de un div con un icon
   const inputFieldName = document.createElement('div');
@@ -229,8 +229,8 @@ export const Register = () => {
   formSignUp.appendChild(labelNews);
   formSignUp.appendChild(submitBtn);
 
-  signUpDiv.appendChild(loginUpLeftDiv);
-  loginUpLeftDiv.appendChild(loginLeftDivHeader);
+  signUpDiv.appendChild(loginUpRightDiv);
+  loginUpRightDiv.appendChild(loginLeftDivHeader);
   loginLeftDivHeader.appendChild(logo);
   loginLeftDivHeader.appendChild(subTitle);
   loginLeftDivHeader.appendChild(brandDescription);

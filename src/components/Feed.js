@@ -9,6 +9,7 @@ import {
 } from '../firebase/firebase.js';
 import { auth, db } from '../firebase/config.js';
 
+
 export const Feed = () => {
   listenPost((post) => {
 
@@ -340,8 +341,7 @@ export const Feed = () => {
 |-----------------------------------------|
   */
   async function addPostToFeed(container, postRef, post) {
-    const authorDocument = await getDoc(post.author);
-    const author = authorDocument.data();
+    const author = await getDataAuthor(post.author);
 
     const userPublishedPost = document.createElement('div');
     userPublishedPost.className = 'user-published-post';
@@ -396,7 +396,7 @@ export const Feed = () => {
 |      Delete and edit buttons only por user author      |
 |--------------------------------------------------------|
     */
-    if (auth.currentUser.uid === authorDocument.id) {
+    if (auth.currentUser.email === author.email) {
       userPublishedPostEdit.appendChild(PostEditButtons);
       PostEditButtons.appendChild(editButton);
       PostEditButtons.appendChild(eraseButton);
@@ -431,6 +431,17 @@ export const Feed = () => {
       alerta();
     });
 
+        /*
+|-----------------------------------------|
+|            Edit posts button          |
+|-----------------------------------------|
+    */
+editButton.addEventListener('click', async () => {
+  
+});
+
+
+
     const userPublishedPostText = document.createElement('p');
     userPublishedPostText.className = 'user-published-post-text';
     userPublishedPostText.textContent = post.text;
@@ -458,23 +469,9 @@ export const Feed = () => {
     userPublishedPostActions.appendChild(likesCounter);
 
     heartIcon3.addEventListener('click', async () => {
-      const userRef = doc(db, 'users', auth.currentUser.uid);
-      const freshPostDocument = await getDoc(postRef);
-      const freshPost = freshPostDocument.data();
-      const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
-
-      if (userAlreadyLiked) {
-        heartIcon3.src = '/img/heart-fill-white.svg';
-        await updateDoc(postRef, {
-          liked_by: arrayRemove(userRef),
-        });
-      } else {
-        heartIcon3.src = '/img/heart-fill-custom.svg';
-        await updateDoc(postRef, {
-          liked_by: arrayUnion(userRef),
-
-        });
-      }
+      const freshPost = await getDataAuthor(postRef);
+      const heartIcon = await updateLikePost(postRef, freshPost);
+      heartIcon3.src = heartIcon;
     });
 
     // Necesario para recibir actualizaciones automáticamente desde firebase, cuando el post cambie
@@ -511,8 +508,8 @@ export const Feed = () => {
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
     const postRef = await savePost(textareaElement.value);
-    const postDocument = await getDoc(postRef);
-    await addPostToFeed(feedContainer, postRef, postDocument.data());
+    const postDocument = await getDataAuthor(postRef);
+    await addPostToFeed(feedContainer, postRef, postDocument);
 
     userPostContainerDiv.reset();
   });
