@@ -1,7 +1,7 @@
 import { signIn, signInGoogle } from '../firebase/firebase.js';
 
 export const Login = () => {
-  // creando el elemento div que contiene todo el registro
+  // creando el elemento div que contiene todo el Login
   const loginDiv = document.createElement('div');
   loginDiv.className = 'container';
 
