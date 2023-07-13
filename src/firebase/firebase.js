@@ -66,6 +66,8 @@ export const signUp = async (user) => {
 //       reject(error);
 //     });
 // });
+
+export const getCurrentUser = () => auth.currentUser.email;
 /*
 |-----------------------------------------|
 |             Loguin - signInGoogle       |
@@ -82,6 +84,11 @@ export const signInGoogle = async () => {
       email: userCredentials.user.email,
       picture: userCredentials.user.photoURL,
     });
+    localStorage.setItem('userCredentials', JSON.stringify({
+      userID: userCredentials.user.uid,
+      username: userCredentials.user.displayName,
+      picture: userCredentials.user.photoURL,
+    }));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
   } catch (error) {
@@ -98,8 +105,12 @@ export const signIn = async (user) => {
   try {
     await setPersistence(auth, browserLocalPersistence);
     const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
+
     console.log(userCredentials);
-    // localStorage.setItem('userCredentials', JSON.stringify(userCredentials));
+    localStorage.setItem('userCredentials', JSON.stringify({
+      email: userCredentials.user.email,
+      userID: userCredentials.user.uid,
+    }));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
   } catch (error) {
@@ -201,17 +212,16 @@ export const getDataAuthor = (ref) => {
 |             Recover password            |
 |-----------------------------------------|
 */
-// export const resetPassword = (email) => {
-//   sendPasswordResetEmail(auth, email)
-//     .then((userEmail) => {
-//       console.log('se envio un correo para cambiar contraseña!');
+export const listenPost = (addPost) => {
+  onSnapshot(
+    collection(db, 'post'),
+    (querySnapshot) => {
+      querySnapshot.forEach((document) => {
+        addPost(document.data());
+      });
+    },
+  );
+};
 
-//     })
-//     .catch((error) => {
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       console.log(errorCode, errorMessage);
-
-//       return error;
-//     });
-// };
+export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
+  .then((user) => user.data());

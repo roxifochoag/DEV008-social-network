@@ -1,9 +1,19 @@
-import { onSnapshot } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
-import { savePost, showPosts, deletePost, getDataAuthor, updateLikePost, updatePost } from '../firebase/firebase.js';
-import { auth } from '../firebase/config.js';
+import {
+  getDoc, updateDoc, arrayUnion, doc, arrayRemove, onSnapshot,
+} from 'firebase/firestore';
+import {
+  savePost, showPosts, deletePost, getUserByUserID, listenPost,
+  /*
+  updatePost,
+  */
+} from '../firebase/firebase.js';
+import { auth, db } from '../firebase/config.js';
+
 
 export const Feed = () => {
+  listenPost((post) => {
+
+  });
   // ---------------------------HEAD----------------------
 
   const headFeed = document.createElement('head');
@@ -50,24 +60,12 @@ export const Feed = () => {
   const pictureProfile = document.createElement('img');
   pictureProfile.className = 'user-image colorlightblue';
 
-  /*
-|---------------------------------------------------------|
-|   Get current user logged and data for profile(visual)  |
-|---------------------------------------------------------|
-  */
-  // Esta funcion se encuentra aca porque se tuvo que forzar la recopilacion
-  // de datos ya que estamos trabajando con funciones asincronas
-  // (en este punto todavia no cargaban los datos del usuario)
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const author = auth.currentUser;
-      userNameHed.innerText = author ? author.displayName : 'usuario';
-      pictureProfile.src = author ? author.photoURL : '../img/istockphoto-1323400501-612x612.jpg';
-      headerContainer.appendChild(pictureProfile);
-    }
+  const userLocalStorage = JSON.parse(localStorage.getItem('userCredentials'));
+  getUserByUserID(userLocalStorage.userID).then((user) => {
+    userNameHed.innerText = user.username;
+    pictureProfile.src = user.picture;
+    console.log(user.picture);
   });
-
-  // Fin del header
 
   headerContainer.appendChild(brand);
   headerContainer.appendChild(brandHorizontal);
@@ -75,6 +73,7 @@ export const Feed = () => {
   iconHideMenu.appendChild(iconMenuCelphone);
   headerContainer.appendChild(inputSearchBar);
   headerContainer.appendChild(userNameHed);
+  headerContainer.appendChild(pictureProfile);
 
   // -------------------MAIN(whole content)---------------
 
