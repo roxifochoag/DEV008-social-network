@@ -12,19 +12,17 @@ import { auth, db } from '../firebase/config.js';
 
 export const Feed = () => {
   // ---------------------------HEAD----------------------
-  // Titulo del head
+
   const headFeed = document.createElement('head');
   const titleHeadFeed = document.createElement('title');
   titleHeadFeed.innerText = 'WarmiFeed';
   headFeed.appendChild(titleHeadFeed);
 
-  // Encerrar todo el feed incluyendo header
   const divFeedPrincipal = document.createElement('div');
   divFeedPrincipal.className = 'feed-container colorwhite';
 
   // ---------------------------HEADER---------------------
-  // Inicio del header
-  // declaración de la clase del header
+
   const headerFeed = document.createElement('header');
   headerFeed.className = 'colorbackpink';
   divFeedPrincipal.appendChild(headerFeed);
@@ -33,34 +31,40 @@ export const Feed = () => {
   headerContainer.className = 'header-container';
   headerFeed.appendChild(headerContainer);
 
-  // logo de warmi
   const brand = document.createElement('img');
   brand.className = 'logo';
   brand.src = '../img/icon-logo.png';
   brand.alt = 'logo';
-  // Logo horizontal
+
   const brandHorizontal = document.createElement('img');
   brandHorizontal.className = 'logo-horizontal';
   brandHorizontal.src = '../img/logo-feed.png';
   brandHorizontal.alt = 'logo';
-  // Estructura del boton
-  // Boton
+
   const iconHideMenu = document.createElement('button');
   iconHideMenu.className = 'icon-hide-menu';
 
   const iconMenuCelphone = document.createElement('img');
   iconMenuCelphone.src = '../img/icon-menu-celphone.svg';
-  // Barra de búsqueda
+
   const inputSearchBar = document.createElement('input');
   inputSearchBar.setAttribute('type', 'search');
   inputSearchBar.className = 'input-search-bar';
   inputSearchBar.placeholder = 'Buscar';
-  // User image
+
   const userNameHed = document.createElement('p');
   userNameHed.className = 'user-name-header';
   const pictureProfile = document.createElement('img');
   pictureProfile.className = 'user-image colorlightblue';
 
+  /*
+|---------------------------------------------------------|
+|   Get current user logged and data for profile(visual)  |
+|---------------------------------------------------------|
+  */
+  // Esta funcion se encuentra aca porque se tuvo que forzar la recopilacion
+  // de datos ya que estamos trabajando con funciones asincronas
+  // (en este punto todavia no cargaban los datos del usuario)
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const author = auth.currentUser;
@@ -79,26 +83,24 @@ export const Feed = () => {
   headerContainer.appendChild(inputSearchBar);
   headerContainer.appendChild(userNameHed);
 
-  // ---------------------------MAIN---------------------
-  // Crear div principal
+  // -------------------MAIN(whole content)---------------
+
   const centeredMainDiv = document.createElement('div');
   centeredMainDiv.className = 'centered-main';
   divFeedPrincipal.appendChild(centeredMainDiv);
-  // Crear div flex-item-left
+
   const flexItemLeftDiv = document.createElement('div');
   flexItemLeftDiv.className = 'flex-item-left';
 
   const flexItemRightDiv = document.createElement('div');
   flexItemRightDiv.className = 'flex-item-right';
 
-  // Crear aside
+  // ---------------------ASIDE(left)--------------------
   const asideElement = document.createElement('aside');
 
-  // Crear div trending-container
   const trendingContainerDiv = document.createElement('div');
   trendingContainerDiv.className = 'trending-container';
 
-  // Crear div para el título de las tendencias
   const trendyTitleDiv = document.createElement('div');
   const trendyTitleH2 = document.createElement('h2');
   trendyTitleH2.className = 'trendy-title colorbackpink';
@@ -106,7 +108,6 @@ export const Feed = () => {
   trendyTitleDiv.appendChild(trendyTitleH2);
   trendingContainerDiv.appendChild(trendyTitleDiv);
 
-  // Crear div para hashtags
   const hashTagsDiv = document.createElement('div');
   const hashTagsH3 = document.createElement('h3');
   hashTagsH3.textContent = 'Hashtags';
@@ -119,7 +120,7 @@ export const Feed = () => {
   hashTagsDiv.appendChild(seeAllHashTagsA);
   trendingContainerDiv.appendChild(hashTagsDiv);
   hashTagTemplateP.textContent = '#mercadillolatino';
-  // Crear div para grupos
+
   const groupsDiv = document.createElement('div');
   const groupsH3 = document.createElement('h3');
   groupsH3.textContent = 'Grupos';
@@ -138,8 +139,7 @@ export const Feed = () => {
   groupsDiv.appendChild(groupContainerDiv);
   groupsDiv.appendChild(seeAllGroupsA);
   trendingContainerDiv.appendChild(groupsDiv);
-  // --------------------------- conversations ---------------------------
-  // Crear div para conversaciones
+
   const conversationsDiv = document.createElement('div');
 
   const conversationsH3 = document.createElement('h3');
@@ -148,7 +148,6 @@ export const Feed = () => {
   const conversationContainerDiv = document.createElement('div');
   conversationContainerDiv.className = 'conversation-container';
 
-  // Mejorar el signo de conversaciones
   const conversationContentDiv = document.createElement('div');
   conversationContentDiv.className = 'conversation-content';
 
@@ -186,20 +185,19 @@ export const Feed = () => {
   conversationsDiv.appendChild(conversationsH3);
   conversationsDiv.appendChild(conversationContainerDiv);
   conversationsDiv.appendChild(seeAllConversationsA);
-  // dentro de primer elemento
+
   conversationContainerDiv.appendChild(conversationContentDiv);
   conversationContentDiv.appendChild(conversationImg);
   conversationContentDiv.appendChild(textContainerDiv);
   textContainerDiv.appendChild(conversationNameP);
   textContainerDiv.appendChild(conversationPostP);
-  // dentro de segundo element
+
   conversationContainerDiv.appendChild(conversationActions);
   conversationActions.appendChild(conversationImg1);
   conversationActions.appendChild(conversationImg2);
 
   trendingContainerDiv.appendChild(conversationsDiv);
 
-  // ----------------news-------------------------------
   const newsDiv = document.createElement('div');
   const news = document.createElement('h3');
   news.textContent = 'Noticias';
@@ -253,24 +251,20 @@ export const Feed = () => {
 
   flexItemLeftDiv.appendChild(asideElement);
 
-  // main de user post container que va en el flex-item-right
+  // ------------------USER SECTION (right)---------------------
   const mainElement = document.createElement('main');
 
-  // Crear div user-post-container
   const userPostContainerDiv = document.createElement('form');
   userPostContainerDiv.className = 'user-post-container';
 
-  // Crear textarea
   const textareaElement = document.createElement('textarea');
   textareaElement.className = 'user-post colorwhite';
   textareaElement.id = 'db-post-content';
   textareaElement.placeholder = 'Crea un post';
 
-  // Crear div user-post-btns-container
   const userPostBtnsContainerDiv = document.createElement('div');
   userPostBtnsContainerDiv.className = 'user-post-btns-conatiner';
 
-  // Crear botón para insertar foto
   const btnInsertPhoto = document.createElement('button');
   btnInsertPhoto.className = 'btn-insert-photo colorlightblue';
   btnInsertPhoto.type = 'button';
@@ -280,13 +274,11 @@ export const Feed = () => {
   photoIconImg.alt = 'camera-icon';
   btnInsertPhoto.appendChild(photoIconImg);
 
-  // Crear botón para publicar
   const btnPost = document.createElement('button');
   btnPost.className = 'btn-post colorbackpink';
   btnPost.textContent = 'publicar';
   btnPost.type = 'submit';
 
-  // Feed container
   const feedContainer = document.createElement('div');
   feedContainer.className = 'timeline-container';
 
@@ -295,30 +287,26 @@ export const Feed = () => {
   footerFeed.className = 'colorgray';
   divFeedPrincipal.appendChild(footerFeed);
 
-  //  div del footer
   const footerFirstRow = document.createElement('div');
   footerFirstRow.className = 'footer-first-row';
   footerFeed.appendChild(footerFirstRow);
 
-  //  div del footer-second-row
   const footerSecondRow = document.createElement('div');
   footerSecondRow.className = 'footer-second-row';
   footerFeed.appendChild(footerSecondRow);
 
-  // Datos del footer
-  // Informacion
   const information = document.createElement('p');
   information.textContent = 'Información';
-  // Ayuda
+
   const help = document.createElement('p');
   help.textContent = 'Ayuda';
-  // Privacidad
+
   const privacy = document.createElement('p');
   privacy.textContent = 'Privacidad';
-  // Condiciones
+
   const conditions = document.createElement('p');
   conditions.textContent = 'Condiciones';
-  // Privacidad
+
   const complaint = document.createElement('p');
   complaint.textContent = 'Denuncias';
 
@@ -327,33 +315,23 @@ export const Feed = () => {
   footerFirstRow.appendChild(privacy);
   footerFirstRow.appendChild(conditions);
   footerFirstRow.appendChild(complaint);
-  // --------------------------------------------------------------
-  // Español (España)
+
   const spanish = document.createElement('p');
 
   spanish.textContent = 'Español (España)';
-  // © 2023 LABORATORIA
   const laboratoria = document.createElement('p');
   laboratoria.textContent = '© 2023 LABORATORIA';
 
   footerSecondRow.appendChild(spanish);
   footerSecondRow.appendChild(laboratoria);
-  // ------------------------FIN-----Footer
 
-  // Añadir textarea al div user-post-container
   userPostContainerDiv.appendChild(textareaElement);
 
-  // Añadir botones al div user-post-btns-container
   userPostBtnsContainerDiv.appendChild(btnInsertPhoto);
   userPostBtnsContainerDiv.appendChild(btnPost);
-
-  // Añadir div user-post-btns-container al div user-post-container
   userPostContainerDiv.appendChild(userPostBtnsContainerDiv);
 
-  // Añadir div user-post-container al elemento main
   mainElement.appendChild(userPostContainerDiv);
-
-  // Añadir feed container al main
   mainElement.appendChild(feedContainer);
 
   flexItemRightDiv.appendChild(mainElement);
@@ -364,7 +342,11 @@ export const Feed = () => {
   // INICIO DE FUNCIONES A BOTONES E INTERACCIONES EN FEED
   // --------------------------------------------------------------
 
-  // Creacion de un post
+  /*
+|-----------------------------------------|
+|           Create a post  (visual)       |
+|-----------------------------------------|
+  */
   async function addPostToFeed(container, postRef, post) {
     const authorDocument = await getDoc(post.author);
     const author = authorDocument.data();
@@ -405,29 +387,40 @@ export const Feed = () => {
     //
     const PostEditButtons = document.createElement('ul');
     PostEditButtons.className = 'edit-post-option-container colorwhite';
-    userPublishedPostEdit.appendChild(PostEditButtons);
 
     const editButton = document.createElement('li');
     editButton.className = 'edit-post-option';
     editButton.textContent = 'editar';
-    PostEditButtons.appendChild(editButton);
 
     const eraseButton = document.createElement('li');
     eraseButton.className = 'edit-post-option two';
     eraseButton.textContent = 'eliminar';
-    eraseButton.setAttribute('id', 'idBotonDelete');
-    PostEditButtons.appendChild(eraseButton);
 
+    const reportButton = document.createElement('li');
+    reportButton.className = 'edit-post-option three';
+    reportButton.textContent = 'Reportar';
+    /*
+|--------------------------------------------------------|
+|      Delete and edit buttons only por user author      |
+|--------------------------------------------------------|
+    */
+    if (auth.currentUser.uid === authorDocument.id) {
+      userPublishedPostEdit.appendChild(PostEditButtons);
+      PostEditButtons.appendChild(editButton);
+      PostEditButtons.appendChild(eraseButton);
+    } else {
+      userPublishedPostEdit.appendChild(PostEditButtons);
+      PostEditButtons.appendChild(reportButton);
+    }
     /*
 |-----------------------------------------|
-|             DELETE POST                 |
+|            Delete posts button          |
 |-----------------------------------------|
     */
-
     eraseButton.addEventListener('click', async () => {
       function alerta() {
-        const option = confirm('Confirme el borrado del Post');
-        if (option === true) {
+        // eslint-disable-next-line no-alert
+        if (window.confirm('Confirme el borrado del Post')) {
           deletePost(postRef.id);
           userPublishedPost.parentElement.removeChild(userPublishedPost);
           // .then(() => {
@@ -498,11 +491,13 @@ export const Feed = () => {
     });
 
     container.prepend(userPublishedPost);
-
-    // updatePost(post)
   }
 
-  // Mostrar feed
+  /*
+|-----------------------------------------|
+|   Show posts from firestore into feed   |
+|-----------------------------------------|
+  */
   window.addEventListener('DOMContentLoaded', async () => {
     const TimelinePosts = await showPosts();
 
@@ -512,7 +507,11 @@ export const Feed = () => {
     });
   });
 
-  // Guardar post en firebase
+  /*
+|-----------------------------------------|
+|   Save new post from user to firestore  |
+|-----------------------------------------|
+  */
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
     const postRef = await savePost(textareaElement.value);
@@ -521,6 +520,5 @@ export const Feed = () => {
 
     userPostContainerDiv.reset();
   });
-
   return divFeedPrincipal;
 };
