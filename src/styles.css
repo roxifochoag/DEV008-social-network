@@ -817,6 +817,7 @@ main {
   display: flex;
   flex-direction: row;
   padding-right: 5px;
+  align-items: center;
 }
 
 .user-published-post-title {
@@ -825,8 +826,9 @@ main {
 }
 
 .user-published-post-edit {
-  margin-top: 0px;
+  margin-top: 0;
   margin-left: auto;
+  margin-bottom: 20px;
   font-size: 25px;
   display: inline;
   position: relative;
@@ -924,7 +926,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  margin-top: auto;
+  margin-top: 100px;
   height: fit-content;
   width: 100%;
 }
