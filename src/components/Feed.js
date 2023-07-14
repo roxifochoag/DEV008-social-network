@@ -1,13 +1,7 @@
-import {
-  getDoc, updateDoc, arrayUnion, doc, arrayRemove, onSnapshot,
-} from 'firebase/firestore';
-import {
-  savePost, showPosts, deletePost, getUserByUserID, listenPost,
-  /*
-  updatePost,
-  */
-} from '../firebase/firebase.js';
-import { auth, db } from '../firebase/config.js';
+import { onSnapshot } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { savePost, showPosts, deletePost, getDataAuthor, updateLikePost, getUserByUserID, listenPost } from '../firebase/firebase.js';
+import { auth } from '../firebase/config.js';
 
 
 export const Feed = () => {
@@ -66,6 +60,7 @@ export const Feed = () => {
     pictureProfile.src = user.picture;
     console.log(user.picture);
   });
+  // Fin del header
 
   headerContainer.appendChild(brand);
   headerContainer.appendChild(brandHorizontal);

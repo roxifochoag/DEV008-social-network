@@ -84,11 +84,6 @@ export const signInGoogle = async () => {
       email: userCredentials.user.email,
       picture: userCredentials.user.photoURL,
     });
-    localStorage.setItem('userCredentials', JSON.stringify({
-      userID: userCredentials.user.uid,
-      username: userCredentials.user.displayName,
-      picture: userCredentials.user.photoURL,
-    }));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
   } catch (error) {
@@ -145,13 +140,13 @@ export const updatePost = (newPost, post) => {
   const user = auth.currentUser.uid;
   const postRef = doc(db, 'post', post);
   updateDoc(postRef, { text: newPost, timeline: Date.now(), })
-  .then(() => {
-    console.log('Post actualizado', post);
-    console.log('del Usuario', user);
-  })
-  .catch((error) => {
-    console.error('Error al editar el post:', error);
-  });
+    .then(() => {
+      console.log('Post actualizado', post);
+      console.log('del Usuario', user);
+    })
+    .catch((error) => {
+      console.error('Error al editar el post:', error);
+    });
 };
 /*
 |---------------------------------------------|
