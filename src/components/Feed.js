@@ -1,5 +1,12 @@
 import {
-  deletePost, getDataAuthor, updateLikePost, getUserByUserID, listenToPosts, savePost, updatePost, getPost 
+  deletePost,
+  getDataAuthor,
+  updateLikePost,
+  getUserByUserID,
+  listenToPosts,
+  savePost,
+  updatePost,
+  getPost,
 } from '../firebase/firebase.js';
 
 export const Feed = () => {
@@ -331,7 +338,7 @@ export const Feed = () => {
 |-----------------------------------------|
   */
 
-  async function addPostToFeed(container, postDocument) {
+  async function addPostToFeed(postDocument) {
     const post = postDocument.data();
     const author = await getDataAuthor(post.author);
     const userPublishedPost = document.createElement('div');
@@ -363,7 +370,7 @@ export const Feed = () => {
     userPublishedPostTitle.textContent = author.username;
     textContentUpperRow.appendChild(userPublishedPostTitle);
 
-    const userPublishedPostEdit = document.createElement('p');
+    const userPublishedPostEdit = document.createElement('div');
     userPublishedPostEdit.className = 'user-published-post-edit';
     userPublishedPostEdit.textContent = '...';
     textContentUpperRow.appendChild(userPublishedPostEdit);
@@ -394,9 +401,9 @@ export const Feed = () => {
   |----------------------------|
       */
     if (userLocalStorage.email === author.email) {
-      userPublishedPostEdit.appendChild(PostEditButtons);
       PostEditButtons.appendChild(editButton);
       PostEditButtons.appendChild(eraseButton);
+      userPublishedPostEdit.appendChild(PostEditButtons);
     } else {
       userPublishedPostEdit.appendChild(PostEditButtons);
       PostEditButtons.appendChild(reportButton);
@@ -433,19 +440,19 @@ export const Feed = () => {
 |            Edit posts button          |
 |-----------------------------------------|
 */
-    let oldPost
+    let oldPost;
     editButton.addEventListener('click', async () => {
-      oldPost = await getPost(postDocument.ref)
+      oldPost = await getPost(postDocument.ref);
       textareaElement.value = oldPost.text;
-      btnPost.innerText = "actualizar";
+      btnPost.innerText = 'actualizar';
       userPostContainerDiv.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (btnPost.textContent == 'actualizar') {
-          const newtext = textareaElement.value
-          await updatePost(postDocument.ref, newtext)
+        if (btnPost.textContent === 'actualizar') {
+          const newtext = textareaElement.value;
+          await updatePost(postDocument.ref, newtext);
 
           userPostContainerDiv.reset();
-          btnPost.innerText = "publicar";
+          btnPost.innerText = 'publicar';
           userPublishedPost.parentElement.removeChild(userPublishedPost);
         }
       });
@@ -492,18 +499,22 @@ export const Feed = () => {
     //   }
     // });
 
-    container.prepend(userPublishedPost);
+    return userPublishedPost;
   }
 
   function handlePostChanges(querySnapshot) {
-    console.log({ querySnapshot, size: querySnapshot.size });
-    const tempContainer = feedContainer.cloneNode();
+    const feedPostsPromise = querySnapshot.docs.map(
+      (documentSnapshot) => addPostToFeed(documentSnapshot),
+    );
 
-    querySnapshot.forEach((queryDocument) => {
-      addPostToFeed(tempContainer, queryDocument);
-    });
-
-    feedContainer.replaceWith(tempContainer);
+    Promise.all(feedPostsPromise)
+      .then((posts) => {
+        const tempFeed = feedContainer.cloneNode();
+        posts.forEach((post) => tempFeed.appendChild(post));
+        return tempFeed;
+      }).then((newFeed) => {
+        feedContainer.innerHTML = newFeed.innerHTML;
+      });
   }
 
   /*
@@ -522,10 +533,10 @@ export const Feed = () => {
   */
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (btnPost.textContent == 'publicar') {
-    await savePost(textareaElement.value);
-    // const postDocument = await getDataAuthor(postRef);
-    // await addPostToFeed(feedContainer, postRef, postDocument);
+    if (btnPost.textContent === 'publicar') {
+      await savePost(textareaElement.value);
+      // const postDocument = await getDataAuthor(postRef);
+      // await addPostToFeed(feedContainer, postRef, postDocument);
 
       userPostContainerDiv.reset();
     }
