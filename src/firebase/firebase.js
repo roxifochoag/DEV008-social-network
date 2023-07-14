@@ -84,6 +84,11 @@ export const signInGoogle = async () => {
       email: userCredentials.user.email,
       picture: userCredentials.user.photoURL,
     });
+    localStorage.setItem('userCredentials', JSON.stringify({
+      userID: userCredentials.user.uid,
+      username: userCredentials.user.displayName,
+      picture: userCredentials.user.photoURL,
+    }));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
   } catch (error) {
