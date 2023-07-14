@@ -1,5 +1,5 @@
 import {
-  deletePost, getDataAuthor, updateLikePost, getUserByUserID, listenToPosts, savePost,
+  deletePost, getDataAuthor, updateLikePost, getUserByUserID, listenToPosts, savePost, updatePost, getPost 
 } from '../firebase/firebase.js';
 
 export const Feed = () => {
@@ -429,12 +429,26 @@ export const Feed = () => {
     });
 
     /*
-  |-----------------------------------------|
-  |            Edit posts button            |
-  |-----------------------------------------|
-      */
+|-----------------------------------------|
+|            Edit posts button          |
+|-----------------------------------------|
+*/
+    let oldPost
     editButton.addEventListener('click', async () => {
+      oldPost = await getPost(postDocument.ref)
+      textareaElement.value = oldPost.text;
+      btnPost.innerText = "actualizar";
+      userPostContainerDiv.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (btnPost.textContent == 'actualizar') {
+          const newtext = textareaElement.value
+          await updatePost(postDocument.ref, newtext)
 
+          userPostContainerDiv.reset();
+          btnPost.innerText = "publicar";
+          userPublishedPost.parentElement.removeChild(userPublishedPost);
+        }
+      });
     });
 
     const userPublishedPostText = document.createElement('p');
@@ -508,11 +522,13 @@ export const Feed = () => {
   */
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (btnPost.textContent == 'publicar') {
     await savePost(textareaElement.value);
     // const postDocument = await getDataAuthor(postRef);
     // await addPostToFeed(feedContainer, postRef, postDocument);
 
-    userPostContainerDiv.reset();
+      userPostContainerDiv.reset();
+    }
   });
   return divFeedPrincipal;
 };

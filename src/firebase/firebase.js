@@ -134,17 +134,33 @@ export const savePost = async (text) => (
 |             POST - updatePost           |
 |-----------------------------------------|
 */
-export const updatePost = (newPost, post) => {
+export const updatePost = (postRef, post) => {
   const user = auth.currentUser.uid;
-  const postRef = doc(db, 'post', post);
-  updateDoc(postRef, { text: newPost, timeline: Date.now() })
+  updateDoc(postRef, { text: post, timeline: Date.now() })
     .then(() => {
-      console.log('Post actualizado', post);
+      console.log('Post actualizado');
       console.log('del Usuario', user);
     })
     .catch((error) => {
       console.error('Error al editar el post:', error);
     });
+};
+/*
+|-----------------------------------------|
+|             POST - getPost           |
+|-----------------------------------------|
+*/
+export const getPost = (postRef) => {
+  return new Promise((resolve, reject) => {
+    getDoc(postRef)
+      .then((post) => {
+        resolve(post.data())
+      })
+      .catch((error) => {
+        console.error('Error al traer el post:', error);
+        reject(error)
+      });
+  });
 };
 /*
 |---------------------------------------------|
