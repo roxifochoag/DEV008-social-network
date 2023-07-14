@@ -218,7 +218,7 @@ export const getDataAuthor = (ref) => new Promise((resolve, reject) => {
 |             POST - showPosts            |
 |-----------------------------------------|
 */
-export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'asc'));
+export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'desc'));
 
 /*
 |----------------------------------------------|
@@ -226,9 +226,7 @@ export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'asc'
 |----------------------------------------------|
 */
 export const listenToPosts = (callback) => {
-  onSnapshot(collection(db, 'post'), {
-    next: callback,
-  });
+  onSnapshot(showPosts, callback);
 };
 
 export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))

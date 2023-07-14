@@ -575,7 +575,7 @@ label {
     line-height: 18px;
   }
 
-    .social-icon {
+  .social-icon {
     font-size: 22px;
   }
 
@@ -627,6 +627,7 @@ header {
   display: flex;
   padding: 0px 5px;
 }
+
 .header-container {
   display: flex;
   flex-direction: row;
@@ -652,7 +653,7 @@ header {
 }
 
 .input-search-bar {
-  margin-right:auto;
+  margin-right: auto;
   padding-left: 10px;
   height: 25px;
   width: 200px;
@@ -665,13 +666,14 @@ header {
 .input-search-bar::placeholder {
   color: #B6B6B6;
 }
-.user-name-header{
+
+.user-name-header {
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: auto;
   font-size: 16px;
   color: #FAFAFA;
-  display:none;
+  display: none;
 }
 
 .user-image {
@@ -847,7 +849,8 @@ main {
   width: 65px;
   height: fit-content;
 }
-.user-published-post-edit:hover .edit-post-option-container{
+
+.user-published-post-edit:hover .edit-post-option-container {
   display: list-item;
   list-style: none;
 }
@@ -858,20 +861,24 @@ main {
   font-size: 13px;
   padding: 5px 5px 5px 5px;
 }
+
 .edit-post-option:hover {
   border-radius: 8px 8px 0px 0px;
-  background-color:#B6B6B6;
+  background-color: #B6B6B6;
   color: #FAFAFA;
 }
-.two{
+
+.two {
   border-top: 1px solid #B6B6B6;
 }
-.two:hover{
+
+.two:hover {
   border-radius: 0px 0px 8px 8px;
 }
-.three:hover{
+
+.three:hover {
   color: #EF2684;
-  background-color:#FAFAFA;
+  background-color: #FAFAFA;
   border-radius: 9px 9px 9px 9px;
 }
 
@@ -898,7 +905,7 @@ main {
   cursor: pointer;
 }
 
-.likes-counter{
+.likes-counter {
   font-size: 13px;
   margin-left: 3px;
   padding: 0px;
@@ -947,6 +954,7 @@ footer {
   .user-name-header {
     display: block;
   }
+
   .centered-main {
     margin-bottom: 90px;
   }
@@ -980,13 +988,15 @@ footer {
   }
 
   @media (min-width: 700px) {
-    .header-container{
+    .header-container {
       padding: 0px 20px;
     }
-    .user-image{
+
+    .user-image {
       width: 40px;
       height: 40px;
     }
+
     .centered-main {
       justify-content: center;
       display: flex;
@@ -1014,7 +1024,7 @@ footer {
       width: 60%;
     }
 
-   .trendy-title {
+    .trendy-title {
       margin-top: 0px;
     }
 
@@ -1211,20 +1221,23 @@ footer {
       margin-left: 2px;
       border-radius: 0px 5px 5px 0px;
     }
+
     .text-plus {
       width: 60%;
     }
   }
 
   @media (min-width: 1000px) {
-    .header-container{
+    .header-container {
       justify-content: center;
       align-content: center;
     }
-    .input-search-bar{
+
+    .input-search-bar {
       justify-self: center;
       width: 50%;
     }
+
     .centered-main {
       justify-content: center;
       display: flex;
@@ -1280,10 +1293,10 @@ footer {
   }
 
   @media (min-width: 1125px) {
-    .header-container{
+    .header-container {
       padding: 0px 30px;
     }
-    
+
     .flex-item-right {
       width: fit-content;
     }
