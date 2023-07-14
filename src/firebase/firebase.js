@@ -12,14 +12,12 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
-  getDocs,
   query,
   orderBy,
-  serverTimestamp,
   getDoc,
   arrayUnion,
   arrayRemove,
-  onSnapshot
+  onSnapshot,
 } from 'firebase/firestore';
 import {
   auth,
@@ -88,6 +86,7 @@ export const signInGoogle = async () => {
       userID: userCredentials.user.uid,
       username: userCredentials.user.displayName,
       picture: userCredentials.user.photoURL,
+      email: userCredentials.user.email,
     }));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
@@ -106,7 +105,6 @@ export const signIn = async (user) => {
     await setPersistence(auth, browserLocalPersistence);
     const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
 
-    console.log(userCredentials);
     localStorage.setItem('userCredentials', JSON.stringify({
       email: userCredentials.user.email,
       userID: userCredentials.user.uid,
@@ -130,12 +128,7 @@ export const savePost = async (text) => (
     liked_by: [],
   })
 );
-/*
-|-----------------------------------------|
-|             POST - showPosts            |
-|-----------------------------------------|
-*/
-export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
+
 /*
 |-----------------------------------------|
 |             POST - updatePost           |
@@ -144,7 +137,7 @@ export const showPosts = async () => getDocs(query(collection(db, 'post'), order
 export const updatePost = (newPost, post) => {
   const user = auth.currentUser.uid;
   const postRef = doc(db, 'post', post);
-  updateDoc(postRef, { text: newPost, timeline: Date.now(), })
+  updateDoc(postRef, { text: newPost, timeline: Date.now() })
     .then(() => {
       console.log('Post actualizado', post);
       console.log('del Usuario', user);
@@ -159,21 +152,20 @@ export const updatePost = (newPost, post) => {
 |---------------------------------------------|
 */
 export const updateLikePost = async (postRef, freshPost) => {
-  const userRef = doc(db, 'users', auth.currentUser.uid)
+  const userRef = doc(db, 'users', auth.currentUser.uid);
   const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
   if (userAlreadyLiked) {
     await updateDoc(postRef, {
       liked_by: arrayRemove(userRef),
     });
 
-    return '/img/heart-fill-white.svg'
-  } else {
-    await updateDoc(postRef, {
-      liked_by: arrayUnion(userRef),
-    });
-
-    return '/img/heart-fill-custom.svg';
+    return '/img/heart-fill-white.svg';
   }
+  await updateDoc(postRef, {
+    liked_by: arrayUnion(userRef),
+  });
+
+  return '/img/heart-fill-custom.svg';
 };
 /*
 |-----------------------------------------|
@@ -197,30 +189,30 @@ export const deletePost = (post) => {
 |             POST - get data author           |
 |----------------------------------------------|
 */
-export const getDataAuthor = (ref) => {
-  return new Promise((resolve, reject) => {
-    getDoc(ref).then((authorDocument) => {
+export const getDataAuthor = (ref) => new Promise((resolve, reject) => {
+  getDoc(ref).then((authorDocument) => {
+    resolve(authorDocument.data());
+  }).catch((error) => {
+    reject(error);
+  });
+});
 
-      resolve(authorDocument.data())
-    }).catch(error => {
-      reject(error)
-    })
-  })
-}
 /*
 |-----------------------------------------|
-|             Recover password            |
+|             POST - showPosts            |
 |-----------------------------------------|
 */
-export const listenPost = (addPost) => {
-  onSnapshot(
-    collection(db, 'post'),
-    (querySnapshot) => {
-      querySnapshot.forEach((document) => {
-        addPost(document.data());
-      });
-    },
-  );
+export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'asc'));
+
+/*
+|----------------------------------------------|
+|   Muestra la base actualizada del firestore  |
+|----------------------------------------------|
+*/
+export const listenToPosts = (callback) => {
+  onSnapshot(collection(db, 'post'), {
+    next: callback,
+  });
 };
 
 export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
