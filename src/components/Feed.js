@@ -1,5 +1,5 @@
 import { onSnapshot } from 'firebase/firestore';
-import { savePost, showPosts, deletePost, getDataAuthor, updateLikePost, getUserByUserID,  updatePost, getPost  } from '../firebase/firebase.js';
+import { savePost, showPosts, deletePost, getDataAuthor, updateLikePost, getUserByUserID, updatePost, getPost } from '../firebase/firebase.js';
 import { auth } from '../firebase/config.js';
 
 export const Feed = () => {
@@ -437,6 +437,9 @@ export const Feed = () => {
           const newtext = textareaElement.value
           await updatePost(postRef.id, newtext)
 
+          const postDocument = await getDataAuthor(postRef);
+          await addPostToFeed(feedContainer, postRef, postDocument);
+
           userPostContainerDiv.reset();
           btnPost.innerText = "publicar";
           userPublishedPost.parentElement.removeChild(userPublishedPost);
@@ -511,11 +514,13 @@ export const Feed = () => {
   */
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const postRef = await savePost(textareaElement.value);
-    const postDocument = await getDataAuthor(postRef);
-    await addPostToFeed(feedContainer, postRef, postDocument);
+    if (btnPost.textContent == 'publicaar') {
+      const postRef = await savePost(textareaElement.value);
+      const postDocument = await getDataAuthor(postRef);
+      await addPostToFeed(feedContainer, postRef, postDocument);
 
-    userPostContainerDiv.reset();
+      userPostContainerDiv.reset();
+    }
   });
   return divFeedPrincipal;
 };
