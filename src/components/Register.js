@@ -44,7 +44,7 @@ export const Register = () => {
 
   const closer = document.createElement('div');
   closer.className = 'closer';
-  
+
   // --------------------name---------------------
   // creando input de nombre usuario dentro de un div con un icon
   const inputFieldName = document.createElement('div');
