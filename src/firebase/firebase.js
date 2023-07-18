@@ -15,11 +15,13 @@ import {
   getDocs,
   query,
   orderBy,
+  /*
   serverTimestamp,
+  */
   getDoc,
   arrayUnion,
   arrayRemove,
-  onSnapshot
+  onSnapshot,
 } from 'firebase/firestore';
 import {
   auth,
@@ -161,11 +163,11 @@ export const getPost = (postID) => {
   return new Promise((resolve, reject) => {
     getDoc(postRef)
       .then((post) => {
-        resolve(post.data())
+        resolve(post.data());
       })
       .catch((error) => {
         console.error('Error al traer el post:', error);
-        reject(error)
+        reject(error);
       });
   });
 };
@@ -175,21 +177,17 @@ export const getPost = (postID) => {
 |---------------------------------------------|
 */
 export const updateLikePost = async (postRef, freshPost) => {
-  const userRef = doc(db, 'users', auth.currentUser.uid)
+  const userRef = doc(db, 'users', auth.currentUser.uid);
   const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
   if (userAlreadyLiked) {
     await updateDoc(postRef, {
       liked_by: arrayRemove(userRef),
     });
 
-    return '/img/heart-fill-white.svg'
-  } else {
-    await updateDoc(postRef, {
-      liked_by: arrayUnion(userRef),
-    });
-
-    return '/img/heart-fill-custom.svg';
-  }
+    return '/img/heart-fill-white.svg';
+  } await updateDoc(postRef,
+    { liked_by: arrayUnion(userRef) });
+  return '/img/heart-fill-custom.svg';
 };
 /*
 |-----------------------------------------|
@@ -214,16 +212,19 @@ export const deletePost = (post) => {
 |             POST - get data author           |
 |----------------------------------------------|
 */
+/* eslint-disable */
 export const getDataAuthor = (ref) => {
   return new Promise((resolve, reject) => {
-    getDoc(ref).then((authorDocument) => {
-
-      resolve(authorDocument.data())
-    }).catch(error => {
-      reject(error)
-    })
-  })
-}
+    getDoc(ref)
+      .then((authorDocument) => {
+        resolve(authorDocument.data());
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+/* eslint-enable */
 /*
 |-----------------------------------------|
 |             Recover password            |

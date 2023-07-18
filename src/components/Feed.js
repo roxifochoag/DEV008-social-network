@@ -1,5 +1,14 @@
 import { onSnapshot } from 'firebase/firestore';
-import { savePost, showPosts, deletePost, getDataAuthor, updateLikePost, getUserByUserID, updatePost, getPost } from '../firebase/firebase.js';
+import {
+  savePost,
+  showPosts,
+  deletePost,
+  getDataAuthor,
+  updateLikePost,
+  getUserByUserID,
+  updatePost,
+  getPost,
+} from '../firebase/firebase.js';
 import { auth } from '../firebase/config.js';
 
 export const Feed = () => {
@@ -423,31 +432,28 @@ export const Feed = () => {
 
     /*
 |-----------------------------------------|
-|            Edit posts button          |
+|            Edit posts button            |
 |-----------------------------------------|
 */
-    let oldPost
+    let oldPost;
     editButton.addEventListener('click', async () => {
-      oldPost = await getPost(postRef.id)
+      oldPost = await getPost(postRef.id);
       textareaElement.value = oldPost.text;
-      btnPost.innerText = "actualizar";
+      btnPost.innerText = 'actualizar';
       userPostContainerDiv.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (btnPost.textContent == 'actualizar') {
-          const newtext = textareaElement.value
-          await updatePost(postRef.id, newtext)
-
+        if (btnPost.textContent === 'actualizar') {
+          const newtext = textareaElement.value;
+          await updatePost(postRef.id, newtext);
           const postDocument = await getDataAuthor(postRef);
           await addPostToFeed(feedContainer, postRef, postDocument);
 
           userPostContainerDiv.reset();
-          btnPost.innerText = "publicar";
+          btnPost.innerText = 'publicar';
           userPublishedPost.parentElement.removeChild(userPublishedPost);
         }
       });
     });
-
-
 
     const userPublishedPostText = document.createElement('p');
     userPublishedPostText.className = 'user-published-post-text';
@@ -477,8 +483,8 @@ export const Feed = () => {
 
     heartIcon3.addEventListener('click', async () => {
       const freshPost = await getDataAuthor(postRef);
-      const heartIcon = await updateLikePost(postRef, freshPost);
-      heartIcon3.src = heartIcon;
+      const heartIcon4 = await updateLikePost(postRef, freshPost);
+      heartIcon3.src = heartIcon4;
     });
 
     // Necesario para recibir actualizaciones automáticamente desde firebase, cuando el post cambie
@@ -514,7 +520,7 @@ export const Feed = () => {
   */
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (btnPost.textContent == 'publicaar') {
+    if (btnPost.textContent === 'publicar') {
       const postRef = await savePost(textareaElement.value);
       const postDocument = await getDataAuthor(postRef);
       await addPostToFeed(feedContainer, postRef, postDocument);
