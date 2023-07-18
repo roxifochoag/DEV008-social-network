@@ -343,6 +343,7 @@ export const Feed = () => {
     const author = await getDataAuthor(post.author);
     const userPublishedPost = document.createElement('div');
     userPublishedPost.className = 'user-published-post';
+    userPublishedPost.id = postDocument.id;
 
     const userPublishedPostDiv = document.createElement('div');
     userPublishedPostDiv.className = 'user-published-post-div';
@@ -421,15 +422,8 @@ export const Feed = () => {
       function alerta() {
         // eslint-disable-next-line no-alert
         if (window.confirm('Confirme el borrado del Post')) {
-          deletePost(postDocument.ref);
-          userPublishedPost.parentElement.removeChild(userPublishedPost);
-          // .then(() => {
+          deletePost(postDocument.id);
           console.log('Post eliminado');
-          //     }).catch((error) => {
-          //          const errorCode = error.code;
-          //          const errorMessage = error.Message;
-          //          console.log(errorCode, errorMessage);
-          //      });
         }
       }
       alerta();
@@ -440,10 +434,9 @@ export const Feed = () => {
 |            Edit posts button          |
 |-----------------------------------------|
 */
-    let oldPost;
+
     editButton.addEventListener('click', async () => {
-      oldPost = await getPost(postDocument.ref);
-      textareaElement.value = oldPost.text;
+      textareaElement.value = document.querySelector(`#${postDocument.id} .user-published-post-text`).innerText;
       btnPost.innerText = 'actualizar';
       userPostContainerDiv.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -453,7 +446,6 @@ export const Feed = () => {
 
           userPostContainerDiv.reset();
           btnPost.innerText = 'publicar';
-          userPublishedPost.parentElement.removeChild(userPublishedPost);
         }
       });
     });
@@ -490,31 +482,24 @@ export const Feed = () => {
       heartIcon3.src = heartIconPost;
     });
 
-    // Necesario para recibir actualizaciones automáticamente desde firebase, cuando el post cambie
-    // onSnapshot(postRef, (freshPostDocument) => {
-    //   const freshPost = freshPostDocument.data();
-    //   likesCounter.innerText = ` ${freshPost.liked_by.length} `;
-    //      if (freshPost.liked_by.length === 0) {
-    //      likesCounter.innerText = '';
-    //   }
-    // });
-
     return userPublishedPost;
   }
 
   function handlePostChanges(querySnapshot) {
-    const feedPostsPromise = querySnapshot.docs.map(
-      (documentSnapshot) => addPostToFeed(documentSnapshot),
-    );
-
-    Promise.all(feedPostsPromise)
-      .then((posts) => {
-        const tempFeed = feedContainer.cloneNode();
-        posts.forEach((post) => tempFeed.appendChild(post));
-        return tempFeed;
-      }).then((newFeed) => {
-        feedContainer.innerHTML = newFeed.innerHTML;
-      });
+    querySnapshot.docChanges().forEach(async (change) => {
+      if (change.type === 'added') {
+        const postElement = await addPostToFeed(change.doc);
+        feedContainer.prepend(postElement);
+      }
+      if (change.type === 'modified') {
+        const postElement = await addPostToFeed(change.doc);
+        document.getElementById(change.doc.id).replaceWith(postElement);
+      }
+      if (change.type === 'removed') {
+        const existingPost = document.getElementById(change.doc.id);
+        existingPost.parentElement.removeChild(existingPost);
+      }
+    });
   }
 
   /*

@@ -150,18 +150,16 @@ export const updatePost = (postRef, post) => {
 |             POST - getPost           |
 |-----------------------------------------|
 */
-export const getPost = (postRef) => {
-  return new Promise((resolve, reject) => {
-    getDoc(postRef)
-      .then((post) => {
-        resolve(post.data())
-      })
-      .catch((error) => {
-        console.error('Error al traer el post:', error);
-        reject(error)
-      });
-  });
-};
+export const getPost = (postRef) => new Promise((resolve, reject) => {
+  getDoc(postRef)
+    .then((post) => {
+      resolve(post.data());
+    })
+    .catch((error) => {
+      console.error('Error al traer el post:', error);
+      reject(error);
+    });
+});
 /*
 |---------------------------------------------|
 |             POST - updateLikePost           |
@@ -188,12 +186,10 @@ export const updateLikePost = async (postRef, freshPost) => {
 |             POST - deletePost           |
 |-----------------------------------------|
 */
-export const deletePost = (post) => {
-  const user = auth.currentUser.uid;
-  deleteDoc(doc(db, 'post', post))
+export const deletePost = (postId) => {
+  deleteDoc(doc(db, 'post', postId))
     .then(() => {
-      console.log('Post eliminado', post);
-      console.log('del Usuario', user);
+      console.log('Post eliminado', postId);
     })
     .catch((error) => {
       console.error('Error al eliminar el post:', error);
@@ -218,7 +214,7 @@ export const getDataAuthor = (ref) => new Promise((resolve, reject) => {
 |             POST - showPosts            |
 |-----------------------------------------|
 */
-export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'desc'));
+export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'asc'));
 
 /*
 |----------------------------------------------|
