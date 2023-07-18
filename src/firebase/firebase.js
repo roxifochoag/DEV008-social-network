@@ -12,12 +12,14 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
+  getDocs,
   query,
   orderBy,
+  serverTimestamp,
   getDoc,
   arrayUnion,
   arrayRemove,
-  onSnapshot,
+  onSnapshot
 } from 'firebase/firestore';
 import {
   auth,
@@ -64,8 +66,6 @@ export const signUp = async (user) => {
 //       reject(error);
 //     });
 // });
-
-export const getCurrentUser = () => auth.currentUser.email;
 /*
 |-----------------------------------------|
 |             Loguin - signInGoogle       |
@@ -86,7 +86,6 @@ export const signInGoogle = async () => {
       userID: userCredentials.user.uid,
       username: userCredentials.user.displayName,
       picture: userCredentials.user.photoURL,
-      email: userCredentials.user.email,
     }));
     window.location.assign('/feed');
     window.alert('Ingreso Exitoso');
@@ -105,6 +104,7 @@ export const signIn = async (user) => {
     await setPersistence(auth, browserLocalPersistence);
     const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
 
+    console.log(userCredentials);
     localStorage.setItem('userCredentials', JSON.stringify({
       email: userCredentials.user.email,
       userID: userCredentials.user.uid,
@@ -128,17 +128,23 @@ export const savePost = async (text) => (
     liked_by: [],
   })
 );
-
+/*
+|-----------------------------------------|
+|             POST - showPosts            |
+|-----------------------------------------|
+*/
+export const showPosts = async () => getDocs(query(collection(db, 'post'), orderBy('timeline', 'asc')));
 /*
 |-----------------------------------------|
 |             POST - updatePost           |
 |-----------------------------------------|
 */
-export const updatePost = (postRef, post) => {
+export const updatePost = (postId, Newpost) => {
   const user = auth.currentUser.uid;
-  updateDoc(postRef, { text: post, timeline: Date.now() })
+  const postRef = doc(db, 'post', postId);
+  updateDoc(postRef, { text: Newpost, timeline: Date.now() })
     .then(() => {
-      console.log('Post actualizado');
+      console.log('Post actualizado ', postId);
       console.log('del Usuario', user);
     })
     .catch((error) => {
@@ -150,7 +156,8 @@ export const updatePost = (postRef, post) => {
 |             POST - getPost           |
 |-----------------------------------------|
 */
-export const getPost = (postRef) => {
+export const getPost = (postID) => {
+  const postRef = doc(db, 'post', postID);
   return new Promise((resolve, reject) => {
     getDoc(postRef)
       .then((post) => {
@@ -168,20 +175,21 @@ export const getPost = (postRef) => {
 |---------------------------------------------|
 */
 export const updateLikePost = async (postRef, freshPost) => {
-  const userRef = doc(db, 'users', auth.currentUser.uid);
+  const userRef = doc(db, 'users', auth.currentUser.uid)
   const userAlreadyLiked = freshPost.liked_by.find((lover) => lover.path === userRef.path);
   if (userAlreadyLiked) {
     await updateDoc(postRef, {
       liked_by: arrayRemove(userRef),
     });
 
-    return '/img/heart-fill-white.svg';
-  }
-  await updateDoc(postRef, {
-    liked_by: arrayUnion(userRef),
-  });
+    return '/img/heart-fill-white.svg'
+  } else {
+    await updateDoc(postRef, {
+      liked_by: arrayUnion(userRef),
+    });
 
-  return '/img/heart-fill-custom.svg';
+    return '/img/heart-fill-custom.svg';
+  }
 };
 /*
 |-----------------------------------------|
@@ -190,7 +198,8 @@ export const updateLikePost = async (postRef, freshPost) => {
 */
 export const deletePost = (post) => {
   const user = auth.currentUser.uid;
-  deleteDoc(doc(db, 'post', post))
+  const postRef = doc(db, 'post', post);
+  deleteDoc(postRef)
     .then(() => {
       console.log('Post eliminado', post);
       console.log('del Usuario', user);
@@ -205,28 +214,45 @@ export const deletePost = (post) => {
 |             POST - get data author           |
 |----------------------------------------------|
 */
-export const getDataAuthor = (ref) => new Promise((resolve, reject) => {
-  getDoc(ref).then((authorDocument) => {
-    resolve(authorDocument.data());
-  }).catch((error) => {
-    reject(error);
-  });
-});
+export const getDataAuthor = (ref) => {
+  return new Promise((resolve, reject) => {
+    getDoc(ref).then((authorDocument) => {
 
+      resolve(authorDocument.data())
+    }).catch(error => {
+      reject(error)
+    })
+  })
+}
 /*
 |-----------------------------------------|
-|             POST - showPosts            |
+|             Recover password            |
 |-----------------------------------------|
 */
-export const showPosts = query(collection(db, 'post'), orderBy('timeline', 'desc'));
+// export const resetPassword = (email) => {
+//   sendPasswordResetEmail(auth, email)
+//     .then((userEmail) => {
+//       console.log('se envio un correo para cambiar contraseña!');
 
-/*
-|----------------------------------------------|
-|   Muestra la base actualizada del firestore  |
-|----------------------------------------------|
-*/
-export const listenToPosts = (callback) => {
-  onSnapshot(showPosts, callback);
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       console.log(errorCode, errorMessage);
+
+//       return error;
+//     });
+// };
+
+export const listenPost = (addPost) => {
+  onSnapshot(
+    collection(db, 'post'),
+    (querySnapshot) => {
+      querySnapshot.forEach((document) => {
+        addPost(document.data());
+      });
+    },
+  );
 };
 
 export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
