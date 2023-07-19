@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { signIn, signInGoogle } from '../firebase/firebase.js';
 
 export const Login = () => {
@@ -161,20 +162,17 @@ export const Login = () => {
     const password = password1.value.trim();
     if (email === '' && password === '') {
       window.alert('Ingresar un correo y una contraseña');
-      return;
     }
     if (email !== '' && password === '') {
       window.alert('Ingresar una contraseña');
-      return;
     }
     if (email === '' && password !== '') {
       window.alert('Ingresar un correo electrónico');
-      return;
     }
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
       window.alert('Ingresar un correo electrónico válido');
-      return;
     }
+
     const user = {
       email,
       password,
