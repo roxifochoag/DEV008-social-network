@@ -6,7 +6,6 @@ import {
   listenToPosts,
   savePost,
   updatePost,
-  getPost,
 } from '../firebase/firebase.js';
 
 export const Feed = () => {
@@ -391,11 +390,6 @@ export const Feed = () => {
     reportButton.className = 'edit-post-option three';
     reportButton.textContent = 'Reportar';
 
-    // getUserByUserID(userLocalStorage.userID).then((user) => {
-    //   userPublishedPostTitle.textContent = user.username;
-    //   conversationImg3.src = user.picture;
-    // });
-
     /*
   |----------------------------|
   |      Reportar un post      |
@@ -520,9 +514,6 @@ export const Feed = () => {
     e.preventDefault();
     if (btnPost.textContent === 'publicar') {
       await savePost(textareaElement.value);
-      // const postDocument = await getDataAuthor(postRef);
-      // await addPostToFeed(feedContainer, postRef, postDocument);
-
       userPostContainerDiv.reset();
     }
   });

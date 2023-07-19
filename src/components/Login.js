@@ -62,15 +62,15 @@ export const Login = () => {
   const iconEmail = document.createElement('i');
   iconEmail.className = 'fas fa-envelope';
 
-  const email = document.createElement('input');
-  email.type = 'email';
-  email.className = 'mail-register';
-  email.placeholder = 'Ingresa tu email';
-  email.name = 'Mail';
-  email.required = true;
+  const email1 = document.createElement('input');
+  email1.type = 'email';
+  email1.className = 'mail-register';
+  email1.placeholder = 'Ingresa tu email';
+  email1.name = 'Mail';
+  email1.required = true;
 
   inputFieldEmail.appendChild(iconEmail);
-  inputFieldEmail.appendChild(email);
+  inputFieldEmail.appendChild(email1);
 
   const inputFieldPss1 = document.createElement('div');
   inputFieldPss1.className = 'input-field';
@@ -117,23 +117,7 @@ export const Login = () => {
   googleIcon.className = 'googleIcon';
   googleLink.appendChild(googleIcon);
 
-  // const appleLink = document.createElement('a');
-  // appleLink.href = '#';
-  // appleLink.className = 'social-icon';
-  // const appleIcon = document.createElement('i');
-  // appleIcon.className = 'fab fa-apple';
-  // appleLink.appendChild(appleIcon);
-
-  // const microsoftLink = document.createElement('a');
-  // microsoftLink.href = '#';
-  // microsoftLink.className = 'social-icon';
-  // const microsoftIcon = document.createElement('i');
-  // microsoftIcon.className = 'fab fa-microsoft';
-  // microsoftLink.appendChild(microsoftIcon);
-
   socialMediaDiv.appendChild(googleLink);
-  // socialMediaDiv.appendChild(appleLink);
-  // socialMediaDiv.appendChild(microsoftLink);
 
   // lado izquierdo
   loginDiv.appendChild(loginUpLeftDiv);
@@ -165,12 +149,35 @@ export const Login = () => {
     window.location.assign('/register');
   });
 
-  // evento que va a guardar el registro del usuario
+  /*
+|-------------------------------------------------|
+|     Funcionalidad de Boton Iniciar sesión       |
+|-------------------------------------------------|
+  */
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    // Declaración de las variables
+    const email = email1.value.trim();
+    const password = password1.value.trim();
+    if (email === '' && password === '') {
+      window.alert('Ingresar un correo y una contraseña');
+      return;
+    }
+    if (email !== '' && password === '') {
+      window.alert('Ingresar una contraseña');
+      return;
+    }
+    if (email === '' && password !== '') {
+      window.alert('Ingresar un correo electrónico');
+      return;
+    }
+    if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
+      window.alert('Ingresar un correo electrónico válido');
+      return;
+    }
     const user = {
-      email: formSignIn.elements.Mail.value,
-      password: formSignIn.elements.Password.value,
+      email,
+      password,
     };
     signIn(user);
   });

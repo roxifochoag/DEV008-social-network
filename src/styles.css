@@ -13,6 +13,26 @@ input {
   font-family: "Poppins", sans-serif;
 }
 
+
+
+
+/**/
+.hide{
+  display: none;
+}
+.show{
+  display: block;
+  color: #c34141;
+  font-size: 14px;
+}
+/**/
+
+
+
+
+
+
+
 #root {
   margin: 0;
   width: 100%;

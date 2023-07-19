@@ -44,7 +44,16 @@ export const signUp = async (user) => {
     window.location.assign('/login');
     window.alert('Registro exitoso');
   } catch (error) {
-    window.alert(`register error: ${error.message}`);
+    if (error.code === 'auth/email-already-in-use') {
+      throw new Error('Correo electrónico ya registrado.');
+    } else if (error.code === 'auth/invalid-email') {
+      throw new Error('Correo invalido.');
+    } else if (error.code === 'auth/weak-password') {
+      throw new Error('Contraseña debil.');
+    } else {
+      // eslint-disable-next-line no-alert
+      window.alert(`Error al registro: ${error.code}`);
+    }
   }
 };
 
@@ -68,7 +77,7 @@ export const signUp = async (user) => {
 export const getCurrentUser = () => auth.currentUser.email;
 /*
 |-----------------------------------------|
-|             Loguin - signInGoogle       |
+|             Login - signInGoogle        |
 |-----------------------------------------|
 */
 export const signInGoogle = async () => {
@@ -97,22 +106,30 @@ export const signInGoogle = async () => {
 
 /*
 |-----------------------------------------|
-|              Loguin - signIn            |
+|              Login - signIn             |
 |-----------------------------------------|
 */
 export const signIn = async (user) => {
   try {
     await setPersistence(auth, browserLocalPersistence);
     const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
-
     localStorage.setItem('userCredentials', JSON.stringify({
       email: userCredentials.user.email,
       userID: userCredentials.user.uid,
     }));
     window.location.assign('/feed');
+    // eslint-disable-next-line no-alert
     window.alert('Ingreso Exitoso');
   } catch (error) {
-    window.alert(`login error: ${error.message}`);
+    if (error.code === 'auth/invalid-email') {
+      throw new Error('Correo electrónico no es válido.');
+    } else if (error.code === 'auth/user-not-found') {
+      throw new Error('No se encontró ningún usuario con ese correo.');
+    } else if (error.code === 'auth/wrong-password') {
+      throw new Error('Contraseña incorrecta.');
+    }
+    // window.alert(`Error al iniciar sesión: ${error.message}`);
+    // console.log(error.code);
   }
 };
 /*
@@ -146,20 +163,20 @@ export const updatePost = (postRef, post) => {
     });
 };
 /*
-|-----------------------------------------|
-|             POST - getPost           |
-|-----------------------------------------|
-*/
-export const getPost = (postRef) => new Promise((resolve, reject) => {
-  getDoc(postRef)
-    .then((post) => {
-      resolve(post.data());
-    })
-    .catch((error) => {
-      console.error('Error al traer el post:', error);
-      reject(error);
-    });
-});
+// |-----------------------------------------|
+// |             POST - getPost           |
+// |-----------------------------------------|
+// */
+// export const getPost = (postRef) => new Promise((resolve, reject) => {
+//   getDoc(postRef)
+//     .then((post) => {
+//       resolve(post.data());
+//     })
+//     .catch((error) => {
+//       console.error('Error al traer el post:', error);
+//       reject(error);
+//     });
+// });
 /*
 |---------------------------------------------|
 |             POST - updateLikePost           |
