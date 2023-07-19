@@ -23,10 +23,13 @@ Por lo que, en palabras del Dr. Guglielmo Schinina de la Organización Internaci
 ## 3. Investigación previa a la realización del proyecto
 
 Para la realización del presente proyecto, se ejecuto una investigación aplicada al público objetivo.
-presentando un formulario especificando que fue realizado con fines educativos y de proyección social.
+Presentando un formulario especificando que fue realizado con fines educativos y de proyección social.
 Tratando la identidad de las encuestadas de manera anónima, es decir, la identidad de quién completó
 la encuesta fue desconocida por las investigadoras.
-Esta encuesta consto de 10 preguntas:
+Esta encuesta consto de 10 preguntas, las 3 primeras para conocer a nuestras encuestadas como grado
+de instrucción, estado civil y rango de edad. Las siguientes es para conocer su situación migratoria 
+y su sentir sobre ello.  
+
 * Ingrese su grado de instrucción (Seleccione una opción);
 * Ingrese su estado civil (Seleccione una opción);
 * Seleccione su rango de edad (Seleccione una opción);
@@ -37,3 +40,18 @@ Esta encuesta consto de 10 preguntas:
 * Cuando se mudó de país, ¿Siente que su vida social aumento o disminuyo?;
 * ¿Cuáles redes sociales usted maneja? (Opciones múltiples);
 * ¿Con que fines usa las redes sociales que marco en la pregunta anterior?.
+
+Por lo que se obtuvo las siguientes respuestas.
+En lo que respecta, su grado de instrucción la gran mayoría de las encuestadas cuenta con estudios superiores completos siendo el 46.2 %.
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/51fe8644-783a-4a42-9af4-30eebafb253f)
+
+Así como que, la mayoría se encontraban casadas (46.2 %), siendo seguido por las solteras. 
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/7dbf87fc-7d62-4d48-8b11-f7a4086f67c1)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/f06ba8e8-3b1b-414e-a8ea-f7de2bc6d794)
+
+De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
+
+
+
+
+
