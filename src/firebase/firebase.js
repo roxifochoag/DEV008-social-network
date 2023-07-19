@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
 import {
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -42,6 +44,7 @@ export const signUp = async (user) => {
       picture: '',
     });
     window.location.assign('/login');
+    // eslint-disable-next-line no-alert
     window.alert('Registro exitoso');
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
@@ -57,22 +60,33 @@ export const signUp = async (user) => {
   }
 };
 
-// export const getUser = async (email) => new Promise((resolve, reject) => {
-//   const user = [];
-//   const usersRef = collection(db, 'users');
-//   const q = query(usersRef, where('email', '==', email));
-//   getDocs(q)
-//     .then((querySnapshot) => {
-//       querySnapshot.forEach((doc) => {
-//         user.push(doc.data());
-//         return doc.data();
-//       });
-//       console.log(user);
-//       resolve(user[0]);
-//     }).catch((error) => {
-//       reject(error);
-//     });
-// });
+/*
+|-----------------------------------------|
+|              Login - signIn             |
+|-----------------------------------------|
+*/
+export const signIn = async (user) => {
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+    const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
+    localStorage.setItem('userCredentials', JSON.stringify({
+      email: userCredentials.user.email,
+      userID: userCredentials.user.uid,
+    }));
+    window.location.assign('/feed');
+    window.alert('Ingreso Exitoso');
+  } catch (error) {
+    if (error.code === 'auth/invalid-email') {
+      throw new Error('Correo electrónico no es válido.');
+    } else if (error.code === 'auth/user-not-found') {
+      throw new Error('No se encontró ningún usuario con ese correo.');
+    } else if (error.code === 'auth/wrong-password') {
+      throw new Error('Contraseña incorrecta.');
+    }
+    // window.alert(`Error al iniciar sesión: ${error.message}`);
+    // console.log(error.code);
+  }
+};
 
 export const getCurrentUser = () => auth.currentUser.email;
 /*
@@ -104,34 +118,6 @@ export const signInGoogle = async () => {
   }
 };
 
-/*
-|-----------------------------------------|
-|              Login - signIn             |
-|-----------------------------------------|
-*/
-export const signIn = async (user) => {
-  try {
-    await setPersistence(auth, browserLocalPersistence);
-    const userCredentials = await signInWithEmailAndPassword(auth, user.email, user.password);
-    localStorage.setItem('userCredentials', JSON.stringify({
-      email: userCredentials.user.email,
-      userID: userCredentials.user.uid,
-    }));
-    window.location.assign('/feed');
-    // eslint-disable-next-line no-alert
-    window.alert('Ingreso Exitoso');
-  } catch (error) {
-    if (error.code === 'auth/invalid-email') {
-      throw new Error('Correo electrónico no es válido.');
-    } else if (error.code === 'auth/user-not-found') {
-      throw new Error('No se encontró ningún usuario con ese correo.');
-    } else if (error.code === 'auth/wrong-password') {
-      throw new Error('Contraseña incorrecta.');
-    }
-    // window.alert(`Error al iniciar sesión: ${error.message}`);
-    // console.log(error.code);
-  }
-};
 /*
 |-----------------------------------------|
 |             POST - savePost             |
@@ -174,6 +160,27 @@ export const updatePost = (postRef, post) => {
 //     })
 //     .catch((error) => {
 //       console.error('Error al traer el post:', error);
+//       reject(error);
+//     });
+// });
+/*
+// |--------------------------------|
+// |              getUser           |
+// |--------------------------------|
+// */
+// export const getUser = async (email) => new Promise((resolve, reject) => {
+//   const user = [];
+//   const usersRef = collection(db, 'users');
+//   const q = query(usersRef, where('email', '==', email));
+//   getDocs(q)
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         user.push(doc.data());
+//         return doc.data();
+//       });
+//       console.log(user);
+//       resolve(user[0]);
+//     }).catch((error) => {
 //       reject(error);
 //     });
 // });
