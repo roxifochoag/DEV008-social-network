@@ -1,15 +1,12 @@
-import { onSnapshot } from 'firebase/firestore';
 import {
-  savePost,
-  showPosts,
   deletePost,
   getDataAuthor,
   updateLikePost,
   getUserByUserID,
+  listenToPosts,
+  savePost,
   updatePost,
-  getPost,
 } from '../firebase/firebase.js';
-import { auth } from '../firebase/config.js';
 
 export const Feed = () => {
   // ---------------------------HEAD----------------------
@@ -59,10 +56,10 @@ export const Feed = () => {
   pictureProfile.className = 'user-image colorlightblue';
 
   const userLocalStorage = JSON.parse(localStorage.getItem('userCredentials'));
+
   getUserByUserID(userLocalStorage.userID).then((user) => {
     userNameHed.innerText = user.username;
     pictureProfile.src = user.picture;
-    console.log(user.picture);
   });
   // Fin del header
 
@@ -339,11 +336,13 @@ export const Feed = () => {
 |           Create a post  (visual)       |
 |-----------------------------------------|
   */
-  async function addPostToFeed(container, postRef, post) {
-    const author = await getDataAuthor(post.author);
 
+  async function addPostToFeed(postDocument) {
+    const post = postDocument.data();
+    const author = await getDataAuthor(post.author);
     const userPublishedPost = document.createElement('div');
     userPublishedPost.className = 'user-published-post';
+    userPublishedPost.id = postDocument.id;
 
     const userPublishedPostDiv = document.createElement('div');
     userPublishedPostDiv.className = 'user-published-post-div';
@@ -371,7 +370,7 @@ export const Feed = () => {
     userPublishedPostTitle.textContent = author.username;
     textContentUpperRow.appendChild(userPublishedPostTitle);
 
-    const userPublishedPostEdit = document.createElement('p');
+    const userPublishedPostEdit = document.createElement('div');
     userPublishedPostEdit.className = 'user-published-post-edit';
     userPublishedPostEdit.textContent = '...';
     textContentUpperRow.appendChild(userPublishedPostEdit);
@@ -390,15 +389,16 @@ export const Feed = () => {
     const reportButton = document.createElement('li');
     reportButton.className = 'edit-post-option three';
     reportButton.textContent = 'Reportar';
+
     /*
-|--------------------------------------------------------|
-|      Delete and edit buttons only por user author      |
-|--------------------------------------------------------|
-    */
-    if (auth.currentUser.email === author.email) {
-      userPublishedPostEdit.appendChild(PostEditButtons);
+  |----------------------------|
+  |      Reportar un post      |
+  |----------------------------|
+      */
+    if (userLocalStorage.email === author.email) {
       PostEditButtons.appendChild(editButton);
       PostEditButtons.appendChild(eraseButton);
+      userPublishedPostEdit.appendChild(PostEditButtons);
     } else {
       userPublishedPostEdit.appendChild(PostEditButtons);
       PostEditButtons.appendChild(reportButton);
@@ -408,23 +408,16 @@ export const Feed = () => {
       });
     }
     /*
-|-----------------------------------------|
-|            Delete posts button          |
-|-----------------------------------------|
-    */
+  |-----------------------------------------|
+  |            Delete posts button          |
+  |-----------------------------------------|
+      */
     eraseButton.addEventListener('click', async () => {
       function alerta() {
         // eslint-disable-next-line no-alert
         if (window.confirm('Confirme el borrado del Post')) {
-          deletePost(postRef.id);
-          userPublishedPost.parentElement.removeChild(userPublishedPost);
-          // .then(() => {
+          deletePost(postDocument.id);
           console.log('Post eliminado');
-          //     }).catch((error) => {
-          //          const errorCode = error.code;
-          //          const errorMessage = error.Message;
-          //          console.log(errorCode, errorMessage);
-          //      });
         }
       }
       alerta();
@@ -432,25 +425,21 @@ export const Feed = () => {
 
     /*
 |-----------------------------------------|
-|            Edit posts button            |
+|            Edit posts button          |
 |-----------------------------------------|
 */
-    let oldPost;
+
     editButton.addEventListener('click', async () => {
-      oldPost = await getPost(postRef.id);
-      textareaElement.value = oldPost.text;
+      textareaElement.value = document.querySelector(`#${postDocument.id} .user-published-post-text`).innerText;
       btnPost.innerText = 'actualizar';
       userPostContainerDiv.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (btnPost.textContent === 'actualizar') {
           const newtext = textareaElement.value;
-          await updatePost(postRef.id, newtext);
-          const postDocument = await getDataAuthor(postRef);
-          await addPostToFeed(feedContainer, postRef, postDocument);
+          await updatePost(postDocument.ref, newtext);
 
           userPostContainerDiv.reset();
           btnPost.innerText = 'publicar';
-          userPublishedPost.parentElement.removeChild(userPublishedPost);
         }
       });
     });
@@ -482,21 +471,29 @@ export const Feed = () => {
     userPublishedPostActions.appendChild(likesCounter);
 
     heartIcon3.addEventListener('click', async () => {
-      const freshPost = await getDataAuthor(postRef);
-      const heartIcon4 = await updateLikePost(postRef, freshPost);
-      heartIcon3.src = heartIcon4;
+      const freshPost = await getDataAuthor(postDocument.ref);
+      const heartIconPost = await updateLikePost(postDocument.ref, freshPost);
+      heartIcon3.src = heartIconPost;
     });
 
-    // Necesario para recibir actualizaciones automáticamente desde firebase, cuando el post cambie
-    onSnapshot(postRef, (freshPostDocument) => {
-      const freshPost = freshPostDocument.data();
-      likesCounter.innerText = ` ${freshPost.liked_by.length} `;
-      if (freshPost.liked_by.length === 0) {
-        likesCounter.innerText = '';
+    return userPublishedPost;
+  }
+
+  function handlePostChanges(querySnapshot) {
+    querySnapshot.docChanges().forEach(async (change) => {
+      if (change.type === 'added') {
+        const postElement = await addPostToFeed(change.doc);
+        feedContainer.prepend(postElement);
+      }
+      if (change.type === 'modified') {
+        const postElement = await addPostToFeed(change.doc);
+        document.getElementById(change.doc.id).replaceWith(postElement);
+      }
+      if (change.type === 'removed') {
+        const existingPost = document.getElementById(change.doc.id);
+        existingPost.parentElement.removeChild(existingPost);
       }
     });
-
-    container.prepend(userPublishedPost);
   }
 
   /*
@@ -505,12 +502,7 @@ export const Feed = () => {
 |-----------------------------------------|
   */
   window.addEventListener('DOMContentLoaded', async () => {
-    const TimelinePosts = await showPosts();
-
-    TimelinePosts.forEach((postDocument) => {
-      const post = postDocument.data();
-      addPostToFeed(feedContainer, postDocument.ref, post);
-    });
+    listenToPosts(handlePostChanges);
   });
 
   /*
@@ -521,10 +513,7 @@ export const Feed = () => {
   userPostContainerDiv.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (btnPost.textContent === 'publicar') {
-      const postRef = await savePost(textareaElement.value);
-      const postDocument = await getDataAuthor(postRef);
-      await addPostToFeed(feedContainer, postRef, postDocument);
-
+      await savePost(textareaElement.value);
       userPostContainerDiv.reset();
     }
   });

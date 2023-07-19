@@ -237,12 +237,14 @@ export const Register = () => {
   loginLeftDivHeader.appendChild(transparentBtn);
   signUpDiv.appendChild(formSignUp);
 
-  // evento que va a guardar el registro del usuario
+  /*
+|----------------------------------------------------|
+|     Funcionalidad de Boton Registrar usuario       |
+|----------------------------------------------------|
+  */
   submitBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-
     const user = {
-
       name: formSignUp.elements.Name.value,
       lastName: formSignUp.elements.Lastname.value,
       email: formSignUp.elements.Mail.value,
