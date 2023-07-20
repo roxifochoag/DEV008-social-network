@@ -7,7 +7,7 @@
 * [3. Investigación previa a la realización del proyecto](#3-Investigación)
 * [4. Consideraciones generales](#4-Consideraciones-generales)
 * [5. Historias de Usuario](#5-Historias-de-Usuario)
-* [6. Proceso de diseño de la interfaz de usuario](#6-Proceso-de-diseño-de-la-interfaz-de usuario)
+* [6. Proceso de diseño de la interfaz de usuario](#6-Proceso-de-Diseño-de-la-Interfaz-de-Usuario)
 * [7. Pruebas Unitarias](#7-Pruebas-Unitarias)
 * [8. Estado del Proyecto](#8-Estado-del-Proyecto)
 * [9. Autoras](#6-Autoras)
@@ -85,6 +85,91 @@ De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
 
 ## 5. Historias de Usuario
 
+Habiendo recopilado la información por medio de la encuesta realizada a nuestro público objetivo y los requerimientos solicitados por Laboratoria, definimos las siguientes historias de usuario:
+
+       - Loguin de Usuarias;
+       - Registro de Usuarias;
+       - Recuperar contraseña;
+       - Feed de Usuarias.
+ A continuación, se detallaran cada una de las historias de usuario.Asimismo, se incluira en la descripción los críterios de aceptación y flujos correspondientes.
+
+### Loguin de Usuarias
+Yo como Usuaria 
+Deseo Ingresar a la Red Social
+Para poder hacer uso de las funcionalidades del sistema
+
+#### Descripción 
+Yo como usuaria quiero loguearme de diversas formas ya sea creando mi cuenta en la misma página ingresando mi correo de registro y mi contraseña o con mi cuenta de google.
+
+#### Críterios de aceptación
+- Criterios de aceptación 1: Ingreso exitoso
+   - Cuando el ingreso del usuario y contraseña son correctos. Entonces permitirá el ingreso al sistema
+- Criterios de aceptación 2: Ingreso fallido
+   - Cuando el ingreso del usuario y/o contraseña son incorrectos. Entonces el sistema no permitirá el ingreso.Y el sistema
+     presentará una alerta con el siguiente mensaje:  “Usuario y/o contraseña no válido, por favor recuerde que tiene 4 intentos
+     para ingresar al sistema, luego de esto su usuario será bloqueado.”
+- Criterios de aceptación 3: Último ingreso fallido
+   - Cuando el ingreso del usuario y contraseña son incorrectos.Entonces el sistema No permitirá el ingreso. Y el sistema presentará
+     una alerta  con el siguiente mensaje: “Su usuario se encuentra bloqueado, por favor
+     contacte al administrador del sistema, o al teléfono xxxxxxxx  para que sean reestablecidos los accesos al sistema.”
+- Criterios de Aceptación 4: Falta uno o más campos obligatorios
+   - Dado que no se ingrese en el formulario alguno de los datos obligatorios. Cuando el usuario oprima el botón “Ingresar”. Entonces
+     el sistema no permitirá el ingreso al sistema Y aparecerá el mensaje :“Por favor ingrese los campos obligatorios (*) faltantes : [Mail]/[Contraseña]“
+
+#### Flujo
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/99ba9f10-96e7-48a6-bdde-83364721647c)
+
+### Registro de Usuarias
+Yo como Usuaria 
+Deseo Ingresar a la Red Social
+Para poder hacer uso de las funcionalidades del sistema
+
+#### Descripción
+Yo como usuaria quiero registrarme asociando mi mail en la misma página.
+
+#### Críterios de aceptación
+- Criterios de aceptación 1: Registro exitoso
+   - Cuando el ingreso de los datos completos del usuario(nombre, apellido, usuario, email, contraseña, validación de la contraseña).Entonces el sistema redicciona al login.
+- Criterios de aceptación 2: Registro fallido
+   - Cuando el ingreso de los datos completos del usuario(nombre, apellido, usuario, email, contraseña, validación de la contraseña).Y revisa los datos y compara el correo. Entonces el sistema muestra el mensaje 'Correo registrado'.
+- Criterios de aceptación 3: Contraseña invalida
+     - Cuando el ingreso de los datos completos del usuario(nombre, apellido, usuario, email, contraseña, validación de la contraseña).Y revisa los datos, compara la contraseña y compara la contraseña y esta es menos de 6 digitos. Entonces el sistema muestra el mensaje 'Contraseña debe tener mínimo 6 digitos'.
+- Criterios de aceptación 4: Nombre de usuario existente
+     - Cuando el ingreso de los datos completos del usuario(nombre, apellido, usuario, email, contraseña, validación de la contraseña).Y revisa los datos, compara el correo con la Base de datos.Entonces el sistema muestra el mensaje 'Usuario existente'.
+#### Flujo
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/55816e13-3a82-4117-ac0b-90ecca5b44bf)
+
+### Recuperar contraseña
+Yo como Usuaria 
+Deseo Recuperar mi contraseña de mi a la Red Social
+Para poder ingresar a las funcionalidades del sistema
+
+#### Descripción 
+Yo como usuaria quiero recuperar mi contraseña si me olvido de esta.
+
+#### Críterios de aceptación
+- Criterios de aceptación 1: Correo de recuperación
+   - Cuando el ingreso el correo de recuperación.Entonces el sistema me envia un mail de recuperación.
+#### Flujo
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/3e161d27-c24b-4de2-91c2-ea5e9e28c9cf)
+
+### Feed de Usuarias
+Yo como Usuaria 
+Deseo crear,reportar,editar y eliminar un post  
+Para interelacionarme con mis amigas  
+
+#### Descripción 
+Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. Asimismo, quiero reportar los post de otras usuarias que pueden molestar a la comunidad.
+#### Críterios de aceptación
+- Criterios de aceptación 1: Crear post
+   - Despues del loguin ingreso a la pantalla del /Feed.Cuando publico un post puedo ver el último post publicado. El orden de los post es de forma ascendente.
+- Criterios de aceptación 2: Editar post
+   - Despues del loguin ingreso a la pantalla del /Feed.Cuando edito un post puedo seleccionar el boton editar y el post se reubica en la casilla de publicar.Una vez editado, puedo publicarlo nuevamente y el orden de los post es de forma ascendente.
+- Criterios de aceptación 3: Eliminar post
+   - Despues del loguin ingreso a la pantalla del /Feed.Cuando edito un post puedo seleccionar el boton eliminar que se encuentra debajo del boton editar y aparece en un mensaje de validación. Al ser aceptado, el ultimo post publicado se ubica en orden de forma ascendente.
+- Criterios de aceptación 4: Reportar post
+     - Cuando otro post de una usuaria no cumple las normas de la comunidad puedo reportarlo.
+
 ## 6. Proceso de diseño de la interfaz de usuario
 
 ## 7. Pruebas Unitarias
@@ -92,6 +177,8 @@ De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
 ## 8. Estado del Proyecto
 
 ## 9. Autoras
+
+El presente proyecto ha sido desarrollado por Erika Nagaki, Tatiana Hernandez y Roxi Ochoa.
 
 
 
