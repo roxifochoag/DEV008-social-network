@@ -17,6 +17,8 @@ import {
   query,
   orderBy,
   getDoc,
+  getDocs,
+  where,
   arrayUnion,
   arrayRemove,
   onSnapshot,
@@ -44,22 +46,35 @@ export const signUp = async (user) => {
       picture: '',
     });
     window.location.assign('/login');
-    // eslint-disable-next-line no-alert
     window.alert('Registro exitoso');
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
-      throw new Error('Correo electrónico ya registrado.');
+      window.alert('Correo electrónico ya registrado.');
     } else if (error.code === 'auth/invalid-email') {
-      throw new Error('Correo invalido.');
+      window.alert('Correo invalido, intente denuevo.');
     } else if (error.code === 'auth/weak-password') {
-      throw new Error('Contraseña debil.');
-    } else {
-      // eslint-disable-next-line no-alert
-      window.alert(`Error al registro: ${error.code}`);
+      window.alert('La contraseña debe tener más de 6 digitos.');
     }
   }
 };
+/*
+|---------------------------------------------------|
+|       Verificar si username esta siendo usado     |
+|---------------------------------------------------|
+*/
+export async function getUserByUsername(username) {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('username', '==', username));
 
+  const querySnapshot = await getDocs(q);
+  const users = querySnapshot.docs;
+
+  if (users.length === 0) {
+    return null;
+  }
+
+  return users[0].data();
+}
 /*
 |-----------------------------------------|
 |              Login - signIn             |

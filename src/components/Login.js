@@ -157,7 +157,6 @@ export const Login = () => {
   */
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    // Declaración de las variables
     const email = email1.value.trim();
     const password = password1.value.trim();
     if (email === '' && password === '') {

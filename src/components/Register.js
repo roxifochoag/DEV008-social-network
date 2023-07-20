@@ -1,4 +1,6 @@
-import { signUp } from '../firebase/firebase.js';
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+import { signUp, getUserByUsername } from '../firebase/firebase.js';
 
 export const Register = () => {
   // creando el elemento div que contiene todo el registro
@@ -121,15 +123,15 @@ export const Register = () => {
   const iconEmail = document.createElement('i');
   iconEmail.className = 'fas fa-envelope';
 
-  const email = document.createElement('input');
-  email.type = 'email';
-  email.className = 'mail-register';
-  email.placeholder = 'Ingresa tu email';
-  email.name = 'Mail';
-  email.required = true;
+  const email1 = document.createElement('input');
+  email1.type = 'email';
+  email1.className = 'mail-register';
+  email1.placeholder = 'Ingresa tu email';
+  email1.name = 'Mail';
+  email1.required = true;
 
   inputFieldEmail.appendChild(iconEmail);
-  inputFieldEmail.appendChild(email);
+  inputFieldEmail.appendChild(email1);
   // -----------------------------------------------------------------
   // creando input de contraseña dentro de un div con un icon
   const closer1 = document.createElement('div');
@@ -179,7 +181,7 @@ export const Register = () => {
   suscribe.id = 'subscribeNews';
   suscribe.value = 'newsletter';
   suscribe.name = 'subscribe';
-  suscribe.required = true;
+  // suscribe.required = true;
 
   // Crear el texto para la suscripción a noticias
   const textReceiveNews = document.createTextNode('Deseo recibir noticias y novedades de Warmi a mi correo');
@@ -244,13 +246,21 @@ export const Register = () => {
   */
   submitBtn.addEventListener('click', async (e) => {
     e.preventDefault();
+    const username = formSignUp.elements.Username.value;
     const user = {
       name: formSignUp.elements.Name.value,
       lastName: formSignUp.elements.Lastname.value,
       email: formSignUp.elements.Mail.value,
-      username: formSignUp.elements.Username.value,
+      username,
       password: formSignUp.elements.Password[0].value,
     };
+
+    const existingUsername = await getUserByUsername(username);
+    if (existingUsername) {
+      window.alert('Nombre de usuario ya esta en uso.');
+      return;
+    }
+
     await signUp(user);
   });
 
