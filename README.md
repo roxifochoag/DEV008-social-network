@@ -8,9 +8,8 @@
 * [4. Consideraciones generales](#4-Consideraciones-generales)
 * [5. Historias de Usuario](#5-Historias-de-Usuario)
 * [6. Proceso de diseño de la interfaz de usuario](#6-Proceso-de-Diseño-de-la-Interfaz-de-Usuario)
-* [7. Pruebas Unitarias](#7-Pruebas-Unitarias)
-* [8. Estado del Proyecto](#8-Estado-del-Proyecto)
-* [9. Autoras](#6-Autoras)
+* [7. Estado del Proyecto](#8-Estado-del-Proyecto)
+* [8. Autoras](#6-Autoras)
 
 ## 1. Preámbulo
 
@@ -158,16 +157,32 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ## 6. Proceso de diseño de la interfaz de usuario
 
+### Prototipos
+#### Prototipos de baja fidelidad
+#### Prototipos de alta fidelidad
+#### Paleta de color
 
-## 7. Pruebas Unitarias
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/e47a1097-76e8-476b-9b99-0fe8d6dca0dd)
+
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/548632fa-55e3-41ae-b829-57fca2ad912b)
+
+#### Diseño responsivo
+
+#### Pruebas de Usabilidad
 
 
-## 8. Estado del Proyecto
+
+
+## 7. Estado del Proyecto
+ Gestión de proyecto y distribución de actividades fue en trello:
+ ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/a1c9a5df-85ca-4a8d-9be5-6a392375e3a8)
+
  Tecnologias utilizadas en el proyecto "Warmi" :
- ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/df3ebf77-116d-4a65-984c-7b4c38116f7a)
+  ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/df3ebf77-116d-4a65-984c-7b4c38116f7a)
 
+ 
 
-## 9. Autoras
+## 8. Autoras
 
 El presente proyecto ha sido desarrollado por Erika Nagaki, Tatiana Hernandez y Roxi Ochoa.
 
