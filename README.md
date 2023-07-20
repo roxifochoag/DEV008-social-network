@@ -169,7 +169,7 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/494c72bb-4abb-4ff4-b9af-4a72fed2894a)
 
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/d305a42e-12bd-4681-abef-69c302cfb30c)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/98479f48-6578-4a1d-b8af-11e4a6f3747c)
 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cd8a7126-c776-4cdc-9660-f08dec4d9e9e)
 
@@ -183,6 +183,10 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/548632fa-55e3-41ae-b829-57fca2ad912b)
 
 #### Diseño responsivo
+
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/c57ea242-4593-4b3b-8dc7-6eeaf3aaaaa3)
+
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/d8f04c78-1122-4fec-adb9-9525e4307b2e)
 
 #### Pruebas de Usabilidad
 
