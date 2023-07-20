@@ -50,6 +50,15 @@ Así como que, la mayoría se encontraban casadas (46.2 %), siendo seguido por l
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/f06ba8e8-3b1b-414e-a8ea-f7de2bc6d794)
 
 De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/b42f33a7-6f80-4483-a9f7-cd4b4385270f)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/aca4bd4f-c3e2-45b0-9ef3-5efe560f623e)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/ded0d5bf-0b4e-4a9b-a5c3-00ac1ce5e26f)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/651f8027-cd3b-4806-bf45-b7a8eef65749)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/7e83da75-6cf4-47ba-82be-67f29d3a3310)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/925641be-43f1-4739-98b7-ae3e9d5b56b8)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cc7046aa-b904-4605-bbaa-51b44c19e2c1)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/6164cd9f-2991-4912-b94e-2bef50cf7149)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cd00fbc5-1433-4329-ae6f-68db0a43bda9)
 
 
 
