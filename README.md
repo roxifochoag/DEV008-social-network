@@ -173,7 +173,8 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cd8a7126-c776-4cdc-9660-f08dec4d9e9e)
 
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/1b9a04b6-5e93-4cbc-9802-9c7fbe460201)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/009c177b-6162-4d8f-a912-b4c1363ece82)
+
 
 
 #### Paleta de color
@@ -183,10 +184,11 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/548632fa-55e3-41ae-b829-57fca2ad912b)
 
 #### Diseño responsivo
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/fe831305-96c0-427a-926b-3bddfaecfbd1)
 
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/c57ea242-4593-4b3b-8dc7-6eeaf3aaaaa3)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/591a4881-58ab-471f-977f-a9df3e0145a3)
 
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/d8f04c78-1122-4fec-adb9-9525e4307b2e)
+
 
 #### Pruebas de Usabilidad
 
