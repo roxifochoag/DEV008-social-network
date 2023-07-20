@@ -60,7 +60,6 @@ De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/aca4bd4f-c3e2-45b0-9ef3-5efe560f623e)
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/ded0d5bf-0b4e-4a9b-a5c3-00ac1ce5e26f)
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/651f8027-cd3b-4806-bf45-b7a8eef65749)
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/7e83da75-6cf4-47ba-82be-67f29d3a3310)
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/925641be-43f1-4739-98b7-ae3e9d5b56b8)
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cc7046aa-b904-4605-bbaa-51b44c19e2c1)
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/6164cd9f-2991-4912-b94e-2bef50cf7149)
@@ -94,12 +93,9 @@ Habiendo recopilado la información por medio de la encuesta realizada a nuestro
  A continuación, se detallaran cada una de las historias de usuario.Asimismo, se incluira en la descripción los críterios de aceptación y flujos correspondientes.
 
 ### Loguin de Usuarias
-Yo como Usuaria 
-Deseo Ingresar a la Red Social
-Para poder hacer uso de las funcionalidades del sistema
 
 #### Descripción 
-Yo como usuaria quiero loguearme de diversas formas ya sea creando mi cuenta en la misma página ingresando mi correo de registro y mi contraseña o con mi cuenta de google.
+Yo como usuaria quiero loguearme de diversas formas ya sea creando mi cuenta en la misma página ingresando mi correo de registro y mi contraseña o con mi cuenta de google para poder hacer uso de las funcionalidades del sistema
 
 #### Críterios de aceptación
 - Criterios de aceptación 1: Ingreso exitoso
@@ -120,12 +116,9 @@ Yo como usuaria quiero loguearme de diversas formas ya sea creando mi cuenta en 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/99ba9f10-96e7-48a6-bdde-83364721647c)
 
 ### Registro de Usuarias
-Yo como Usuaria 
-Deseo Ingresar a la Red Social
-Para poder hacer uso de las funcionalidades del sistema
 
 #### Descripción
-Yo como usuaria quiero registrarme asociando mi mail en la misma página.
+Yo como Usuaria, deseo Ingresar a la Red Social para poder hacer uso de las funcionalidades del sistema
 
 #### Críterios de aceptación
 - Criterios de aceptación 1: Registro exitoso
@@ -140,13 +133,9 @@ Yo como usuaria quiero registrarme asociando mi mail en la misma página.
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/55816e13-3a82-4117-ac0b-90ecca5b44bf)
 
 ### Recuperar contraseña
-Yo como Usuaria 
-Deseo Recuperar mi contraseña de mi a la Red Social
-Para poder ingresar a las funcionalidades del sistema
 
 #### Descripción 
-Yo como usuaria quiero recuperar mi contraseña si me olvido de esta.
-
+Yo como Usuaria ,deseo Recuperar mi contraseña de mi a la Red Social para poder ingresar a las funcionalidades del sistema
 #### Críterios de aceptación
 - Criterios de aceptación 1: Correo de recuperación
    - Cuando el ingreso el correo de recuperación.Entonces el sistema me envia un mail de recuperación.
@@ -154,9 +143,6 @@ Yo como usuaria quiero recuperar mi contraseña si me olvido de esta.
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/3e161d27-c24b-4de2-91c2-ea5e9e28c9cf)
 
 ### Feed de Usuarias
-Yo como Usuaria 
-Deseo crear,reportar,editar y eliminar un post  
-Para interelacionarme con mis amigas  
 
 #### Descripción 
 Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. Asimismo, quiero reportar los post de otras usuarias que pueden molestar a la comunidad.
