@@ -17,7 +17,7 @@ Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
 sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
 vivir sin ellas. A razón de ello, existen redes sociales de todo tipo y con diferentes
 enfoques y para todo tipo de intereses.En este caso, el proposito de creación de nuestra
-en con el fin de apoyar, acompañar y guiar a las mujeres latinas que se encuentran fuera de su país de origen.
+es con el fin de apoyar, acompañar y guiar a las mujeres latinas que se encuentran fuera de su país de origen.
 
 ## 2. Resumen del proyecto
 
@@ -159,15 +159,20 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ### Prototipos
 #### Prototipos de baja fidelidad
+
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/187715e0-6eca-4a95-9b52-1ccba4611170)
+
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/8a2bbdf4-b9e8-494b-ba32-050a7450e802)
 
 
 #### Prototipos de alta fidelidad
 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/494c72bb-4abb-4ff4-b9af-4a72fed2894a)
+
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/d305a42e-12bd-4681-abef-69c302cfb30c)
+
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cd8a7126-c776-4cdc-9660-f08dec4d9e9e)
+
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/1b9a04b6-5e93-4cbc-9802-9c7fbe460201)
 
 
