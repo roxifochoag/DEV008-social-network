@@ -159,7 +159,18 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ### Prototipos
 #### Prototipos de baja fidelidad
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/187715e0-6eca-4a95-9b52-1ccba4611170)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/8a2bbdf4-b9e8-494b-ba32-050a7450e802)
+
+
 #### Prototipos de alta fidelidad
+
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/494c72bb-4abb-4ff4-b9af-4a72fed2894a)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/d305a42e-12bd-4681-abef-69c302cfb30c)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cd8a7126-c776-4cdc-9660-f08dec4d9e9e)
+![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/1b9a04b6-5e93-4cbc-9802-9c7fbe460201)
+
+
 #### Paleta de color
 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/e47a1097-76e8-476b-9b99-0fe8d6dca0dd)
