@@ -183,13 +183,6 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/548632fa-55e3-41ae-b829-57fca2ad912b)
 
-#### Diseño responsivo
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/fe831305-96c0-427a-926b-3bddfaecfbd1)
-
-![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/591a4881-58ab-471f-977f-a9df3e0145a3)
-
-
-
 #### Pruebas de Usabilidad
 
 
