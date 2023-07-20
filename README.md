@@ -158,9 +158,14 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
 
 ## 6. Proceso de diseño de la interfaz de usuario
 
+
 ## 7. Pruebas Unitarias
 
+
 ## 8. Estado del Proyecto
+ Tecnologias utilizadas en el proyecto "Warmi" :
+ ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/df3ebf77-116d-4a65-984c-7b4c38116f7a)
+
 
 ## 9. Autoras
 
