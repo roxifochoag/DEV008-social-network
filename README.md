@@ -5,7 +5,13 @@
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
 * [3. Investigación previa a la realización del proyecto](#3-Investigación)
-* [4. Consideraciones generales](#3-Consideraciones-generales)
+* [4. Consideraciones generales](#4-Consideraciones-generales)
+* [5. Historias de Usuario](#5-Historias-de-Usuario)
+* [6. Proceso de diseño de la interfaz de usuario](#6-Proceso-de-diseño-de-la-interfaz-de usuario)
+* [7. Pruebas Unitarias](#7-Pruebas-Unitarias)
+* [8. Estado del Proyecto](#8-Estado-del-Proyecto)
+* [9. Autoras](#6-Autoras)
+
 ## 1. Preámbulo
 
 Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
@@ -62,21 +68,30 @@ De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
 
 ## 4. Consideraciones generales
 
-* Requerimientos Funcionales 
-    ** Desarrollar una SPA con temática de red social,
-    ** Aplicar los conceptos de responsividad en el desarrollo de las vistas (templates),
-    ** Implementar un router para la navegación entre las diferentes vistas de la aplicación,
-    ** Emplear un servicio externo para la persistencia de datos de la aplicación,
-    ** Crear una suite de pruebas unitarias que permitan testear código asíncrono,
-    ** Los errores, se deben mostrar mensajes descriptivos para ayudar al usuario a corregirlos,
-    ** Realizar validaciones, a razón que no pueden haber usuarios repetidos,
-    ** Separar la manipulación del DOM de la lógica (Separación de responsabilidades).
-    ** Contar con múltiples vistas. Para esto, tu aplicación debe ser una Single Page Application (SPA)
-    ** Alterar y persistir datos. Los datos que agregues o modifiques deberán persistir a lo largo de la aplicación. Te recomendamos que uses Firebase para eso también.
-* Requerimientos no Funcionales
-    ** Mantener la paleta del color;
-    ** Mantener la jerarquía visual;
+### Requerimientos Funcionales 
+   - [ ] Desarrollar una SPA con temática de red social;
+   - [ ] Aplicar los conceptos de responsividad en el desarrollo de las vistas (templates);
+   - [ ] Implementar un router para la navegación entre las diferentes vistas de la aplicación;
+   - [ ] Emplear un servicio externo para la persistencia de datos de la aplicación;
+   - [ ] Crear una suite de pruebas unitarias que permitan testear código asíncrono;
+   - [ ] Los errores, se deben mostrar mensajes descriptivos para ayudar al usuario a corregirlos;
+   - [ ] Realizar validaciones, a razón que no pueden haber usuarios repetidos;
+   - [ ] Separar la manipulación del DOM de la lógica (Separación de responsabilidades);
+   - [ ] Contar con múltiples vistas. Para esto, tu aplicación debe ser una Single Page Application (SPA);
+   - [ ] Alterar y persistir datos. Los datos que agregues o modifiques deberán persistir a lo largo de la aplicación. Te recomendamos que uses Firebase para eso también.
+### Requerimientos no Funcionales
+   - [ ] Mantener la paleta del color;
+   - [ ] Mantener la jerarquía visual.
 
 ## 5. Historias de Usuario
+
+## 6. Proceso de diseño de la interfaz de usuario
+
+## 7. Pruebas Unitarias
+
+## 8. Estado del Proyecto
+
+## 9. Autoras
+
 
 
