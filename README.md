@@ -60,7 +60,7 @@ De acuerdo a la encuesta, la mayoría de las migrantes eran peruanas
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/6164cd9f-2991-4912-b94e-2bef50cf7149)
 ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/cd00fbc5-1433-4329-ae6f-68db0a43bda9)
 
-
+## 4. Investigación previa a la realización del proyecto
 
 
 
