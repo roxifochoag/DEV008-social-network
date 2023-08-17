@@ -197,7 +197,6 @@ Yo como usuaria quiero crear un post y a ese post deseo editarlo, eliminarlo. As
   ![image](https://github.com/roxifochoag/DEV008-social-network/assets/46870050/df3ebf77-116d-4a65-984c-7b4c38116f7a)
 
  
-
 ## 8. Autoras
 
 El presente proyecto ha sido desarrollado por Erika Nagaki, Tatiana Hernandez y Roxi Ochoa.
